@@ -3,8 +3,8 @@
     "version": "2.2.11",
     "width": 6000,
     "height": 6000,
-    "scrollTop": -877,
-    "scrollLeft": -2063,
+    "scrollTop": -980,
+    "scrollLeft": -2074,
     "zoomLevel": 0.7,
     "show": {
       "tableComment": true,
@@ -1191,7 +1191,7 @@
         "id": "b57da494-b76f-4ab3-a5e4-8205a173d675"
       },
       {
-        "name": "approval",
+        "name": "APPROVAL",
         "comment": "클래스 승인 테이블",
         "columns": [
           {
@@ -1266,10 +1266,10 @@
         ],
         "ui": {
           "active": false,
-          "left": 2450.8325,
-          "top": 374.312,
-          "zIndex": 73,
-          "widthName": 60,
+          "left": 2450.8324,
+          "top": 346.5345,
+          "zIndex": 94,
+          "widthName": 65.48291015625,
           "widthComment": 115.140625,
           "color": "#F44336"
         },
@@ -1687,16 +1687,16 @@
           "active": false,
           "left": 4530.1428,
           "top": 157.7146,
-          "zIndex": 72,
+          "zIndex": 79,
           "widthName": 68.91064453125,
           "widthComment": 93,
-          "color": "#FFC107"
+          "color": "#B38800"
         },
         "visible": true,
         "id": "f804deac-1571-4353-b32e-81c5a6a67f34"
       },
       {
-        "name": "approvalimage",
+        "name": "APPROVALIMAGE",
         "comment": "자격증, 수료증, 인증서",
         "columns": [
           {
@@ -1817,10 +1817,10 @@
         ],
         "ui": {
           "active": false,
-          "left": 3088.9996,
-          "top": 350.5558,
-          "zIndex": 75,
-          "widthName": 88.7978515625,
+          "left": 3085.6663,
+          "top": 321.6672,
+          "zIndex": 97,
+          "widthName": 105.13037109375,
           "widthComment": 120,
           "color": "#E91E63"
         },
@@ -1847,7 +1847,7 @@
       {
         "value": "제공 및 유의사항\n- 제공 : 와이파이, 주차공간, 포토존, 반려동물\n- 건강 및 안전사항 : 손세정제, 실내소독, 거리두기",
         "ui": {
-          "active": true,
+          "active": false,
           "left": 2948.1031746031736,
           "top": 530.527777777778,
           "zIndex": 77,
@@ -1994,8 +1994,8 @@
           "columnIds": [
             "0c85ba25-d37d-49c2-a5a3-add1373df330"
           ],
-          "x": 2653.57859375,
-          "y": 504.812,
+          "x": 2653.57849375,
+          "y": 477.0345,
           "direction": "bottom"
         },
         "constraintName": "fk_classproduct_to_approval",
@@ -2193,8 +2193,8 @@
           "columnIds": [
             "0c85ba25-d37d-49c2-a5a3-add1373df330"
           ],
-          "x": 2856.3246875,
-          "y": 439.562,
+          "x": 2856.3245875,
+          "y": 411.7845,
           "direction": "right"
         },
         "end": {
@@ -2202,8 +2202,8 @@
           "columnIds": [
             "312fbf39-dad1-4775-b86e-05fe2af5de95"
           ],
-          "x": 3088.9996,
-          "y": 436.3058,
+          "x": 3085.6663,
+          "y": 407.4172,
           "direction": "left"
         },
         "constraintName": "fk_approval_to_",
