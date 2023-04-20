@@ -3,8 +3,8 @@
     "version": "2.2.11",
     "width": 6000,
     "height": 6000,
-    "scrollTop": -705.3333262470044,
-    "scrollLeft": -1729.0000119209153,
+    "scrollTop": -340.3333262470044,
+    "scrollLeft": -2710.0000119209153,
     "zoomLevel": 0.9,
     "show": {
       "tableComment": true,
@@ -364,10 +364,10 @@
           }
         ],
         "ui": {
-          "active": false,
-          "left": 3298.3911,
+          "active": true,
+          "left": 3299.5022,
           "top": 136.3807,
-          "zIndex": 13,
+          "zIndex": 17,
           "widthName": 60,
           "widthComment": 67,
           "color": "#673AB7"
@@ -1943,7 +1943,7 @@
           "columnIds": [
             "5265288d-c88f-4561-979c-361875770cc7"
           ],
-          "x": 3737.98631484375,
+          "x": 3739.09741484375,
           "y": 249.6307,
           "direction": "right"
         },
@@ -1978,7 +1978,7 @@
           "columnIds": [
             "08fc642b-f43a-40d5-ad65-5104f74ba823"
           ],
-          "x": 3298.3911,
+          "x": 3299.5022,
           "y": 211.8807,
           "direction": "left"
         },
@@ -2186,7 +2186,7 @@
           "columnIds": [
             "3fcaca0b-a82e-4399-b70a-dce4840d6bb3"
           ],
-          "x": 3518.188707421875,
+          "x": 3519.299807421875,
           "y": 287.3807,
           "direction": "bottom"
         },
@@ -2203,7 +2203,7 @@
           "columnIds": [
             "5265288d-c88f-4561-979c-361875770cc7"
           ],
-          "x": 3737.98631484375,
+          "x": 3739.09741484375,
           "y": 174.1307,
           "direction": "right"
         },
