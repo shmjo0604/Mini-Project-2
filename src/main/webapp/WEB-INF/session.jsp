@@ -53,7 +53,6 @@
   		</div>
   		<!-- / left menu bar -->
   		
-  		
   		<!-- right side -->
   		<div class="col-lg-9">
   			<div>
