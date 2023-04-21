@@ -1,5 +1,7 @@
 package service.impl;
 
+import java.util.List;
+
 import config.MyBatisContext;
 import dto.Apply;
 import mapper.ApplyMapper;
@@ -16,6 +18,18 @@ public class ApplyServiceImpl implements ApplyService{
 		catch (Exception e) {
 			e.printStackTrace();
 			return -1;
+		}
+	}
+
+	@Override
+	public List<Apply> selectApplyList(String id) {
+		try {
+			return MyBatisContext.getSqlSession().getMapper(ApplyMapper.class)
+					.selectApplyList(id);
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		return null;
 		}
 	}
 
