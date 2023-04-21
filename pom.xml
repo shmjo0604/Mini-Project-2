@@ -31,12 +31,6 @@
 			<artifactId>commons-dbcp2</artifactId>
 			<version>2.9.0</version>
 		</dependency>
-		<!--Oracle DB 연동-->
-		<dependency>
-			<groupId>com.oracle.database.jdbc</groupId>
-			<artifactId>ojdbc8</artifactId>
-			<version>21.7.0.0</version>
-		</dependency>
 		<!--lombok-->
 		<dependency>
 			<groupId>org.projectlombok</groupId>
@@ -57,6 +51,11 @@
 		    <version>2.1.214</version>
 		    <scope>runtime</scope>
 		</dependency>
-		
+		<!--gson-->
+		<dependency>
+		    <groupId>com.google.code.gson</groupId>
+		    <artifactId>gson</artifactId>
+		    <version>2.10</version>
+		</dependency>
   </dependencies>
 </project>

@@ -20,9 +20,9 @@ public class Classproduct {
 	// 참고항목
 	private String address3;
 	// 위도
-	private String latitude;
+	private double latitude;
 	// 경도
-	private String longitude;
+	private double longitude;
 	// 가격
 	private long price;
 	// 소개글
