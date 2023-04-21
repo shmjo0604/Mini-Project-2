@@ -37,4 +37,5 @@ public interface ClassMapper {
 	})
 	public int updateClassOne(@Param("obj") Classproduct obj);
 		
+	// 
 }

@@ -11,13 +11,10 @@
 	<jsp:include page="header.jsp"></jsp:include>
 	<div class="container">
 		<div>
-			<div class="MuiToolbar-root MuiToolbar-regular css-12o98wt"
-				style="width: 100%; max-width: 1200px; background: rgb(250, 250, 250);">
+			<div class="aside">
 				<div class="jss620">
 					<div class="jss618">
-						<button
-							class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeLarge css-1w8s6so"
-							tabindex="0" type="button">
+						<button class="" type="button">
 							<svg
 								class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium jss619 css-vubbuv"
 								focusable="false" aria-hidden="true" viewBox="0 0 24 24"
@@ -51,9 +48,9 @@
 				</div>
 				<div class="jss614">
 					<button
-						class="MuiButtonBase-root MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium jss615 css-d02px4"
+						class=""
 						tabindex="0" type="button">
-						<a class="jss617" target="_blank"
+						<a class="guide" target="_blank"
 							href="https://www.notion.so/fc529bc839e1413094bc4314510cd45b">등록
 							가이드 보기</a><span class="MuiTouchRipple-root css-w0pj6f"></span>
 					</button>
@@ -69,7 +66,7 @@
 
 
 
-		<div class="jss640">
+		<div class="main">
 			<div
 				style="display: flex; flex-direction: row; margin: 0px 12px 0px 0px;">
 				<div class="jss649">&nbsp;</div>

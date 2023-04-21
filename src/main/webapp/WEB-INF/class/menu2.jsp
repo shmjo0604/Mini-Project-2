@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>카테고리 등록 페이지</title>
+<title>강사소개 등록 페이지</title>
 
 <!-- Bootstrap -->
 <link rel="stylesheet"
@@ -22,7 +22,7 @@
 	href="${pageContext.request.contextPath}/resources/css/menu1.css">
 </head>
 <body>
-	<form action="mypage.do?menu=1" method="post" >
+	<form action="mypage.do?menu=2" method="post" >
 	<div class="container">
 
 
@@ -35,28 +35,30 @@
 		
 		<!-- 오른쪽 화면 -->
 		<main class="contents">
-		<div class="side_right">
+		<div class="side_right ">
 		
 			<section>
-				<label for="cate1" name="cate1">지역 카테고리</label>
-				<select id="cate1">
-					<option value="#">서울</option>
-					<option value="#">경기</option>
-				</select> <br />
+				<p>프로필 이미지</p>
+				<img src="" />
 			</section>
+			
 			<section>
-				<label for="cate2">종류 카테고리</label> 
-				<select id="cate2">
-					<option value="#">스포츠</option>
-					<option value="#">쿠킹</option>
-				</select>
+				<p>상호명 및 닉네임</p>
+			</section>
+			
+			<section>
+				<p>강사 소개</p>
+			</section>
+			
+			<section>
+				<p>SNS</p>
 			</section>
 
 
 
 		<div class="changepage">
 			<div>
-				<!-- <button onclick="location:'menu1.jsp'">이전</button> -->
+				<button onclick="location:'menu1.jsp'">이전</button>
 				<button onclick="location:'menu2.jsp'">다음</button>
 			</div>
 		</div>
