@@ -12,7 +12,7 @@ public class Classproduct {
 	// 제목
 	private String title;
 	// 우편번호
-	private long postcode;
+	private String postcode;
 	// 도로명주소,지번주소
 	private String address1;
 	// 상세주소
@@ -34,7 +34,7 @@ public class Classproduct {
 	// 등록일자
 	private Date regdate;
 	// 승인여부(0,1)
-	private long chk;
+	private int chk;
 	// 상세지역카테고리
 	private long localcode;
 	// 액티비티디테일카테고리
