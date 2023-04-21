@@ -14,7 +14,7 @@ public class Classimage {
 	private String filedata;
 	private String filetype;
 	// 1:프로필이미지, 2:메인, 3:서브, 4:커리큘럼
-	private long typechk;
+	private int typechk;
 	// 등록일자
 	private Date regdate;
 	private long classcode;

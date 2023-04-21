@@ -3,9 +3,9 @@
     "version": "2.2.11",
     "width": 6000,
     "height": 6000,
-    "scrollTop": -461.6666993829913,
-    "scrollLeft": -1926.6666522953146,
-    "zoomLevel": 1,
+    "scrollTop": -536.333359824286,
+    "scrollLeft": -2993.999982118607,
+    "zoomLevel": 0.8,
     "show": {
       "tableComment": true,
       "columnComment": true,
@@ -258,7 +258,7 @@
           "active": false,
           "left": 2408.2921,
           "top": 84.4307,
-          "zIndex": 11,
+          "zIndex": 9,
           "widthName": 60,
           "widthComment": 71.5703125,
           "color": "#FF9800"
@@ -367,7 +367,7 @@
           "active": false,
           "left": 3298.3911,
           "top": 136.3807,
-          "zIndex": 9,
+          "zIndex": 7,
           "widthName": 60,
           "widthComment": 67,
           "color": "#795548"
@@ -499,7 +499,7 @@
           "active": false,
           "left": 3890.3469,
           "top": 453.4677,
-          "zIndex": 25,
+          "zIndex": 44,
           "widthName": 60,
           "widthComment": 67,
           "color": "#9E9E9E"
@@ -560,7 +560,7 @@
           {
             "name": "postcode",
             "comment": "우편번호",
-            "dataType": "VARCHAR2",
+            "dataType": "NUMBER",
             "default": "",
             "option": {
               "autoIncrement": false,
@@ -575,7 +575,7 @@
               "pfk": false,
               "widthName": 60,
               "widthComment": 60,
-              "widthDataType": 67.05078125,
+              "widthDataType": 60,
               "widthDefault": 60
             },
             "id": "16186916-9a6e-4c10-afed-6e44ec8d45af"
@@ -606,7 +606,7 @@
           {
             "name": "address2",
             "comment": "상세주소",
-            "dataType": "VARCHAR2(100)",
+            "dataType": "VARCHAR2(200)",
             "default": "",
             "option": {
               "autoIncrement": false,
@@ -907,7 +907,7 @@
           "active": false,
           "left": 2408.0944,
           "top": 590.7748,
-          "zIndex": 30,
+          "zIndex": 40,
           "widthName": 98.484375,
           "widthComment": 120,
           "color": "#00FF42"
@@ -970,7 +970,7 @@
           "active": false,
           "left": 2901.8269,
           "top": 1391.2318,
-          "zIndex": 14,
+          "zIndex": 12,
           "widthName": 84.43701171875,
           "widthComment": 120,
           "color": "#1300FF"
@@ -1033,7 +1033,7 @@
           "active": false,
           "left": 2052.4405,
           "top": 1384.8898,
-          "zIndex": 13,
+          "zIndex": 11,
           "widthName": 60,
           "widthComment": 119,
           "color": "#673AB7"
@@ -1119,7 +1119,7 @@
           "active": false,
           "left": 2078.8868,
           "top": 1107.7501,
-          "zIndex": 12,
+          "zIndex": 10,
           "widthName": 69.869140625,
           "widthComment": 120,
           "color": "#F586EE"
@@ -1320,7 +1320,7 @@
           "active": false,
           "left": 3445.5229,
           "top": 988.6318,
-          "zIndex": 6,
+          "zIndex": 35,
           "widthName": 79.21923828125,
           "widthComment": 80,
           "color": "#FFEB3B"
@@ -1406,7 +1406,7 @@
           "active": false,
           "left": 2892.0044,
           "top": 1120.3351,
-          "zIndex": 15,
+          "zIndex": 13,
           "widthName": 94.83447265625,
           "widthComment": 120,
           "color": "#03A9F4"
@@ -1580,7 +1580,7 @@
             "id": "c021d295-8199-44a3-87fa-9e5b238bb3df"
           },
           {
-            "name": "classend ",
+            "name": "classend",
             "comment": "오후 9:00",
             "dataType": "VARCHAR2(100)",
             "default": "",
@@ -1649,7 +1649,7 @@
             "id": "9b829b9a-c7b9-41fe-bd8f-bcdfd57f0d37"
           },
           {
-            "name": "level",
+            "name": "classlevel",
             "comment": "클래스 난이도(입문자, 경험자)",
             "dataType": "VARCHAR2(50)",
             "default": "",
@@ -1720,9 +1720,9 @@
         ],
         "ui": {
           "active": false,
-          "left": 3258.4071,
-          "top": 554.0289,
-          "zIndex": 61,
+          "left": 3255.6293,
+          "top": 554.9548,
+          "zIndex": 39,
           "widthName": 60,
           "widthComment": 60,
           "color": "#F44336"
@@ -1731,7 +1731,7 @@
         "id": "82d068ab-9853-43b7-acd4-78bcaff519d6"
       },
       {
-        "name": "APPLYTATUS",
+        "name": "APPLYSTATUS",
         "comment": "신청상태테이블",
         "columns": [
           {
@@ -1806,8 +1806,8 @@
           {
             "name": "regdate",
             "comment": "상태등록일자",
-            "dataType": "",
-            "default": "",
+            "dataType": "TIMESTAMP",
+            "default": "CURRENT_TIMESTAMP",
             "option": {
               "autoIncrement": false,
               "primaryKey": false,
@@ -1821,18 +1821,18 @@
               "pfk": false,
               "widthName": 60,
               "widthComment": 80,
-              "widthDataType": 60,
-              "widthDefault": 60
+              "widthDataType": 71.93212890625,
+              "widthDefault": 134.31689453125
             },
             "id": "fcaecd45-5abf-4e3f-9359-870a76154a7e"
           }
         ],
         "ui": {
-          "active": false,
+          "active": true,
           "left": 3885.3243,
           "top": 100.1521,
-          "zIndex": 8,
-          "widthName": 74.9091796875,
+          "zIndex": 67,
+          "widthName": 81.51708984375,
           "widthComment": 93,
           "color": "#607D8B"
         },
@@ -1845,7 +1845,7 @@
         "columns": [
           {
             "name": "no",
-            "comment": "클래스 코드(시퀀스)",
+            "comment": "시퀀스",
             "dataType": "NUMBER",
             "default": "1",
             "option": {
@@ -1860,7 +1860,7 @@
               "fk": false,
               "pfk": false,
               "widthName": 60,
-              "widthComment": 118.4921875,
+              "widthComment": 60,
               "widthDataType": 60,
               "widthDefault": 60
             },
@@ -2009,7 +2009,7 @@
           "active": false,
           "left": 1776.4852,
           "top": 692.4996,
-          "zIndex": 5,
+          "zIndex": 57,
           "widthName": 105.13037109375,
           "widthComment": 120,
           "color": "#009688"
@@ -2050,9 +2050,9 @@
         "value": "최종 : 장바구니 /위시리스트 고려",
         "ui": {
           "active": false,
-          "left": 4304.949095372618,
-          "top": 98.97684171998264,
-          "zIndex": 7,
+          "left": 4424.740757279188,
+          "top": 96.89350846943347,
+          "zIndex": 45,
           "width": 127,
           "height": 100
         },
@@ -2184,8 +2184,8 @@
           "columnIds": [
             "6e1d3a55-9d6c-48b9-9221-db3732b0e07a"
           ],
-          "x": 3258.4071,
-          "y": 721.7789,
+          "x": 3255.6293,
+          "y": 722.7048,
           "direction": "left"
         },
         "constraintName": "fk_classproduct_to_session",
@@ -2227,8 +2227,8 @@
           "columnIds": [
             "e6f2aad5-a2a8-4a71-b542-9ee1c1905b7e"
           ],
-          "x": 3517.292109765625,
-          "y": 554.0289,
+          "x": 3514.514309765625,
+          "y": 554.9548,
           "direction": "top"
         },
         "end": {

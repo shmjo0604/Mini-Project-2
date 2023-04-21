@@ -14,7 +14,7 @@ public class Review {
 	// 내용
 	private String content;
 	// 평점(1,2,3,4,5)
-	private String rating;
+	private int rating;
 	// 리뷰등록일자
 	private Date regdate;
 }
