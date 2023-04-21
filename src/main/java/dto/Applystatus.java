@@ -6,7 +6,7 @@ import lombok.Data;
 
 //신청상태테이블
 @Data
-public class Applytatus {
+public class Applystatus {
 private long no;
 // 신청번호(시퀀스)
 private long applyno;
