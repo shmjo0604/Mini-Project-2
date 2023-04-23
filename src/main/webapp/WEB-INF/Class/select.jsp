@@ -261,134 +261,16 @@
     <hr class="divider">
 
     <!--Main 영역-->
-    <!--Search 영역-->
-    <section>
-        <div class="container">
-            <div class="row mb-4">
-                <div class="col-4">
-                    <div class="input-group">
-                        <!-- <select class="form-select" aria-label="Default select example">
-                            <option selected value="title">제목</option>
-                            <option value="keyword">내용</option>
-                            <option value="2"></option>
-                            <option value="3">Three</option>
-                        </select> -->
-                        <input type="text" class="form-control" placeholder="검색어를 입력하세요."
-                            aria-label="Text input with dropdown button">
-                        <button class="btn btn-primary" type="button">
-                            <i class="fas fa-search fa-sm"></i>
-                        </button>
-                    </div>
-                </div>
-            </div>
+    <!--Search - List 영역-->
+    <c:if test="${param.search == 'list'}">
+    	<jsp:include page="./select_list.jsp"></jsp:include>
+	</c:if>
 
-            <div class="row mb-4">
-                <div class="col-2">
-                    <div>지역</div>
-                </div>
-                <div class="col-4">
-                    <select class="form-select" aria-label="Default select example">
-                        <option selected>Open this select menu</option>
-                        <option value="1">One</option>
-                        <option value="2">Two</option>
-                        <option value="3">Three</option>
-                    </select>
-                </div>
-                <div class="col-2">
-                    <div>세부 지역</div>
-                </div>
-                <div class="col-4">
-                    <select class="form-select" aria-label="Default select example">
-                        <option selected>Open this select menu</option>
-                        <option value="1">One</option>
-                        <option value="2">Two</option>
-                        <option value="3">Three</option>
-                    </select>
-                </div>
-            </div>
-            <div class="row mb-4">
-                <div class="col-2">
-                    <div>카테고리</div>
-                </div>
-                <div class="col-4">
-                    <select class="form-select" aria-label="Default select example">
-                        <option selected>Open this select menu</option>
-                        <option value="1">One</option>
-                        <option value="2">Two</option>
-                        <option value="3">Three</option>
-                    </select>
-                </div>
-                <div class="col-2">
-                    <div>세부 카테고리</div>
-                </div>
-                <div class="col-4">
-                    <select class="form-select" aria-label="Default select example">
-                        <option selected>Open this select menu</option>
-                        <option value="1">One</option>
-                        <option value="2">Two</option>
-                        <option value="3">Three</option>
-                    </select>
-                </div>
-            </div>
-            <div class="row mb-4">
-                <div class="col-2">
-                    요일
-                </div>
-                <div class="col-4">
-                    <div>
-                        <button class="btn btn-outline-primary active">월</button>
-                        <button class="btn btn-outline-primary">화</button>
-                        <button class="btn btn-outline-primary">수</button>
-                        <button class="btn btn-outline-primary">목</button>
-                        <button class="btn btn-outline-primary">금</button>
-                        <button class="btn btn-outline-primary">토</button>
-                        <button class="btn btn-outline-primary">일</button>
-                    </div>
-                </div>
-                <div class="col-2">
-                    시간
-                </div>
-                <div class="col-4">
-
-                </div>
-            </div>
-            <div class="row mb-4">
-                <div class="col-2">
-                    유형
-                </div>
-                <div class="col-4">
-                    <button class="btn btn-outline-warning active">일일</button>
-                    <button class="btn btn-outline-warning">정기</button>
-                </div>
-                <div class="col-2">
-                    난이도
-                </div>
-                <div class="col-4">
-                    <div>
-                        <button class="btn btn-outline-success active">입문자</button>
-                        <button class="btn btn-outline-success">경험자</button>
-                        <button class="btn btn-outline-success">숙련자</button>
-                    </div>
-                </div>
-            </div>
-            <div class="row mb-4">
-                <div class="col">
-                    가격
-                </div>
-                <div class="col">
-                    날짜 <input class="datepicker">
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <hr class="divider">
-
-    <!--Class Map 영역-->
-    <div class="container">
-    	<div id="map" style="width: 500px; height: 400px;"></div>
-    </div>
-
+    <!--Search - Map 영역-->
+    <c:if test="${param.search == 'map'}">
+    	<jsp:include page="./select_map.jsp"></jsp:include>
+	</c:if>
+	
     <!--footer 영역-->
     <footer class="bg-dark">
         <div class="container">
@@ -441,9 +323,6 @@
     <script src="${pageContext.request.contextPath}/resources/js/jquery-ui.min.js"></script>
     <!--Bootstrap 용 js script 태그는 반드시 body 내부에 존재해야 한다!-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- kakao map library -->
-    <script type="text/javascript"
-        src="//dapi.kakao.com/v2/maps/sdk.js?appkey=4847ab83c2fe2a7607fbdad0614a758b"></script>
     <script>
         $.datepicker.setDefaults({
             dateFormat: 'yy-mm-dd',
@@ -461,30 +340,6 @@
         $(function () {
             $('.datepicker').datepicker();
         });
-        
-        var container = document.getElementById('map');
-        var options = {
-            center: new kakao.maps.LatLng(33.450701, 126.570667), // 위도, 경도
-            level: 3
-            // 지도의 레벨
-        };
-        // 지도 생성 함수
-        var map = new kakao.maps.Map(container, options);
-
-        /* 마커 생성 */
-        // 마커가 표시될 위치입니다 
-        var markerPosition = new kakao.maps.LatLng(33.450701, 126.570667);
-
-        // 마커를 생성합니다
-        var marker = new kakao.maps.Marker({
-            position: markerPosition
-        });
-
-        // 마커가 지도 위에 표시되도록 설정합니다
-        marker.setMap(map);
-
-    	// 아래 코드는 지도 위의 마커를 제거하는 코드입니다
-    	// marker.setMap(null);
         
     </script>
 </body>
