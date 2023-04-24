@@ -48,11 +48,12 @@
 		<table class="table table-hover" >
 			<thead>
 				<tr >
-					<th scope="col">글번호</th>
+					<th scope="col">신청번호</th>
 					<th scope="col">제목</th>
 					<th scope="col">내용</th>
 					<th scope="col">평점</th>
 					<th scope="col">날짜</th>
+					<th scope="col"></th>
 				</tr>
 			</thead>
 			<tbody>
@@ -63,6 +64,9 @@
 						<td>${obj.content}</td>
 						<td>${obj.rating}</td>
 						<td>${obj.regdate}</td>
+						<td style="width: 8px;"><input type="button" class="btn btn-primary" value="삭제" ></td>
+						<td style="width: 8px;"><input type="button" class="btn btn-primary" value="수정"></td>
+							
 					</tr>
 				</c:forEach>
 			</tbody>	
