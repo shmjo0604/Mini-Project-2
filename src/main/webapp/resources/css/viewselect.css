@@ -1,2 +1,11 @@
-
+#scroll{
+	position: relative;
+	height: 150px;
+	overflow-x: hidden;
+	overflow-y: scroll;
+}
+#table{
+	table-layout: fixed;	
+	font-size: 10px;
+}
 
