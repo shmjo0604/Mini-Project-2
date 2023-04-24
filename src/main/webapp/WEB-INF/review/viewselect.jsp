@@ -30,12 +30,41 @@
 	<!-- header -->
 	<jsp:include page="header.jsp"></jsp:include>
 	<hr />
-	<div class="container">
-		<div class="col-7" style="background-color: yellow; height: 500px;">이미지</div>
-		<div class="col-5" style="background-color: blue; height: 500px;">달력</div>
+	<div class="container" >
+		<div class="row align-items-center mb-2s">
+			<div class="col-6 " style= "border:2px solid black;  height: 500px;">
+				<img src="${pageContext.request.contextPath}/resources/images/드로잉.jpg" class="img-fluid"
+				style="height: 480px; margin: 5px;">
+				</div>
+			<div class="col-5 m-1" style=" border:2px solid black; height: 500px;">
+			<img src="${pageContext.request.contextPath}/resources/images/달력.png" class="img-fluid"
+				style="height: 480px; margin: 5px;">
+			
+			</div>
+		</div>
+		<div>
+			<div class="row align-items-center justify-content-between col-6"
+			style= "border:1px solid black; height: 170px;"  >
+				<div class="col-4" style= "height: 150px;">
+				<img class="m-1s" src="${pageContext.request.contextPath}/resources/images/IT.jpg" class="img-fluid"  
+				style="width: 170px; height: 150px;">
+				</div>
+				<div class="col-4" style= "height: 150px;">
+				<img class="m-1s" src="${pageContext.request.contextPath}/resources/images/design.jpg" class="img-fluid"
+				style="width: 170px; height: 150px;">
+				</div>
+				<div class="col-4" style= "height: 150px;">
+				<img class="m-1s" src="${pageContext.request.contextPath}/resources/images/DIY.jpg" class="img-fluid" 
+				style="width: 170px; height: 150px;">
+				</div>
+			</div>
+			</div>
+			<div class="col-6 m-1" style=" border:1px solid black; height: 700px;">
+			<h3>클래스 소개</h3>
+			
+			</div>
+		</div>
 	
-	</div>
-
 
 	<script
 		src="${pageContext.request.contextPath}/resources/js/jquery-3.6.4.min.js"></script>
@@ -54,3 +83,4 @@
 
 
 </html>
+
