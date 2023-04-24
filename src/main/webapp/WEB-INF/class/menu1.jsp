@@ -41,12 +41,15 @@
 				<label for="cate1" name="cate1">지역 카테고리</label>
 				<select id="cate1">
 					<option value="#">서울</option>
-					<option value="#">경기</option>
-				</select> <br />
+					<c:forEach var="obj" items="${list}" >
+						${obj.cate}
+					</c:forEach>
+				</select>
+				<label for="cate2" name="cate2">지역 상세 카테고리</label>
 			</section>
 			<section>
-				<label for="cate2">종류 카테고리</label> 
-				<select id="cate2">
+				<label for="cate3">종류 카테고리</label> 
+				<select id="cate3">
 					<option value="#">스포츠</option>
 					<option value="#">쿠킹</option>
 				</select>

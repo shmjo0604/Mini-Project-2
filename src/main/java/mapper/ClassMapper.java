@@ -1,5 +1,7 @@
 package mapper;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
@@ -7,6 +9,7 @@ import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
+import dto.Citycate;
 import dto.Classproduct;
 
 @Mapper
@@ -37,5 +40,17 @@ public interface ClassMapper {
 	})
 	public int updateClassOne(@Param("obj") Classproduct obj);
 		
-	// 
+	// 지역 카테고리 가져오기
+	@Select({
+		" SELECT * FROM citycate WHERE cate=#{obj.cate} "
+	})
+	public List<Citycate> selectCityOne(@Param("obj")String cate );
+	
+	// 지역상세 카테고리 가져오기
+	
+	
+	// 종류 카테고리 가져오기
+	
+	
+	
 }

@@ -29,6 +29,11 @@ public class ClassInsertController extends HttpServlet {
 			response.sendRedirect("insert.do?menu=1");
 			return; // 메소드 종료. 아래쪽 실행 안됨.
 		}
+		
+		if(Integer.parseInt(menu) == 1) {
+			
+		}
+		
 
 		request.getRequestDispatcher("/WEB-INF/class/menumain.jsp").forward(request, response);
 	}
