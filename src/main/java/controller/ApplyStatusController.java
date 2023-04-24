@@ -9,7 +9,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import service.ApplyService;
 import service.ApplyStatusService;
-import service.impl.ApplyStatusServiceImpl;
+import service.ApplyStatusServiceImpl;
 
 @WebServlet
 public class ApplyStatusController extends HttpServlet {

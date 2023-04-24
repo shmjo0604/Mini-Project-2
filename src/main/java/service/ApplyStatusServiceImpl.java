@@ -1,10 +1,9 @@
-package service.impl;
+package service;
 
 import config.MyBatisContext;
 import dto.ApplyStatus;
 import mapper.ApplyMapper;
 import mapper.ApplyStatusMapper;
-import service.ApplyStatusService;
 
 public class ApplyStatusServiceImpl implements ApplyStatusService{
 

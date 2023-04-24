@@ -1,11 +1,10 @@
-package service.impl;
+package service;
 
 import java.util.List;
 
 import config.MyBatisContext;
 import dto.Apply;
 import mapper.ApplyMapper;
-import service.ApplyService;
 
 public class ApplyServiceImpl implements ApplyService{
 
