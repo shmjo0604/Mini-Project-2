@@ -3,9 +3,9 @@
     "version": "2.2.11",
     "width": 6000,
     "height": 6000,
-    "scrollTop": -377.58336613244285,
-    "scrollLeft": -3199.416640622706,
-    "zoomLevel": 0.9,
+    "scrollTop": -858.138902592439,
+    "scrollLeft": -2989.694426734097,
+    "zoomLevel": 0.8,
     "show": {
       "tableComment": true,
       "columnComment": true,
@@ -497,9 +497,9 @@
         ],
         "ui": {
           "active": false,
-          "left": 3890.3469,
-          "top": 453.4677,
-          "zIndex": 10,
+          "left": 3980.6249,
+          "top": 413.5368,
+          "zIndex": 18,
           "widthName": 60,
           "widthComment": 67,
           "color": "#9E9E9E"
@@ -1720,9 +1720,9 @@
         ],
         "ui": {
           "active": false,
-          "left": 3258.4071,
-          "top": 554.0289,
-          "zIndex": 4,
+          "left": 3336.532,
+          "top": 457.6747,
+          "zIndex": 21,
           "widthName": 60,
           "widthComment": 60,
           "color": "#F44336"
@@ -2080,8 +2080,8 @@
           "columnIds": [
             "f4132bd8-eb99-491b-8252-26cdfd284f46"
           ],
-          "x": 3890.3469,
-          "y": 539.2176999999999,
+          "x": 3980.6249,
+          "y": 499.2868,
           "direction": "left"
         },
         "constraintName": "fk_product_order_to_review",
@@ -2184,8 +2184,8 @@
           "columnIds": [
             "6e1d3a55-9d6c-48b9-9221-db3732b0e07a"
           ],
-          "x": 3258.4071,
-          "y": 721.7789,
+          "x": 3336.532,
+          "y": 625.4247,
           "direction": "left"
         },
         "constraintName": "fk_classproduct_to_session",
@@ -2227,8 +2227,8 @@
           "columnIds": [
             "e6f2aad5-a2a8-4a71-b542-9ee1c1905b7e"
           ],
-          "x": 3517.292109765625,
-          "y": 554.0289,
+          "x": 3595.417009765625,
+          "y": 457.6747,
           "direction": "top"
         },
         "end": {

@@ -23,38 +23,35 @@
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/home.css" />
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/review.css" />
-<!-- quill -->
-<link href="https://cdn.quilljs.com/1.3.6/quill.snow.css"
-	rel="stylesheet" />
+	href="${pageContext.request.contextPath}/resources/css/reviewlist.css" />
 </head>
 
 <body>
 	<!-- header -->
 	<jsp:include page="header.jsp"></jsp:include>
-	
-	<body>
+	<hr />
 	<div class="container">
-		<a href="write.do" class="btn btn-primary">글쓰기</a>
+		<h2 class="float-start mb-4"> 리뷰게시판</h2>
+		<div class="text-right float-end" style="width: 395px; margin-top: 10px;;">
 		
-		<div style="width: 800px; margin-top: 10px;">
-			<form class="row g-2">
+			<form class="row g-2" id="search">
 				<div class="col-auto">
-					<input type="text" class="form-control" placeholder="검색어" style="width: 300px;" />
+					<input type="text" class="form-control" placeholder="검색어"
+						style="width: 300px;" />
 				</div>
 				<div class="col-auto">
 					<input type="submit" class="btn btn-primary" value="검색" />
 				</div>
+				
 			</form>
 		</div>
-
-		<table class="table table-hover">
+		<table class="table table-hover" >
 			<thead>
-				<tr>
+				<tr >
 					<th scope="col">글번호</th>
 					<th scope="col">제목</th>
-					<th scope="col">작성자</th>
-					<th scope="col">조회수</th>
+					<th scope="col">내용</th>
+					<th scope="col">평점</th>
 					<th scope="col">날짜</th>
 				</tr>
 			</thead>
@@ -62,47 +59,28 @@
 				<c:forEach var="obj" items="${list}">
 					<tr>
 						<td scope="row">${obj.no}</td>
-						<td><a href="#" onclick="ajuxUpdateHit('${obj.no}')">${obj.title}</a></td>
-						<td name = "writer">${obj.writer}</td>
-						<td>${obj.hit}</td>
+						<td><a href="#">${obj.title}</a></td>
+						<td>${obj.content}</td>
+						<td>${obj.rating}</td>
 						<td>${obj.regdate}</td>
 					</tr>
 				</c:forEach>
-			</tbody>
+			</tbody>	
 		</table>
-		
-	<div class="row justify-content-center">
-			<div class="col-4">
-				<ul id="pagination-demo" class="pagination"></ul>
-			</div>
-		</div>
+		<a href="reviewinsert.do" class="btn btn-primary float-end" >글쓰기</a>
 	</div>
 
-	<script src="${pageContext.request.contextPath}/resources/js/jquery-3.6.4.min.js"></script>
-	<script src="${pageContext.request.contextPath}/resources/js/jquery.twbsPagination.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.3.5/axios.min.js"></script>
-	
-	
-		<script>
-		async function ajuxUpdateHit(no){
-		// 1. restful을 이용해서 조회수를 증가
-		const url = '${pageContext.request.contextPath}/api/board/updatehit.json?no=' +no;
-		const headers = {"Content-Type":"application/json"};
-		
-		//await axios.get(url, {headers});
-		//await axios.post(url, body, {headers});
-		//await axios.put(url, body, {headers});
-		//await axios.delete(url, {headers:{ }, data:{ }});
-		const {data} = await axios.put(url,{},{headers});
-		console.log(data);
-		if(data.result === 1){
-			// 2. 상세화면페이지로 전환
-			window.location.href='selectone.do?no=' +no;
-		}	
-	}
-	</script>
-	
-	<script>
+
+	<script
+		src="${pageContext.request.contextPath}/resources/js/jquery-3.6.4.min.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/resources/js/jquery.twbsPagination.min.js"></script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.3.5/axios.min.js"></script>
+
+
+
+	<!-- <script>
 		// $(document).ready(function(){
 		$(function() {
 			$('#pagination-demo').twbsPagination({
@@ -119,13 +97,13 @@
 				}
 			});
 		});
-	</script>
-	
+	</script> -->
+
 	<!-- footer -->
 	<jsp:include page="footer.jsp"></jsp:include>
-	
+
 </body>
-	
-	
+
+
 
 </html>
