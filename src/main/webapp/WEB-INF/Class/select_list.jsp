@@ -52,7 +52,7 @@
 				<div>세부 지역</div>
 			</div>
 			<div class="col-4">
-				<select id="localselect" class="form-select" aria-label="Default select example">
+				<select id="localselect" class="form-select" aria-label="Default select example" onchange="setLocalcate(this.value)">
 					<option>전체</option>
 				</select>
 			</div>
@@ -72,7 +72,7 @@
 				<div>세부 카테고리</div>
 			</div>
 			<div class="col-4">
-				<select id="actdetailselect" class="form-select" aria-label="Default select example">
+				<select id="actdetailselect" class="form-select" aria-label="Default select example" onchange="setActcate(this.value)">
 					<option>전체</option>
 				</select>
 			</div>
@@ -81,7 +81,7 @@
 			<div class="col-2">날짜</div>
 			<div class="col-4">
 				<div>
-					<input class="form-control datepicker">
+					<input id="classdate" class="form-control datepicker">
 				</div>
 			</div>
 			<div class="col-2">시간</div>
@@ -91,20 +91,27 @@
 			<div class="col-2">난이도</div>
 			<div class="col-4">
 				<div>
-					<button class="levelchk btn btn-outline-success">입문자</button>
-					<button class="levelchk btn btn-outline-success">경험자</button>
-					<button class="levelchk btn btn-outline-success">숙련자</button>
+					<!-- <input type="button" class="levelchk btn btn-outline-success" value="입문자">
+					<input type="button" class="levelchk btn btn-outline-success" value="경험자">
+					<input type="button" class="levelchk btn btn-outline-success" value="숙련자"> -->
+					<button class="levelchk btn btn-outline-success" value="1">입문자</button>
+					<button class="levelchk btn btn-outline-success" value="2">경험자</button>
+					<button class="levelchk btn btn-outline-success" value="3">숙련자</button>
 				</div>
 			</div>
 			<div class="col-2">가격</div>
-			<div class="col-4">
-				
+			<div class="col-2">
+				<input id="minprice" class="form-control" type="number" placeholder="최소 가격" />
+			</div>
+			<div class="col-2">
+				<input id="maxprice" class="form-control" type="number" placeholder="최대 가격" />
 			</div>
 		</div>
+		
 		<div class="row mb-3 ">
 			<div class="text-center">
 				<button class="btn btn-outline-success">검색 조건 초기화</button>
-				<button class="btn btn-outline-primary">검색</button>
+				<button class="btn btn-outline-primary" type="button" onclick="searchClassAction()">검색</button>
 			</div>
 		</div>
 		
@@ -115,7 +122,7 @@
 <!-- 리스트 영역 -->
 <section>
 	<div class="container">
-		<div class="row row-cols-3 g-3">
+		<div class="row row-cols-3 g-3 mb-3">
 	 			<c:forEach var="obj" items="${list3}">
 	 				<a href="product.do?classcode=${obj.classcode}">
 	  			<div class="col">
@@ -148,6 +155,11 @@
 	 	</div>
 </section>
 
+<!-- 동적 form 전송 -->
+<form id="form-search" action="select.do?search=list" method="get">
+	<input id="input-citycode" type="text" name="citycode">
+</form>
+
 <!--axios library-->
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.3.5/axios.min.js">
@@ -155,8 +167,15 @@
 <!--jQuery-->
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <script>
+	var citycode = 0;
+	var localcode = 0;
+	var activitycode = 0;
+	var actcode = 0;
+	var classlevel = 0;
+
 	async function getLocalcate(code) {
 		console.log(code);
+		citycode = code;
 		
 		//const localselect = $('#localselect')[0];
 		
@@ -200,6 +219,7 @@
 	
 	async function getClasscate(code) {
 		console.log(code);
+		activitycode = code;
 		
 		if(code == 1) {
 			$('#actdetailselect').children('option').remove();
@@ -228,12 +248,71 @@
 				$('#actdetailselect').append(options);
 			}
 			
-			
-			
 		}
 		
 	}
+	
+	function setLocalcate(code) {
+		console.log(code);
+		localcode = code;
+	}
+	
+	function setActcate(code) {
+		console.log(code);
+		actcode = code;
+	}
+	
+	
 	$(".levelchk").on("click", function() {
-		$(this).toggleClass('active');
+		$(".levelchk").removeClass('active');
+		$(this).addClass('active');
 	})
+	
+	$(".levelchk").on("click", function(e) {
+		console.log(e.target.value);
+		classlevel = e.target.value;
+	})
+	
+	function searchClassAction() {
+		/* console.log(citycode);
+		console.log(activitycode);
+		console.log(actcode);
+		console.log(localcode);
+		console.log(classlevel);
+		
+		console.log($("#classdate").val());
+		console.log($("#minprice").val());
+		console.log($("#maxprice").val()); */
+		
+		var classdate = $("#classdate").val();
+		var minprice = $("#minprice").val();
+		var maxprice = $("#maxprice").val();
+		
+		$('#input-citycode').attr('value', citycode);
+		$('#form-search').submit();
+		
+		//console.log($('#input-citycode').val());
+		
+		/* var form = $('<form></form>');
+		
+		form.attr("action", "select.do");
+		form.attr("method", "get");
+		
+		const input1 = $("<input name='citycode' value=" + citycode + ">");
+		console.log(input1.val());
+		
+		form.append(input1);
+		form.append($('<input/>', {name:'localcode', value: localcode}));
+		form.append($('<input/>', {name:'activitycode', value: activitycode}));
+		form.append($('<input/>', {name:'actcode', value: actcode}));
+		form.append($('<input/>', {name:'classlevel', value: classlevel}));
+		form.append($('<input/>', {name:'classdate', value: classdate}));
+		form.append($('<input/>', {name:'minprice', value: minprice}));
+		form.append($('<input/>', {name:'maxprice', value: maxprice}));
+		
+		form.appendTo('body');
+		
+		form.submit(); */
+		
+	}
 </script>

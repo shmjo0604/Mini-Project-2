@@ -36,7 +36,18 @@ public class ClassSelectController extends HttpServlet {
 		// 근데 이거 getParameter로 값 받아올 때, null인지 0인지 알 수가 없네.
 		
 		Map<String, Object> map = new HashMap<>();
-		map.put("citycode", 0);
+		
+		System.out.println(request.getParameter("citycode"));
+		
+		if(request.getParameter("citycode")==null) {
+			System.out.println(request.getParameter("citycode"));
+			map.put("citycode", 0);
+		}
+		else {
+			System.out.println(request.getParameter("citycode"));
+			map.put("citycode", Long.parseLong(request.getParameter("citycode"))); 
+		}
+		
 		map.put("localcode", 0);
 		map.put("activitycode", 0);
 		map.put("actcode", 0);
