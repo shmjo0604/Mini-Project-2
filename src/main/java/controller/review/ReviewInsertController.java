@@ -27,7 +27,7 @@ public class ReviewInsertController extends HttpServlet {
 		String title = request.getParameter("title");
 		String content = request.getParameter("content");
 		Long no = Long.parseLong(request.getParameter("no"));
-		String star = request.getParameter("reviewStar");
+		int star = Integer.parseInt(request.getParameter("reviewStar")) ;
 
 		Review obj = new Review();
 		obj.setNo(no);
