@@ -13,193 +13,32 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet">
     <!--Bootstrap 용 Icon CDN-->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DynaPuff&family=Permanent+Marker&display=swap" rel="stylesheet">
     <!--font awesome 용-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <!-- detepicker css -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/jquery-ui.min.css">
-    <style>
-        .ui-widget-header {
-            border: 0px solid #dddddd;
-            background: #fff;
-        }
-
-        .ui-datepicker-calendar>thead>tr>th {
-            font-size: 14px !important;
-        }
-
-        .ui-datepicker .ui-datepicker-header {
-            position: relative;
-            padding: 10px 0;
-        }
-
-        .ui-state-default,
-        .ui-widget-content .ui-state-default,
-        .ui-widget-header .ui-state-default,
-        .ui-button,
-        html .ui-button.ui-state-disabled:hover,
-        html .ui-button.ui-state-disabled:active {
-            border: 0px solid #c5c5c5;
-            background-color: transparent;
-            font-weight: normal;
-            color: #454545;
-            text-align: center;
-        }
-
-        .ui-datepicker .ui-datepicker-title {
-            margin: 0 0em;
-            line-height: 16px;
-            text-align: center;
-            font-size: 14px;
-            padding: 0px;
-            font-weight: bold;
-        }
-
-        .ui-datepicker {
-            display: none;
-            background-color: #fff;
-            border-radius: 4px;
-            margin-top: 10px;
-            margin-left: 0px;
-            margin-right: 0px;
-            padding: 20px;
-            padding-bottom: 10px;
-            width: 300px;
-            box-shadow: 10px 10px 40px rgba(0, 0, 0, 0.1);
-        }
-
-        .ui-widget.ui-widget-content {
-            border: 1px solid #eee;
-        }
-
-        #datepicker:focus>.ui-datepicker {
-            display: block;
-        }
-
-        .ui-datepicker-prev,
-        .ui-datepicker-next {
-            cursor: pointer;
-        }
-
-        .ui-datepicker-next {
-            float: right;
-        }
-
-        .ui-state-disabled {
-            cursor: auto;
-            color: hsla(0, 0%, 80%, 1);
-        }
-
-        .ui-datepicker-title {
-            text-align: center;
-            padding: 10px;
-            font-weight: 100;
-            font-size: 20px;
-        }
-
-        .ui-datepicker-calendar {
-            width: 100%;
-        }
-
-        .ui-datepicker-calendar>thead>tr>th {
-            padding: 5px;
-            font-size: 20px;
-            font-weight: 400;
-        }
-
-        .ui-datepicker-calendar>tbody>tr>td>a {
-            color: #000;
-            font-size: 12px !important;
-            font-weight: bold !important;
-            text-decoration: none;
-        }
-
-        .ui-datepicker-calendar>tbody>tr>.ui-state-disabled:hover {
-            cursor: auto;
-            background-color: #fff;
-        }
-
-        .ui-datepicker-calendar>tbody>tr>td {
-            border-radius: 100%;
-            width: 44px;
-            height: 30px;
-            cursor: pointer;
-            padding: 5px;
-            font-weight: 100;
-            text-align: center;
-            font-size: 12px;
-        }
-
-        .ui-datepicker-calendar>tbody>tr>td:hover {
-            background-color: transparent;
-            opacity: 0.6;
-        }
-
-        .ui-state-hover,
-        .ui-widget-content .ui-state-hover,
-        .ui-widget-header .ui-state-hover,
-        .ui-state-focus,
-        .ui-widget-content .ui-state-focus,
-        .ui-widget-header .ui-state-focus,
-        .ui-button:hover,
-        .ui-button:focus {
-            border: 0px solid #cccccc;
-            background-color: transparent;
-            font-weight: normal;
-            color: #2b2b2b;
-        }
-
-        .ui-widget-header .ui-icon {
-            background-image: url('./btns.png');
-        }
-
-        .ui-icon-circle-triangle-e {
-            background-position: -20px 0px;
-            background-size: 36px;
-        }
-
-        .ui-icon-circle-triangle-w {
-            background-position: -0px -0px;
-            background-size: 36px;
-        }
-
-        .ui-datepicker-calendar>tbody>tr>td:first-child a {
-            color: red !important;
-        }
-
-        .ui-datepicker-calendar>tbody>tr>td:last-child a {
-            color: #0099ff !important;
-        }
-
-        .ui-datepicker-calendar>thead>tr>th:first-child {
-            color: red !important;
-        }
-
-        .ui-datepicker-calendar>thead>tr>th:last-child {
-            color: #0099ff !important;
-        }
-
-        .ui-state-highlight,
-        .ui-widget-content .ui-state-highlight,
-        .ui-widget-header .ui-state-highlight {
-            border: 0px;
-            background: #f1f1f1;
-            border-radius: 50%;
-            padding-top: 10px;
-            padding-bottom: 10px;
-        }
-
-        .inp {
-            padding: 10px 10px;
-            background-color: #f1f1f1;
-            border-radius: 4px;
-            border: 0px;
-        }
-
-        .inp:focus {
-            outline: none;
-            background-color: #eee;
-        }
-    </style>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/main.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+    <style>
+    .wrap {position: absolute;left: 0;bottom: 40px;width: 288px;height: 132px;margin-left: -144px;text-align: left;overflow: hidden;font-size: 12px;font-family: 'Malgun Gothic', dotum, '돋움', sans-serif;line-height: 1.5;}
+    .wrap * {padding: 0;margin: 0;}
+    .wrap .info {width: 286px;height: 120px;border-radius: 5px;border-bottom: 2px solid #ccc;border-right: 1px solid #ccc;overflow: hidden;background: #fff;}
+    .wrap .info:nth-child(1) {border: 0;box-shadow: 0px 1px 2px #888;}
+    .info .title {padding: 5px 0 0 10px;height: 30px;background: #eee;border-bottom: 1px solid #ddd;font-size: 18px;font-weight: bold;}
+    .info .close {position: absolute;top: 10px;right: 10px;color: #888;width: 17px;height: 17px;background: url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/overlay_close.png');}
+    .info .close:hover {cursor: pointer;}
+    .info .body {position: relative;overflow: hidden;}
+    .info .desc {position: relative;margin: 13px 0 0 90px;height: 75px;}
+    .desc .ellipsis {overflow: hidden;text-overflow: ellipsis;white-space: nowrap;}
+    .desc .jibun {font-size: 11px;color: #888;margin-top: -2px;}
+    .info .img {position: absolute;top: 6px;left: 5px;width: 73px;height: 71px;border: 1px solid #ddd;color: #888;overflow: hidden;}
+    .info:after {content: '';position: absolute;margin-left: -12px;left: 50%;bottom: 0;width: 22px;height: 12px;background: url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/vertex_white.png')}
+    .info .link {color: #5085BB;}
+</style>
 </head>
 
 <body>
