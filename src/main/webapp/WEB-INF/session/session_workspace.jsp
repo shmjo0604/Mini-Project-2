@@ -18,18 +18,7 @@
     <link href="https://fonts.googleapis.com/css2?family=DynaPuff&family=Permanent+Marker&display=swap" rel="stylesheet">
     <!-- CSS -->
     <link rel='stylesheet' href="${pageContext.request.contextPath}/resources/css/home.css"/>
-    
-    <style>	   
-   	h5 {font-weight: bold;}
-   	
-   	.body { margin : 50px;
-   			height: auto; }
-   	.grid-item {display: inline-block;
-   	background-color : green;}
-    
-   		   
-    </style>
-    
+    <link rel='stylesheet' href="${pageContext.request.contextPath}/resources/css/session.css"/>
 </head>
 
 
@@ -54,15 +43,13 @@
   		<!-- / left menu bar -->
   		
   		<!-- right side -->
-  		<div class="col-lg-9">
-  			<div class="col-lg-4">
-	  			<c:if test="${param.menu == 1}">
-					<jsp:include page="./session_menu/menu1.jsp"></jsp:include>
-				</c:if>
-				<c:if test="${param.menu == 2}">
-					<jsp:include page="./session_menu/menu2.jsp"></jsp:include>
-				</c:if>
-  			</div>
+  		<div class="col-lg-9 right_side" >
+  			<c:if test="${param.menu == 1}">
+				<jsp:include page="./session_menu/menu1.jsp"></jsp:include>
+			</c:if>
+			<c:if test="${param.menu == 2}">
+				<jsp:include page="./session_menu/menu2.jsp"></jsp:include>
+			</c:if>
   		</div>
   		<!-- / right side -->
 	</div>
@@ -70,18 +57,10 @@
     <!-- footer -->
     <jsp:include page="../footer.jsp"></jsp:include>
     
+        
+    <script src="${pageContext.request.contextPath}/resources/js/session.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/js/jquery-3.6.4.min.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/js/bootstrap.min.js"></script>
     
-     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N"
-        crossorigin="anonymous"></script>
-    
-    
-    <script>
-    	function registerSession() {
-    		const form = document.getElementsByTagName("form");
-    		form[0].submit();
-    	}
-    </script>
 </body>
-
 </html>

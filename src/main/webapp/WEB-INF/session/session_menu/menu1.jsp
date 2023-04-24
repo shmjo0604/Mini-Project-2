@@ -4,45 +4,48 @@
 
 <form action="session.do?menu=1" method="post" id="form">
 	
-	<div class="first_row">
-		<div class="form-floating mb-3 grid-item">
+	<div class="row">
+		<div class="form-floating mb-3 col-lg-6">
 		    <input type="number" id="min" name="min" class="form-control">
 		    <label for="min" class="form-label">최소인원</label>
 		</div>
 		
-		<div class="form-floating mb-3 grid-item">
+		<div class="form-floating mb-3 col-lg-6">
 		    <input type="number" id="max" name="max" class="form-control" required>
 		    <label for="max" class="form-label">최대인원</label>
 		</div>
 	</div>
 	
-	<div class="form-floating mb-3">
-	    <input type="date" id="date" name="date" class="form-control">
-	    <label for="date" class="form-label">날짜</label>
-	</div>
-	   
-	<div class="form-floating mb-3">
-	    <select class="selectpicker" id="day" name="day" aria-label="Example select with button addon">
-		   <option selected>요일</option>
-		   <option value="월요일">월요일</option>
-		   <option value="화요일">화요일</option>
-		   <option value="수요일">수요일</option>
-		   <option value="목요일">목요일</option>
-		   <option value="금요일">금요일</option>
-		   <option value="토요일">토요일</option>
-		   <option value="일요일">일요일</option>
-		 </select>
-	</div>
-	   
-	<div class="form-floating mb-3">
-	    <input type="time" id="start" name="start" class="form-control">
-	    <label for="start" class="form-label">시작시간</label>
+	<div class="row">
+		<div class="form-floating mb-3 col-lg-3">
+		    <input type="date" id="date" name="date" class="form-control">
+		    <label for="date" class="form-label">날짜</label>
+		</div>
+		   
+		<div class="form-floating mb-3 col-lg-3">
+		    <select class="selectpicker" id="day" name="day" aria-label="Example select with button addon">
+			   <option selected>요일</option>
+			   <option value="월요일">월요일</option>
+			   <option value="화요일">화요일</option>
+			   <option value="수요일">수요일</option>
+			   <option value="목요일">목요일</option>
+			   <option value="금요일">금요일</option>
+			   <option value="토요일">토요일</option>
+			   <option value="일요일">일요일</option>
+			 </select>
+		</div>
+		   
+		<div class="form-floating mb-3 col-lg-3">
+		    <input type="time" id="start" name="start" class="form-control">
+		    <label for="start" class="form-label">시작시간</label>
+		</div>
+		
+		<div class="form-floating mb-3 col-lg-3">
+		    <input type="time" id="end" name="end" class="form-control">
+		    <label for="end" class="form-label">종료시간</label>
+		</div>
 	</div>
 	
-	<div class="form-floating mb-3">
-	    <input type="time" id="end" name="end" class="form-control">
-	    <label for="end" class="form-label">종료시간</label>
-	</div>
 	
 	<div class="form-floating mb-3">
 		<input type="number" id="default" name="default" class="form-control" value="${price}" readonly>
@@ -66,17 +69,19 @@
 	</div>
 	
 	<div>
-		<input type="button" value="할인가격 계산하기" class ="btn btn-success" onclick="ShowPrice()"/>
+		<input type="button" value="할인가격 계산하기" class ="btn btn-success mb-3" onclick="ShowPrice()"/>
 	</div>
 	
 	<div class="form-floating mb-3">
-	 	 <input type="number" id="total" name="total" class="form-control" readonly> 
+	 	 <input type="number" id="total" name="total" class="form-control mb-3" readonly> 
 		 <label for="total" class="form-label">판매금액</label>
 	</div>
 	
 	<div>
 	   	<input type="button" value="등록하기" class="btn btn-secondary" onclick="registerSession()" />
 	</div>
+	
+	
 	
 </form>	
 
