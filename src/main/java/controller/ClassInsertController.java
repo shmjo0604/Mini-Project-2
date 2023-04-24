@@ -1,9 +1,11 @@
 package controller;
 
 import java.io.IOException;
+import java.util.List;
 
 import config.MyBatisContext;
-import dto.Classproduct;
+import dto.Activitycate;
+import dto.Citycate;
 import dto.Localcate;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -31,8 +33,18 @@ public class ClassInsertController extends HttpServlet {
 		}
 		
 		if(Integer.parseInt(menu) == 1) {
+			ClassMapper mapper = MyBatisContext.getSqlSession().getMapper(ClassMapper.class);
+			List<Citycate> list = mapper.selectCitycateList();
+			List<Activitycate> list1 = mapper.selectActivitycateList();
+			
+			request.setAttribute("list" , list);
+			request.setAttribute("list1", list1);
+		}
+		
+		if(Integer.parseInt(menu)== 2) {
 			
 		}
+			
 		
 
 		request.getRequestDispatcher("/WEB-INF/class/menumain.jsp").forward(request, response);
@@ -47,13 +59,25 @@ public class ClassInsertController extends HttpServlet {
 			String localcate = (String)request.getParameter("localcate");
 			long citycode = Integer.getInteger(request.getParameter("citycode"));
 			
-			Localcate cate = new Localcate();
-			cate.setCode(code);
-			cate.setLocalcate(localcate);
-			cate.setCitycode(citycode);
+			Localcate obj = new Localcate();
+			obj.setCode(code);
+			obj.setLocalcate(localcate);
+			obj.setCitycode(citycode);
 			
-			MyBatisContext.getSqlSession().getMapper(ClassMapper.class).insertClassOne();
+			int ret =MyBatisContext.getSqlSession().getMapper(ClassMapper.class).insertClassOne(obj);
 			
+			if(ret==1) {
+				//response.sendRedirect("mypage.do?menu=5");
+				request.setAttribute("message", "카테고리 선택이 완료되었습니다.");
+				request.setAttribute("url", "mypage.do?menu=1");
+				request.getRequestDispatcher("/WEB-INF/member/alert.jsp").forward(request, response);
+			}
+			else {
+				//response.sendRedirect("mypage.do?menu=5");
+				request.setAttribute("message", "카테고리 선택이 실패되었습니다.");
+				request.setAttribute("url", "mypage.do?menu=1");
+				request.getRequestDispatcher("/WEB-INF/member/alert.jsp").forward(request, response);
+			}
 		
 		}
 

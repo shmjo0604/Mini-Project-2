@@ -12,7 +12,7 @@
 	href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css" />
 <!-- Google Font -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" >
 <link
 	href="https://fonts.googleapis.com/css2?family=DynaPuff&family=Permanent+Marker&display=swap"
 	rel="stylesheet">
@@ -26,39 +26,22 @@
 
 </head>
 <body>
-	<form action="mypage.do?menu=2" method="post">
+	<form action="mypage.do?menu=3" method="post">
 		<div class="container">
-			<section>
-				<p>프로필 이미지</p>
-				<div id="input-image" class="mb-3">
-					<img id="insert-img"
-						src="${pageContext.request.contextPath}/resources/images/default.png"
-						style="width: 150px; height: 150px; curosr: pointer;" class="mb-3"
-						onclick="clickItemImage()" /> <input type="file" name="file"
-						id="file" class="form-control" onchange="changeItemImage(this)" >
-				</div>
-
-				<div>
-					<input type="button" value="등록" class="btn btn-primary"
-						onclick="insertItemImage()" />
-				</div>
-			</section>
-		</div>
-	</form>
 
 	<section>
-		<p>상호명 및 닉네임(필수)</p>
+		<p>클래스 제목(필수)</p>
 		<p>
-			<input type="text" name="name" required>
+			<input type="text" name="name" autofocus required>
 		</p>
 	</section>
 
 	<section>
-		<p>강사 소개 (필수)</p>
+		<p>클래스 소개글(필수)</p>
 		<!-- Create the editor container -->
 		<div style="margin-bottom: 5px; background-color: white;">
 			<div id="editor" style="height: 300px;">
-				<p>자신의 경험,경력을 소개해주세요.</p>
+				<p>클래스를 소개해주세요.</p>
 				<p>
 					<br>
 				</p>
@@ -66,32 +49,18 @@
 		</div>
 	</section>
 
-	<section>
-		<p>SNS 링크</p><p>(선택)</p>
-		<input placeholder="https://instagram.com/sample" type="text" class="" value="">
-	</section>
-
-
 
 	<div class="changepage">
 		<div>
 			<div>
-				<a href="insert.do?menu=1" class="btn btn-primary">이전</a> <a
-					href="insert.do?menu=3" class="btn btn-primary" onclick="insertintro()">다음</a>
-			</div>
-			
-			<!-- 가이드 라인 작성 -->
-			<div role="tooltip">
-			<p>가이드 라인</p>
-				<p>• 강사님의 SNS 링크를 작성해 주세요.</p>
-				<p>• 클래스 홍보와 정보제공에 도움이 됩니다.</p>	
+			<a href="insert.do?menu=2" class="btn btn-primary">이전</a>
+			<a href="insert.do?menu=4" class="btn btn-primary" onclick="insertclass()">다음</a>
 			</div>
 		</div>
 	</div>
+	</div>
+	</form>
 
-
-	<!--jQuery-->
-	<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
 	<!-- Include the Quill library -->
 	<script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
@@ -202,39 +171,6 @@
     	form.submit();
     	
     } 
-	
-	
-	function clickItemImage() {
-		document.getElementById("file").click();
-	}
-	function changeItemImage(e) {
-		const img = document.getElementById("insert-img");
-		console.log(e.files);
-		if(e.files.length > 0) {
-			
-			img.src= URL.createObjectURL(e.files[0]);
-			
-			console.log(URL.createObjectURL(e.files[0]));
-		}
-		else {
-			// 이미지 첨부 취소 시, 이미지 제거
-			img.src = '${pageContext.request.contextPath}/resources/images/default.png';
-		}
-	}
-	
-	function insertItemImage() {
-		const file = document.getElementById("file").value;
-		console.log(file);
-		if(file === "") {
-			alert("이미지 파일을 첨부하세요.");
-			return false;
-		}
-		else {
-			const form = document.getElementById("form");
-			form.submit();
-		}
-	}
-	
 	
 	</script>
 </body>
