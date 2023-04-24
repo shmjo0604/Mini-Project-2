@@ -19,8 +19,14 @@ public interface SessionMapper {
 	/* (1) 세션 등록*/
 	@Insert({
 		" INSERT INTO SESSION(MINIMUM, MAXIMUM, CLASSDATE, CLASSDAY, CLASSSTART, CLASSEND, DISCOUNT, ADDPRICE, CLASSLEVEL, CLASSCODE) ",
-		" VALUES(#{obj.minimum}, #{obj.maximum}, #{obj.classdate}, #{obj.classday}, #{obj.classstart}, #{obj.classend}, #{obj.discount}, #{obj.addprice}, #{obj.classlevel}, #{obj.classcode} " })
+		" VALUES(#{obj.minimum}, #{obj.maximum}, #{obj.classdate}, #{obj.classday},",
+		" #{obj.classstart}, #{obj.classend}, #{obj.discount}, #{obj.addprice}, #{obj.classlevel}, #{obj.classcode}) " })
 	public int insertSessionOne(@Param("obj") Session obj);
+	
+	/* (1)-1 클래스 가격 조회 */
+	@Select({ " SELECT PRICE FROM CLASSPRODUCT WHERE CLASSCODE=#{classcode}" })
+	public long selectPriceOne(@Param("classcode") long classcode); 
+	
 	
 	/* (2) 세션 전체 조회 */
 	@Select({ " SELECT * FROM SESSION ORDER BY DESC "})

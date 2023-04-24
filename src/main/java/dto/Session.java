@@ -23,7 +23,7 @@ public class Session {
   // 오후 9:00
   private String classend;
   // 할인률
-  private long discount;
+  private float discount;
   // 클래스 추가금액
   private long addprice;
   // 클래스 난이도(입문자, 경험자)

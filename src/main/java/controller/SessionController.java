@@ -18,7 +18,34 @@ public class SessionController extends HttpServlet {
        
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getRequestDispatcher("/WEB-INF/session.jsp").forward(request, response);
+		
+		String menu = request.getParameter("menu");
+		// 초기화면 menu=1(세션등록화면) => 세션조회화면으로 변경예정
+		if(menu == null) {
+			response.sendRedirect("session.do?menu=1");
+			return;
+		}
+		
+		if(Integer.parseInt(menu) == 1) {
+			// 클래스 가격 받아오기
+			//long classcode = Long.parseLong(request.getParameter("classcode"));
+			long classcode = 107;
+			
+			try {
+				long price = sService.selectPriceOne(classcode);
+				System.out.println(price);
+				if(price >= 0) {
+					request.setAttribute("price", price);
+				}
+				
+			} 
+			catch (Exception e) {
+				e.printStackTrace();
+			}
+			
+		}
+		
+		request.getRequestDispatcher("/WEB-INF/session/session_workspace.jsp").forward(request, response);
 	}
 
 
@@ -27,28 +54,37 @@ public class SessionController extends HttpServlet {
 		int menu = Integer.parseInt(request.getParameter("menu"));
 		
 		if(menu == 1) { // 세션등록
+			
+			//long classcode = Long.parseLong(request.getParameter("classcode"));
+			long classcode = 107;
+			
 			Session obj = new Session();
-			obj.setMinimum(5);
-			obj.setMaximum(10);
-			obj.setClassdate("2023-04-21");
-			obj.setClassday("월요일");
-			obj.setClassstart("오전 10시");
-			obj.setClassend("오후 2시");
-			obj.setDiscount(10);
-			obj.setAddprice(5000);
-			obj.setClasslevel("입문자");
-			obj.setClasscode(1); // 테스트
+			obj.setMinimum(Long.parseLong(request.getParameter("min")));
+			obj.setMaximum(Long.parseLong(request.getParameter("max")));
+			obj.setClassdate(request.getParameter("date"));
+			obj.setClassday(request.getParameter("day"));
+			obj.setClassstart(request.getParameter("start"));
+			obj.setClassend(request.getParameter("end"));
+			obj.setDiscount(Float.parseFloat(request.getParameter("rate")));
+			obj.setAddprice(Long.parseLong(request.getParameter("addprice")));
+			obj.setClasslevel(request.getParameter("level"));
+			obj.setClasscode(classcode); // 테스트
+			
+			System.out.println(obj.toString());
 			
 			
 			try {
 				int ret = sService.insertSessionOne(obj);
 				if(ret == 1) {
-					//response.sendRedirect("session.do?menu" + menu);
+					response.sendRedirect("session.do?menu" + menu);
 				}
 			} 
 			catch (Exception e) {
 				e.printStackTrace();
+				response.sendRedirect("session.do?menu" + menu);
 			}
+			
+			
 		}
 		else if(menu == 2) {
 			

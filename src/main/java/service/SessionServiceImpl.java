@@ -12,6 +12,12 @@ public class SessionServiceImpl implements SessionService{
 		return mapper.insertSessionOne(obj);
 	}
 	
+	/* (1)-1 클래스 가격 조회 */
+	@Override
+	public long selectPriceOne(long classcode) throws Exception {
+		return mapper.selectPriceOne(classcode);
+	}
+	
 	/* (2) 세션 전체 조회 */
 	@Override
 	public List<Session> selectSessionList() throws Exception {
@@ -35,5 +41,11 @@ public class SessionServiceImpl implements SessionService{
 	public int deleteSessionAll(long classcode) throws Exception {
 		return mapper.deleteSessionAll(classcode);
 	}
+
+
+
+	
+
+	
 
 }

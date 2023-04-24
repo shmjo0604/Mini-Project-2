@@ -15,6 +15,9 @@ public interface SessionService {
 	/* (1) 세션 등록*/
 	public int insertSessionOne(@Param("obj") Session obj) throws Exception;
 	
+	/* (1)-1 클래스 가격 조회 */
+	public long selectPriceOne(@Param("classcode") long classcode) throws Exception; 
+	
 	/* (2) 세션 전체 조회 */
 	public List<Session> selectSessionList() throws Exception;
 	
