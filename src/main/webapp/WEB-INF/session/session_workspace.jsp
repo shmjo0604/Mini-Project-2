@@ -56,9 +56,10 @@
     <!-- footer -->
     <jsp:include page="../footer.jsp"></jsp:include>
     
-        
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.3.5/axios.min.js"></script>    
     <script src="${pageContext.request.contextPath}/resources/js/session.js"></script>
     <script src="${pageContext.request.contextPath}/resources/js/jquery-3.6.4.min.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/js/bootstrap.min.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/js/jquery.twbsPagination.min.js"></script>
 </body>
 </html>

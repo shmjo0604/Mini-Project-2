@@ -1,6 +1,7 @@
 package service;
 
 import java.util.List;
+import java.util.Map;
 
 import dto.Session;
 
@@ -33,15 +34,17 @@ public class SessionServiceImpl implements SessionService{
 	/* (4) 세션 하나 삭제 */
 	@Override
 	public int deleteSessionOne(long no) throws Exception {
-		return mapper.deleteSessionAll(no);
+		return mapper.deleteSessionOne(no);
 	}
 	
-	/* (5) 세션 전체 삭제 */
+	/* (5) 세션 목록 삭제 */
 	@Override
-	public int deleteSessionAll(long classcode) throws Exception {
-		return mapper.deleteSessionAll(classcode);
+	public int deleteSessionList(Map<String, Object> map) throws Exception {
+		return mapper.deleteSessionList(map);
 	}
-
+	
+	
+	
 	
 
 

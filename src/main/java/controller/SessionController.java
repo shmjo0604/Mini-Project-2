@@ -32,20 +32,18 @@ public class SessionController extends HttpServlet {
 			long classcode = 107;
 			try {
 				List<Session> list = sService.selectSessionList(classcode);
-				request.setAttribute("list", list);
-				
+				request.setAttribute("list", list);		
 			} 
 			catch (Exception e) {
 				e.printStackTrace();
 			}
 		}
 		
-		request.getRequestDispatcher("/WEB-INF/session/session_workspace.jsp").forward(request, response);
-	}
-
-
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		if(Integer.parseInt(menu) == 2) {
+			
+		}
 		
+		request.getRequestDispatcher("/WEB-INF/session/session_workspace.jsp").forward(request, response);
 	}
 
 }

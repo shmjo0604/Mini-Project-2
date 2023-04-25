@@ -10,6 +10,10 @@ h5 {font-weight: bold;}
 
 .right_side { margin-top : 30px;}
 
+.register-btn0 {
+	margin-right : 10px;
+	float: right;
+}
 
 
 /* ------------------------ session_write.jsp ---------------------------- */

@@ -1,6 +1,7 @@
 package mapper;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
@@ -43,8 +44,15 @@ public interface SessionMapper {
 	public int deleteSessionOne(@Param("no") long no);
 	
 	
-	/* (5) 세션 전체 삭제 */
-	@Delete({ " DELETE FROM SESSION WHERE CLASSCODE=#{classcode} " })
-	public int deleteSessionAll(@Param("classcode") long classcode);
+	/* (5) 세션 목록 삭제 */
+	@Delete({ 
+		" <script> ", 
+		" DELETE FROM SESSION WHERE CLASSCODE=#{map.classcode} AND NO IN( ",
+			" <foreach collection='map.chk' item='tmp' separator=','> ",
+	        	" #{tmp} ",
+	        " </foreach> ",
+	    "  ) ", 
+		" </script> " })
+	public int deleteSessionList(@Param("map") Map<String, Object> map);
 	
 }

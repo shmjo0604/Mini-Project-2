@@ -132,8 +132,23 @@ function registerSession() {
     	}
 
 
+/******************************  session_workspace.jsp > menu1 *************************************/
 
-
+$(function(){
+		$('#pagination-demo').twbsPagination({
+			  totalPages	: Number('${pages}'),
+			  visiblePages	: 10,
+			  first 		: '≪',
+			  last 			: '≫',
+			  prev 			: '<',
+			  next 			: '>',
+			  initiateStartPageClick : false, // 플러그인이 시작시 페이지 버튼 클릭 여부 (default : true)
+			  startPage  	: Number('${param.page}'),	// The current page that show on start
+			  onPageClick	: function (event, page) { // 클릭 이벤트
+					window.location.href="select.do?page=" + page;
+			  }
+		});	
+	});
 
 
 

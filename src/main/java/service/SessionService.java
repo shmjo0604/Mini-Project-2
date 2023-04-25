@@ -1,6 +1,7 @@
 package service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.annotations.Param;
 
@@ -27,7 +28,7 @@ public interface SessionService {
 	/* (4) 세션 하나 삭제 */
 	public int deleteSessionOne(@Param("no") long no) throws Exception;
 	
-	/* (5) 세션 전체 삭제 */
-	public int deleteSessionAll(@Param("classcode") long classcode) throws Exception;
+	/* (5) 세션 목록 삭제 */
+	public int deleteSessionList(@Param("map") Map<String, Object> map) throws Exception;
 	
 }
