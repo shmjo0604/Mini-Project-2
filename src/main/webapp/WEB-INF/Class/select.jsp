@@ -19,10 +19,11 @@
     <link href="https://fonts.googleapis.com/css2?family=DynaPuff&family=Permanent+Marker&display=swap" rel="stylesheet">
     <!--font awesome 용-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-    <!-- detepicker css -->
+    <!-- datepicker css -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/jquery-ui.min.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/main.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+    <!-- 카카오 맵 -->
     <style>
     .wrap {position: absolute;left: 0;bottom: 40px;width: 288px;height: 132px;margin-left: -144px;text-align: left;overflow: hidden;font-size: 12px;font-family: 'Malgun Gothic', dotum, '돋움', sans-serif;line-height: 1.5;}
     .wrap * {padding: 0;margin: 0;}
@@ -110,6 +111,7 @@
     	<jsp:include page="./select_map.jsp"></jsp:include>
 	</c:if>
 	
+	 
     <!--footer 영역-->
     <footer class="bg-dark">
         <div class="container">
@@ -156,9 +158,11 @@
             <!-- Footer bottom-->
         </div>
     </footer>
+    
 
     <!--jQuery-->
     <script src="${pageContext.request.contextPath}/resources/js/jquery-3.6.4.min.js"></script>
+    <!-- datepicker js -->
     <script src="${pageContext.request.contextPath}/resources/js/jquery-ui.min.js"></script>
     <!--Bootstrap 용 js script 태그는 반드시 body 내부에 존재해야 한다!-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js"></script>
@@ -177,7 +181,14 @@
         });
 
         $(function () {
-            $('.datepicker').datepicker();
+            $('.datepicker').datepicker({
+            	onSelect:function(d) {
+            		var week = new Array('일요일', '월요일', '화요일', '수요일', '목요일', '금요일', '토요일');
+            		var today = new Date(d).getDay();
+            		var todaylabel = week[today];
+            		console.log(todaylabel);
+            	}
+            });
         });
         
     </script>

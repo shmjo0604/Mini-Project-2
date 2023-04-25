@@ -61,7 +61,7 @@ public class ClassSessionView {
 	// 클래스 추가금액
 	private int addprice;
 	// 클래스 난이도(입문자, 경험자)
-	private String level;
+	private String classlevel;
 	// 등록일자
 	private Date seregdate;
 	

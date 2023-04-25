@@ -122,43 +122,11 @@
 <!-- 리스트 영역 -->
 <section>
 	<div class="container">
-		<div class="row row-cols-3 g-3 mb-3">
-	 			<c:forEach var="obj" items="${list3}">
-	 				<a href="product.do?classcode=${obj.classcode}">
-	  			<div class="col">
-	  				<div class="card shadow-sm">
-	  					<%-- <c:if test="${obj.imageNo eq 0}">
-	  						<img src="${pageContext.request.contextPath}/resources/assets/default.png" width="100%" height="225" focusable="false">
-	  					</c:if>
-	  					<c:if test="${obj.imageNo ne 0}">
-	  						<img src="${pageContext.request.contextPath}/item/image?no=${obj.imageNo}" width="100%" height="225" focusable="false">
-	  					</c:if> --%>
-	                           <div class="card-body">
-	                           	<h4 class="card-text text-center">${obj.title}</h4>
-	                               <%-- <div>${obj.content}</div> --%>
-	                               <p class="card-text">가격 : ${obj.price}</p>
-	                               <p class="card-text">주소 : ${obj.address1}</p>
-	                               <div class="d-flex justify-content-between align-items-center">
-	                                   <div>
-	                                       <button class="btn btn-sm btn-outline-secondary">상세 조회</button>
-	                                       <c:if test = "${sessionScope.UID ne null}">
-	                                       	<button class="btn btn-sm btn-outline-primary" onclick="modalOrder('${obj.no}', '${obj.price}', '${obj.imageNo}' )">물품 주문</button>
-	                                  		</c:if>
-	                                   </div>
-	                               </div>
-	                           </div>
-	  				</div>
-	  			</div>
-	  			 </a>
-	 			</c:forEach>
-	 		</div>
+		<div id = "classlist" class="row row-cols-3 g-3 mb-3">
+ 			
 	 	</div>
+	 </div>
 </section>
-
-<!-- 동적 form 전송 -->
-<form id="form-search" action="select.do?search=list" method="get">
-	<input id="input-citycode" type="text" name="citycode">
-</form>
 
 <!--axios library-->
 <script
@@ -172,14 +140,21 @@
 	var activitycode = 0;
 	var actcode = 0;
 	var classlevel = 0;
+	var minprice = 0;
+	var maxprice = 0;
+	var classdate = null;
 
+	searchClassAction();
+	
 	async function getLocalcate(code) {
 		console.log(code);
-		citycode = code;
+		
 		
 		//const localselect = $('#localselect')[0];
 		
 		if(code == 1) {
+			
+			citycode = 0;
 			
 			$('#localselect').children('option').remove();
 			$('#localselect').append('<option>전체</option>');
@@ -190,6 +165,8 @@
 		}
 		
 		else {
+			
+			citycode = code;
 			
 			const url = '${pageContext.request.contextPath}/api/class/selectcatelist.json?refcode='+code+"&chk=citycate";
 			const headers = {"Content-Type":"application/json"};
@@ -219,14 +196,19 @@
 	
 	async function getClasscate(code) {
 		console.log(code);
-		activitycode = code;
+		
 		
 		if(code == 1) {
+			
+			activitycode = 0;
+			
 			$('#actdetailselect').children('option').remove();
 			$('#actdetailselect').append('<option>전체</option>');
 		}
 		
 		else {
+			
+			activitycode = code;
 			
 			const url = '${pageContext.request.contextPath}/api/class/selectcatelist.json?refcode='+code+"&chk=classcate";
 			const headers = {"Content-Type":"application/json"};
@@ -254,12 +236,25 @@
 	
 	function setLocalcate(code) {
 		console.log(code);
-		localcode = code;
+		
+		if(code%100 == 1) {
+			localcode = 0;
+		}
+		else {
+			localcode = code;
+		}
 	}
 	
 	function setActcate(code) {
 		console.log(code);
-		actcode = code;
+		
+		if(code%100 == 1) {
+			actcode = 0;
+		}
+		else {
+			actcode = code;
+		}
+		
 	}
 	
 	
@@ -273,23 +268,70 @@
 		classlevel = e.target.value;
 	})
 	
-	function searchClassAction() {
-		/* console.log(citycode);
-		console.log(activitycode);
-		console.log(actcode);
-		console.log(localcode);
-		console.log(classlevel);
+	async function searchClassAction() {
 		
-		console.log($("#classdate").val());
-		console.log($("#minprice").val());
-		console.log($("#maxprice").val()); */
+		if($('#classdate').val().length !== 0) {
+			classdate = $("#classdate").val();
+		}
+		else {
+			classdate = null;
+		}
 		
-		var classdate = $("#classdate").val();
-		var minprice = $("#minprice").val();
-		var maxprice = $("#maxprice").val();
+		if($('#minprice').val().length !== 0) {
+			minprice = $("#minprice").val();
+		}
+		else {
+			minprice = 0;
+		}
 		
-		$('#input-citycode').attr('value', citycode);
-		$('#form-search').submit();
+		if($('#maxprice').val().length !== 0) {
+			maxprice = $("#maxprice").val();
+		}
+		else {
+			maxprice = 0;
+		}
+	
+/* 		console.log(classdate);
+		console.log(minprice);
+		console.log(maxprice); */
+		
+		const url = "${pageContext.request.contextPath}/api/class/selectclasslist.json";
+		const headers = {"Content-Type":"application/json"};
+		
+		const {data} = await axios.get(url, 
+				{ params: 
+				{ 
+					citycode : citycode, activitycode : activitycode,
+					localcode : localcode, actcode : actcode,
+					classlevel : classlevel, classdate : classdate,
+					minprice : minprice, maxprice : maxprice
+				} 
+				}, 
+				{headers});
+		console.log(data);
+		
+		const classlist = $('#classlist')[0];
+		classlist.innerHTML = '';
+		for(let obj of data.list) {
+			classlist.innerHTML +=
+				'<div class="col">' +
+					'<div class="card shadow-sm">' + 
+						'<div class="card-body">' +
+							'<h4 class="card-text text-center">' + obj.title + '</h4>' +
+							'<p class="card-text"> 가격 : ' + obj.price + '</p>' +
+							'<p class="card-text"> 주소 : ' + obj.address1 + '</p>' +
+							'<div class="d-flex justify-content-between align-items-center">' + 
+								'<div>' +
+									'<button class="btn btn-sm btn-outline-success"> 상세조회' + '</button>' +
+								'<div>' +
+							'</div>' +
+						'</div>'
+					'</div>'
+				'</div>';
+		}
+		
+		
+		//$('#form-search').submit();
 		
 		//console.log($('#input-citycode').val());
 		
@@ -314,5 +356,5 @@
 		
 		form.submit(); */
 		
-	}
+	};
 </script>

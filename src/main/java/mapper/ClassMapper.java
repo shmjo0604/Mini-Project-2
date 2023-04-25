@@ -20,7 +20,7 @@ public interface ClassMapper {
 	// 클래스 조회 -> 날짜, 지역, 클래스 카테고리, 난이도, 가격 전달 받아서(pagination)
 	@Select({
 		" <script> ",
-		" SELECT DISTINCT s.* FROM classsessionview s ",
+		" SELECT s.* FROM classsessionview s ",
 		" <trim prefix='WHERE' prefixOverrides='AND || OR '> ",
 		" <if test = 'map.citycode != 0' > ",
 			" citycode = #{map.citycode} ",
@@ -54,7 +54,44 @@ public interface ClassMapper {
 		" ORDER BY s.classcode DESC ",
 		" </script> "
 	})
-	public List<ClassSessionView> selectClassSessionViewList(@Param("map") Map<String, Object> map);
+	public List<ClassSessionView> selectClassSessionViewList1(@Param("map") Map<String, Object> map);
+	
+	// 뷰에서 클래스 코드가 중복인 것을 제거하고 하나만 조회 (가장 오래된 것)
+	@Select({
+		" <script> ",
+		" SELECT * FROM (SELECT *, ROW_NUMBER() OVER(PARTITION BY classcode ORDER BY no DESC) AS rown FROM CLASSSESSIONVIEW c) s WHERE rown = 1 ",
+		" <if test = 'map.citycode != 0' > ",
+			" AND citycode = #{map.citycode} ",
+		" </if> ",
+		" <if test = 'map.localcode != 0'> ",
+			" AND localcode = #{map.localcode} ",
+		" </if> ",
+		" <if test = 'map.activitycode != 0'> ",
+			" AND activitycode = #{map.activitycode} ",
+		" </if> ",
+		" <if test = 'map.actcode != 0'> ",
+			" AND actcode = #{map.actcode} ",
+		" </if> ",
+		" <if test = 'map.classdate != null'> ",
+			" AND classdate = #{map.classdate} ",
+		" </if> ",
+		" <if test = 'map.classlevel != 0'> ",
+			" AND classlevel = #{map.classlevel} ",
+		" </if> ",
+		" <if test = 'map.minprice != 0'> ",
+			" AND totalprice <![CDATA[ > ]]> #{map.minprice} ",
+		" </if> ",
+		" <if test = 'map.maxprice != 0'> ",
+			" AND totalprice <![CDATA[ < ]]> #{map.maxprice} ",
+		" </if> ",
+		" <if test = 'map.keyword != null'> ",
+			" AND classtitle LIKE '%' ||  #{map.keyword} || '%' ",
+			/* " OR talent LIKE '%' ||  #{map.keyword} || '%' ", */
+		" </if> ",
+		" ORDER BY s.classcode DESC ",
+		" </script> "
+	})
+	public List<ClassSessionView> selectClassSessionViewList2(@Param("map") Map<String, Object> map);
 	
 	// 클래스 전체 조회 
 	

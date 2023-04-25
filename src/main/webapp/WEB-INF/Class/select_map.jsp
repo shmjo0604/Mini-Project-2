@@ -5,8 +5,8 @@
 <div class="container">
 	<div class="row mb-2">
 		<div class="col d-flex">
-			<div>
-				<div class="input-group">
+			<div class="d-flex">
+				<div class="input-group me-3">
 					<!-- <select class="form-select" aria-label="Default select example">
                             <option selected value="title">제목</option>
                             <option value="keyword">내용</option>
@@ -18,6 +18,32 @@
 					<button class="btn btn-primary" type="button">
 						<i class="fas fa-search fa-sm"></i>
 					</button>
+				</div>
+			</div>
+			<div class="d-flex me-3">
+				<div class="me-3">지역</div>
+				<div>
+					<select class="form-select" aria-label="Default select example" onchange="getLocalcate_map(this.value)">
+					<c:forEach var="obj" items="${list2}">
+						<option value="${obj.code}">${obj.cate}</option>
+					</c:forEach>
+					</select>
+				</div>
+			</div>
+			<div class="d-flex me-3">
+				<div class="me-3">카테고리</div>
+				<div>
+					<select class="form-select" aria-label="Default select example" onchange="getActcate_map(this.value)">
+					<c:forEach var="obj" items="${list1}">
+						<option value="${obj.code}">${obj.cate}</option>
+					</c:forEach>
+					</select>
+				</div>
+			</div>
+			<div class="d-flex">
+				<div class="me-3">날짜</div>
+				<div>
+					<input id="classdate" class="form-control datepicker">
 				</div>
 			</div>
 			<div class="ms-auto">
@@ -32,21 +58,21 @@
 </div>
 <div class="container-fluid">
 	<div class="row mb-3">
-		<div class="col-3">
+		<div id = "classlist_map" class="col-3">
 		
- 			<c:forEach var="obj" items="${list3}">
+ 			<%-- <c:forEach var="obj" items="${list3}">
  				<a href="product.do?classcode=${obj.classcode}">
   			
   				<div class="card shadow-sm mb-3">
-  					<%-- <c:if test="${obj.imageNo eq 0}">
+  					<c:if test="${obj.imageNo eq 0}">
   						<img src="${pageContext.request.contextPath}/resources/assets/default.png" width="100%" height="225" focusable="false">
   					</c:if>
   					<c:if test="${obj.imageNo ne 0}">
   						<img src="${pageContext.request.contextPath}/item/image?no=${obj.imageNo}" width="100%" height="225" focusable="false">
-  					</c:if> --%>
+  					</c:if>
                            <div class="card-body">
                            	<h4 class="card-text text-center">${obj.title}</h4>
-                               <%-- <div>${obj.content}</div> --%>
+                               <div>${obj.content}</div>
                                <p class="card-text">가격 : ${obj.price}</p>
                                <p class="card-text">주소 : ${obj.address1}</p>
                                <div class="d-flex justify-content-between align-items-center">
@@ -61,7 +87,7 @@
   				</div>
   			
   			 </a>
- 			</c:forEach>
+ 			</c:forEach> --%>
 
 	 	</div>
 		<div class="col-9">
@@ -69,11 +95,92 @@
 		</div>
 	</div>
 </div>
-
+<!--axios library-->
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.3.5/axios.min.js">
+</script>
+<!--jQuery-->
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <!-- kakao map library -->
 <script type="text/javascript"
 	src="//dapi.kakao.com/v2/maps/sdk.js?appkey=4847ab83c2fe2a7607fbdad0614a758b"></script>
 <script>
+	var citycode_map = 0;
+	var activitycode_map = 0;
+	var classdate_map = null;
+
+	var localcode_map = 0;
+	var actcode_map = 0;
+	var classlevel_map = 0;
+	var minprice_map = 0;
+	var maxprice_map = 0;
+
+	searchClassActionMap();
+	
+	function getLocalcate_map(code) {
+		
+		if(code==1) {
+			citycode_map = 0;
+		}
+		else {
+			citycode_map = code;
+		}
+	}
+	
+	function getActcate_map(code) {
+			
+		if(code==1) {
+			activitycode_map = 0;
+		}
+		else {
+			activitycode_map = code;
+		}
+	}
+	
+async function searchClassActionMap() {
+		
+		if($('#classdate').val().length !== 0) {
+			classdate = $("#classdate").val();
+		}
+		else {
+			classdate = null;
+		}
+		
+		const url = "${pageContext.request.contextPath}/api/class/selectclasslist.json";
+		const headers = {"Content-Type":"application/json"};
+		
+		const {data} = await axios.get(url, 
+				{ params: 
+				{ 
+					citycode : citycode_map, activitycode : activitycode_map,
+					localcode : localcode_map, actcode : actcode_map,
+					classlevel : classlevel_map, classdate : classdate_map,
+					minprice : minprice_map, maxprice : maxprice_map
+				} 
+				}, 
+				{headers});
+		console.log(data);
+		
+		const classlist_map = $('#classlist_map')[0];
+		classlist_map.innerHTML = '';
+		for(let obj of data.list) {
+			classlist_map.innerHTML +=
+				'<div class="col">' +
+					'<div class="card shadow-sm mb-3">' + 
+						'<div class="card-body">' +
+							'<h4 class="card-text text-center">' + obj.title + '</h4>' +
+							'<p class="card-text"> 가격 : ' + obj.price + '</p>' +
+							'<p class="card-text"> 주소 : ' + obj.address1 + '</p>' +
+							'<div class="d-flex justify-content-between align-items-center">' + 
+								'<div>' +
+									'<button class="btn btn-sm btn-outline-success"> 상세조회' + '</button>' +
+								'<div>' +
+							'</div>' +
+						'</div>'
+					'</div>'
+				'</div>';
+		}
+	}
 	var container = document.getElementById('map');
 	var options = {
 		center : new kakao.maps.LatLng(35.180182599322045, 129.07538647683208), // 위도, 경도
