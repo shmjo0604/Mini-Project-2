@@ -4,10 +4,9 @@ import java.util.Date;
 
 import lombok.Data;
 
-//클래스 리스트 테이블
 @Data
-public class Classproduct {
-	// 클래스 코드(시퀀스)
+public class ClassSessionView {
+
 	private long classcode;
 	// 제목
 	private String title;
@@ -41,4 +40,43 @@ public class Classproduct {
 	private long actcode;
 	// 회원아이디(시퀀스)
 	private String memberid;
+
+	private long no;
+	// 현재신청인원
+	private int cnt;
+	// 최소신청인원
+	private int minimum;
+	// 최대신청인원
+	private int maximum;
+	// 날짜
+	private String classdate;
+	// 요일
+	private String classday;
+	// 오전 6:00
+	private String classstart;
+	// 오후 9:00
+	private String classend;
+	// 할인률
+	private float discount;
+	// 클래스 추가금액
+	private int addprice;
+	// 클래스 난이도(입문자, 경험자)
+	private String classlevel;
+	// 등록일자
+	private Date seregdate;
+	
+	private String localcate;
+	
+	private long citycode;
+
+	private String citycate;
+	
+	private String actdetailcate;
+	// 101,102,103
+	private long activitycode;
+	
+	private String actcate;
+	
+	private long totalprice;
+	
 }
