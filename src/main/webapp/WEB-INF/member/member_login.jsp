@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <html>
 <head>
 <meta charset="UTF-8">
@@ -32,7 +33,7 @@
 						<input type="submit" value="로그인" class="btn btn-primary"
 						onclick ="loginAction()" />
 						<a href ="join.do" class="btn btn-primary">회원가입</a>
-						<input type="button" value="아이디찾기" class="btn btn-primary"/>
+						<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">아이디찾기</button>
 						<input type="button" value="비밀번호재설정" class="btn btn-primary"/>
 					</div>
 					<div>

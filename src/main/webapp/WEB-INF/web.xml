@@ -49,4 +49,24 @@
     <servlet-name>MemberHomeController</servlet-name>
     <url-pattern>/MemberHomeController</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>MemberMypageController</display-name>
+    <servlet-name>MemberMypageController</servlet-name>
+    <servlet-class>controller.MemberMypageController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>MemberMypageController</servlet-name>
+    <url-pattern>/MemberMypageController</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>RestMemberPWCheckController</display-name>
+    <servlet-name>RestMemberPWCheckController</servlet-name>
+    <servlet-class>restcontroller.RestMemberPWCheckController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>RestMemberPWCheckController</servlet-name>
+    <url-pattern>/RestMemberPWCheckController</url-pattern>
+  </servlet-mapping>
 </web-app>

@@ -27,29 +27,34 @@ public class MemberJoinController extends HttpServlet {
 	
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	String hashPw = Hash.hashPw(request.getParameter("id"),request.getParameter("pw"));
-	Member obj = new Member();
-	obj.setId(request.getParameter("id"));
-	obj.setPassword(hashPw);
-	obj.setName(request.getParameter("name"));
-	obj.setEmail(request.getParameter("email"));
-	obj.setPhone(request.getParameter("phone"));
-	obj.setGender(request.getParameter("gender"));
-	obj.setBirth(request.getParameter("birth"));
-
+		String hashPw = Hash.hashPw(request.getParameter("id"),request.getParameter("password"));
+		Member obj = new Member();
+		obj.setId(request.getParameter("id"));
+		obj.setPassword(hashPw);
+		obj.setName(request.getParameter("name"));
+		obj.setEmail(request.getParameter("email"));
+		obj.setPhone(request.getParameter("phone"));
+		obj.setGender(request.getParameter("gender"));
+		obj.setBirth(request.getParameter("birth"));
+		
+		
+		
 	
-	
-
-	int ret =mService.insertMemberOne(obj);
-	if(ret == 1) {
-	
-		response.sendRedirect("login.do");
-		return ;
+		int ret =mService.insertMemberOne(obj);
+		if(ret == 1) {
 			
-	}
-
-	response.sendRedirect(request.getContextPath()+"/member/join.do");
-	
+			request.setAttribute("message", "회원가입이 완료되었습니다.");
+			request.setAttribute("url", "login.do" );
+			request.getRequestDispatcher("/WEB-INF/member/alert.jsp").forward(request, response);
+//			response.sendRedirect("login.do");
+			return ;
+				
+		}
+		request.setAttribute("message", "회원가입에 실패하였습니다.");
+		request.setAttribute("url", "join.do" );
+		request.getRequestDispatcher("/WEB-INF/member/alert.jsp").forward(request, response);
+//		response.sendRedirect(request.getContextPath()+"/member/join.do");
+		
 	
 	}
 	

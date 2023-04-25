@@ -14,12 +14,10 @@ public class MemberHomeController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//클래스 리스트 나열
 		
-		request.getRequestDispatcher("/WEB-INF/member/member_home.jsp").forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/main/home.jsp").forward(request, response);
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
+	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);

@@ -6,7 +6,7 @@ import mapper.MemberMapper;
 import service.MemberService;
 
 public class MemberServiceImpl implements MemberService {
-
+	
 	@Override
 	public int insertMemberOne(Member obj) {
 		try {
@@ -39,23 +39,35 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-	public Member updateMemberOne(Member obj) {
+	public Member selectMemberOne(String obj) {
+		try {
+			return MyBatisContext.getSqlSession().getMapper(MemberMapper.class).selectMemberOne(obj);
+			
+		}catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+		
+	}
+
+	@Override
+	public int updateMemberOne(Member obj) {
 		try {
 			return MyBatisContext.getSqlSession().getMapper(MemberMapper.class).updateMemberOne(obj);
 		} catch (Exception e) {
 			e.printStackTrace();
-			return null;
+			return 0;
 		}
 	}
 
 	@Override
-	public Member updateMemberPassword(Member obj) {
+	public int updateMemberPassword(Member obj) {
 		try {
 			return MyBatisContext.getSqlSession().getMapper(MemberMapper.class).updateMemberPassword(obj);
 
 		} catch (Exception e) {
 			e.printStackTrace();
-			return null;
+			return 0;
 		}
 	}
 
@@ -69,5 +81,6 @@ public class MemberServiceImpl implements MemberService {
 			return 0;
 		}
 	}
+
 
 }

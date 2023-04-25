@@ -10,9 +10,11 @@ public interface MemberService {
 	
 	public Member selectMemberLogin(Member obj);
 	
-	public Member updateMemberOne(Member obj);
+	public Member selectMemberOne(String obj);
 	
-	public Member updateMemberPassword(Member obj);
+	public int updateMemberOne(Member obj);
+	
+	public int updateMemberPassword(Member obj);
 	
 	public int deleteMemberOne(Member obj);
 }

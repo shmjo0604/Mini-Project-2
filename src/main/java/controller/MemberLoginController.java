@@ -32,6 +32,7 @@ public class MemberLoginController extends HttpServlet {
 		 Member obj = new Member();
 		 obj.setId(request.getParameter("id"));
 		 obj.setPassword(hashPw);
+		 //obj.setChk((int) request.getSession().getAttribute("chk"));
 
 		 
 		 Member ret = MyBatisContext.getSqlSession().getMapper(MemberMapper.class).selectMemberLogin(obj);
@@ -41,11 +42,14 @@ public class MemberLoginController extends HttpServlet {
 			 HttpSession httpSession = request.getSession();
 			 httpSession.setAttribute("id", ret.getId());
 			 httpSession.setAttribute("name", ret.getName());
+			// httpSession.setAttribute("chk", ret.getChk());
 			 
 			 String url = (String)httpSession.getAttribute("url");
-			 System.out.println(url);
 			 if(url == null) {
-				 response.sendRedirect("home.do");
+				
+				 request.setAttribute("message","로그인에 성공하였습니다.");
+				 request.setAttribute("url", "home.do");
+				 request.getRequestDispatcher("/WEB-INF/member/alert.jsp").forward(request, response);
 			 }
 			 else {
 				 response.sendRedirect(url);

@@ -26,12 +26,12 @@
 							class="form-label">아이디</label>
 					</div>
 					<div class="form-floating mb-2">
-						<input type="password" name="pw" id="pw" class="form-control" />
-						<label for="pw" class="form-label">암호</label>
+						<input type="password" name="password" id="password" class="form-control" />
+						<label for="password" class="form-label">암호</label>
 					</div>
 					<div class="form-floating mb-2">
-						<input type="password" name="pw1" id="pw1" class="form-control" />
-						<label for="pw1" class="form-label">암호확인</label>
+						<input type="password" name="password1" id="password1" class="form-control" />
+						<label for="password1" class="form-label">암호확인</label>
 					</div>
 					<div class="form-floating mb-2">
 						<input type="text" name="name" id="name" class="form-control" />
@@ -39,28 +39,29 @@
 					</div>
 					<div class="form-floating mb-2">
 						<input type="email" name="email" id="email" class="form-control" />
-						<label for="email" class="form-label">이메일 주소를 입력해주세요 ex)a1@gmail.com</label>
+						<label for="email" class="form-label">이메일 주소를 입력해주세요
+							ex)a1@gmail.com</label>
 					</div>
 					<div class="form-floating mb-2">
-						<input type="text" name="phone" id="phone" class="form-control"/>
+						<input type="text" name="phone" id="phone" class="form-control" />
 						<label for="phone" class="form-label">전화번호 11자리를 입력해주세요</label>
 					</div>
-						<div class="form-floating mb-2">
-						<input type="text" name="birth" id="birth" class="form-control"/>
-						<label for="birth" class="form-label">생년월일 6자리를 입력해주세요</label> 
+					<div class="form-floating mb-2">
+						<input type="text" name="birth" id="birth" class="form-control" />
+						<label for="birth" class="form-label">생년월일 6자리를 입력해주세요</label>
 					</div>
 					<div class="form-check">
-						<input class="form-check-input" type="radio" value ="M"
-							name="gender" id="Man" checked> 
-							<label class="form-check-label" for="gender" >남성</label>
+						<input class="form-check-input" type="radio" value="M"
+							name="gender" checked> <label
+							class="form-check-label" for="gender">남성</label>
 					</div>
 					<div class="form-check">
-						<input class="form-check-input" type="radio" value ="W"
-							name="gender" id="Woman" >
-							<label class="form-check-label" for="gender" >여성</label>
+						<input class="form-check-input" type="radio" value="W"
+							name="gender" > <label class="form-check-label"
+							for="gender">여성</label>
 					</div>
 					<div>
-						<input type="submit" value="회원가입" class="btn btn-primary"
+						<input type="button" value="회원가입" class="btn btn-primary"
 							onclick="joinAction()">
 
 					</div>
@@ -74,72 +75,82 @@
 	var idcheck = 0 ;
 	
 	async function  joinAction(){
-	const id = document.getElementById("id");
-	const pw = document.getElementById("pw");
-	const pw1 = document.getElementById("pw1");
-	const name = document.getElementById("name");
-	const email = document.getElementById("email");
-	const phone = document.getElementById("phone");
-	const birth = document.getElementById("birth");
-	
-	if(id.value.length <= 0) {
-		alert('아이디를 입력하세요');
-		id.focus();
-		return false();
-	}
-	if(pw.value !== pw1.value){
-		alert('비밀번호가 일치하지 않습니다.');
-		pw.focus();
-		return false();
-	}
-	if(idcheck === 0 ){
-		alert('다른고객이 사용중인 아이디 입니다.');
-		id.focus();
-		return false();
-	}
-
-	const url 		= '${pageContext.request.contextPath}/api/member/join.json';
-	const headers 	={"Content-Type":"application/x-www-form-urlencoded"};
-	const body 		={id:id.value, pw:pw.value, name:name.value,email:email.value,phone:phone.value , birth:birth.value};
-	const {data} 	= await axios.post(url, body, {headers});
-	console.log(data);
-	if(data.ret === 1 ){
-		alert( '회원가입이 완료되었습니다.');
+		const id = document.getElementById("id");
+		const pw = document.getElementById("password");
+		const pw1 = document.getElementById("password1");
+		const name = document.getElementById("name");
+		const email = document.getElementById("email");
+		const phone = document.getElementById("phone");
+		const gender = document.getElementsByName("gender");
+		const birth = document.getElementById("birth");
+		console.log(gender);
 		
-	}else{
-		alert('회원가입이 실패하였습니다.')
+		if(id.value.length <= 0) {
+			alert('아이디를 입력하세요');
+			id.focus();
+			return false;
+		}
+		if(pw.value.length <= 0 ) {
+			alert('비밀번호를 입력하세요');
+			pw.focus();
+			return false;
+		}
+		if(pw1.value.length <= 0 ){
+			alert('비밀번호를 입력하세요');
+			pw1.focus();
+			return false;
+		}
+		if(name.value.length <= 0){
+			alert('이름을 입력하세요');
+			name.focus();
+			return false;
+		}
+		if(email.value.length <= 0){
+			alert('이메일을 입력하세요');
+			email.focus();
+			return false;
+		}
+		if(birth.value.length <= 0) {
+			alert('생년월일을 입력하세요');
+			birth.focus();
+			return false;
+		}
 		
-		 
-	}
+		if(pw.value !== pw1.value){
+			alert('비밀번호가 일치하지 않습니다.');
+			pw.focus();
+			return false;
+		}
+		if(idcheck === 0 ){
+			alert('다른고객이 사용중인 아이디 입니다.');
+			id.focus();
+			return false;
+		}		
 		document.getElementById("form").submit();
 	}
 	
 	
 	async function ajaxIDCheck(e){
-		
 		if(e.value.length > 0) {
 			const url 		= '${pageContext.request.contextPath}/api/member/idcheck.json?id=' + e.value;
 			const headers 	= {"Content-Type":"application/json"};
 			const {data} 	= await axios.get(url, {headers});
-		console.log(data);
-		
-		if(data.ret === 1 ){
-			idcheck = 0 ;
-			document.getElementById("lbl_check").innerText ='사용불가';
+			console.log(data);
+			
+			if(data.ret === 1 ){
+				idcheck = 0 ;
+				document.getElementById("lbl_check").innerText ='사용불가';
+			}
+			else if(data.ret === 0 ){
+				idcheck =1 ;
+				document.getElementById("lbl_check").innerText ='사용가능';
+			}
 		}
-		else if(data.ret === 0 ){
-			idcheck =1 ;
-			document.getElementById("lbl_check").innerText ='사용가능';
-		}
-	}
 		else {
 			idcheck = 0;
 		    document.getElementById("lbl_check").innerText ='아이디';
+		}
 	}
-}
-
-	
-	
 	</script>
 </body>
 </html>
