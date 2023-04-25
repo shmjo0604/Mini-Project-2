@@ -9,7 +9,7 @@ import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.apache.ibatis.transaction.TransactionFactory;
 import org.apache.ibatis.transaction.jdbc.JdbcTransactionFactory;
 
-import mapper.ClassMapper;
+import mapper.ClassSelectMapper;
 
 
 public class MyBatisContext {
@@ -39,7 +39,7 @@ public class MyBatisContext {
 			Configuration config = new Configuration(environment);
 			
 			// 매퍼 등록 -> config.add
-			config.addMapper(ClassMapper.class);
+			config.addMapper(ClassSelectMapper.class);
 			
 			
 			SqlSessionFactory factory = new SqlSessionFactoryBuilder().build(config);

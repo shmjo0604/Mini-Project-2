@@ -16,7 +16,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import mapper.ClassMapper;
+import mapper.ClassSelectMapper;
 
 
 
@@ -40,7 +40,7 @@ public class RestClassCateSelectController extends HttpServlet {
 //			return; //메소드 종료시키기
 //		}
 		
-		ClassMapper cMapper = MyBatisContext.getSqlSession().getMapper(ClassMapper.class);
+		ClassSelectMapper cMapper = MyBatisContext.getSqlSession().getMapper(ClassSelectMapper.class);
 		
 		if(request.getParameter("chk").equals("classcate")) {
 			

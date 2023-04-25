@@ -7,12 +7,6 @@
 		<div class="col d-flex">
 			<div class="d-flex">
 				<div class="input-group me-3">
-					<!-- <select class="form-select" aria-label="Default select example">
-                            <option selected value="title">제목</option>
-                            <option value="keyword">내용</option>
-                            <option value="2"></option>
-                            <option value="3">Three</option>
-                        </select> -->
 					<input type="text" class="form-control" placeholder="검색어를 입력하세요."
 						aria-label="Text input with dropdown button">
 					<button class="btn btn-primary" type="button">
@@ -43,10 +37,11 @@
 			<div class="d-flex">
 				<div class="me-3">날짜</div>
 				<div>
-					<input id="classdate" class="form-control datepicker">
+					<input id="classdate" class="form-control datepicker" placeholder="날짜를 선택하세요">
 				</div>
 			</div>
 			<div class="ms-auto">
+				<button class="btn btn-outline-success" onclick="searchClassActionMap()">검색</button>
 				<a href="select.do?search=list">
 					<button class="btn btn-outline-success">목록 보기</button>
 				</a>
@@ -58,7 +53,8 @@
 </div>
 <div class="container-fluid">
 	<div class="row mb-3">
-		<div id = "classlist_map" class="col-3">
+		<div id = "classlist_map" class="col-3" style="height:750px; overflow-y: scroll;">
+			<!-- 동적 생성 -->
 		
  			<%-- <c:forEach var="obj" items="${list3}">
  				<a href="product.do?classcode=${obj.classcode}">

@@ -9,15 +9,13 @@ import java.util.Map;
 import com.google.gson.Gson;
 
 import config.MyBatisContext;
-import dto.Actdetailcate;
 import dto.ClassSessionView;
-import dto.Localcate;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import mapper.ClassMapper;
+import mapper.ClassSelectMapper;
 
 @WebServlet(urlPatterns = { "/api/class/selectclasslist.json" })
 public class RestClassListSelectController extends HttpServlet {
@@ -33,7 +31,7 @@ public class RestClassListSelectController extends HttpServlet {
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 
-		ClassMapper cMapper = MyBatisContext.getSqlSession().getMapper(ClassMapper.class);
+		ClassSelectMapper cMapper = MyBatisContext.getSqlSession().getMapper(ClassSelectMapper.class);
 
 		if (request.getParameter("classdate") == null) {
 			Map<String, Object> map = new HashMap<>();
