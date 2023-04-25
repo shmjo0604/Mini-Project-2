@@ -1,10 +1,9 @@
 package controller.review;
 
 import java.io.IOException;
-import java.util.List;
 
 import config.MyBatisContext;
-import dto.Review;
+import dto.ClassSessionView;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -21,10 +20,21 @@ public class SelectViewController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
-		ReviewMapper mapper = MyBatisContext.getSqlSession().getMapper(ReviewMapper.class);
-		List<Review> list = mapper.selectReviewAll();
+		long no = 18;
 		
-		request.setAttribute("list", list);
+		System.out.println(no);
+		
+		ClassSessionView obj = new ClassSessionView();
+		obj.setNo(no);
+		System.out.println(obj.toString());
+		
+		ReviewMapper mapper = MyBatisContext.getSqlSession().getMapper(ReviewMapper.class);
+//		List<Review> list = mapper.selectReviewAll();
+		
+		ClassSessionView view = mapper.ClassSessionViewSelectOne(obj);
+		
+//		request.setAttribute("list", list);
+		request.setAttribute("view", view);
 		
 		request.getRequestDispatcher("/WEB-INF/review/selectview.jsp").forward(request, response);
 	}
