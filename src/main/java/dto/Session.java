@@ -26,8 +26,8 @@ public class Session {
   private float discount;
   // 클래스 추가금액
   private int addprice;
-  // 클래스 난이도(입문자, 경험자)
-  private String level;
+  // 클래스 난이도(입문자, 경험자, 숙련자)
+  private String classlevel;
   // 등록일자
   private Date regdate;
   // 클래스 코드(시퀀스)

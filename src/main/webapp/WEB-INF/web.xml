@@ -1,16 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="https://jakarta.ee/xml/ns/jakartaee" xmlns:web="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_5_0.xsd http://xmlns.jcp.org/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="5.0">
-  <servlet>
-    <description></description>
-    <display-name>MemberJoinController</display-name>
-    <servlet-name>MemberJoinController</servlet-name>
-    <servlet-class>controller.MemberJoinController</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>MemberJoinController</servlet-name>
-    <url-pattern>/MemberJoinController</url-pattern>
-  </servlet-mapping>
-  <display-name>Mini-Project 2</display-name>
+  <display-name>Mini-Project-2</display-name>
   <welcome-file-list>
     <welcome-file>index.html</welcome-file>
     <welcome-file>index.htm</welcome-file>
@@ -19,54 +9,4 @@
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
-  <servlet>
-    <description></description>
-    <display-name>MemberIDCheckController</display-name>
-    <servlet-name>MemberIDCheckController</servlet-name>
-    <servlet-class>restcontroller.MemberIDCheckController</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>MemberIDCheckController</servlet-name>
-    <url-pattern>/MemberIDCheckController</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <description></description>
-    <display-name>MemberLogoutController</display-name>
-    <servlet-name>MemberLogoutController</servlet-name>
-    <servlet-class>controller.MemberLogoutController</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>MemberLogoutController</servlet-name>
-    <url-pattern>/MemberLogoutController</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <description></description>
-    <display-name>MemberHomeController</display-name>
-    <servlet-name>MemberHomeController</servlet-name>
-    <servlet-class>controller.MemberHomeController</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>MemberHomeController</servlet-name>
-    <url-pattern>/MemberHomeController</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <description></description>
-    <display-name>MemberMypageController</display-name>
-    <servlet-name>MemberMypageController</servlet-name>
-    <servlet-class>controller.MemberMypageController</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>MemberMypageController</servlet-name>
-    <url-pattern>/MemberMypageController</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <description></description>
-    <display-name>RestMemberPWCheckController</display-name>
-    <servlet-name>RestMemberPWCheckController</servlet-name>
-    <servlet-class>restcontroller.RestMemberPWCheckController</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>RestMemberPWCheckController</servlet-name>
-    <url-pattern>/RestMemberPWCheckController</url-pattern>
-  </servlet-mapping>
 </web-app>
