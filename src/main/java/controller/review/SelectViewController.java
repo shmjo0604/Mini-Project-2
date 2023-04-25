@@ -9,7 +9,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import mapper.ReviewMapper;
+import mapper.ClassSessionViewMapper;
 
 @WebServlet(urlPatterns = { "/review/selectview.do" })
 public class SelectViewController extends HttpServlet {
@@ -20,21 +20,22 @@ public class SelectViewController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
-		long no = 18;
-		
-		System.out.println(no);
-		
+	
+//		
+//		System.out.println(no);
+//		
 		ClassSessionView obj = new ClassSessionView();
-		obj.setNo(no);
+		obj.setNo(0);
 		System.out.println(obj.toString());
+//		
+//		ClassSessionViewMapper mapper = MyBatisContext.getSqlSession().getMapper(ClassSessionViewMapper.class);
+//		ClassSessionView view = mapper.ClassSessionViewSelectOne(obj);
 		
-		ReviewMapper mapper = MyBatisContext.getSqlSession().getMapper(ReviewMapper.class);
-//		List<Review> list = mapper.selectReviewAll();
-		
-		ClassSessionView view = mapper.ClassSessionViewSelectOne(obj);
-		
-//		request.setAttribute("list", list);
-		request.setAttribute("view", view);
+		ClassSessionViewMapper mapper = MyBatisContext.getSqlSession().getMapper(ClassSessionViewMapper.class);
+		ClassSessionView int1 = mapper.aa();
+				
+				
+		request.setAttribute("view", int1);
 		
 		request.getRequestDispatcher("/WEB-INF/review/selectview.jsp").forward(request, response);
 	}

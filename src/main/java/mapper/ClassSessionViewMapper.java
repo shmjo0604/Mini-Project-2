@@ -1,7 +1,5 @@
 package mapper;
 
-import java.util.List;
-
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -15,9 +13,26 @@ public interface ClassSessionViewMapper {
 	
 	
 	@Select({
-		" SELECT csv.* FROM CLASSSESSIONVIEW CSV where no=#{obj.no};"
+		" SELECT csv.* FROM CLASSSESSIONVIEW CSV where no=#{obj.no}"
 		})
-	public List<ClassSessionView> ClassSessionViewSelectOne(@Param("obj") ClassSessionView obj);
+	public ClassSessionView ClassSessionViewSelectOne(@Param("obj") ClassSessionView obj);
+	
+	@Select({
+		" SELECT csv.* FROM CLASSSESSIONVIEW CSV where no= #{no}"
+		})
+	public ClassSessionView dd(long no);
+	
+	@Select({
+		" SELECT csv.* FROM CLASSSESSIONVIEW CSV where no=18;"
+		})
+	public ClassSessionView aa();
+	
+	
+	
+	
+	
+	
+	
 	
 	@Select({
 		" SELECT r.* FROM REVIEW r ;"

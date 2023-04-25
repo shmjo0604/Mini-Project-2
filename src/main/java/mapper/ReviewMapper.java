@@ -15,7 +15,7 @@ import dto.Review;
 public interface ReviewMapper {
 	
 	@Select({
-		" SELECT csv.* FROM CLASSSESSIONVIEW CSV where no=#{obj.no}"
+		" SELECT csv.* FROM CLASSSESSIONVIEW  where no =#{obj.no}"
 		})
 	public ClassSessionView ClassSessionViewSelectOne(@Param("obj") ClassSessionView obj);
 	
