@@ -15,7 +15,7 @@
 	href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css" />
 <!-- Google Font -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>s
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link
 	href="https://fonts.googleapis.com/css2?family=DynaPuff&family=Permanent+Marker&display=swap"
 	rel="stylesheet">
