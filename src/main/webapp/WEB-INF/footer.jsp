@@ -34,7 +34,7 @@
         <!-- / footer menu -->
 
         <!-- Footer bottom-->
-        <div class="small text-white opacity-50 mb-2 mb-md-0">All rights reserved &copy Special day 2023</div>
+        <div class="small text-white opacity-50 mb-2">All rights reserved &copy Special day 2023</div>
         <!-- Footer bottom-->
     </div>
 </footer>

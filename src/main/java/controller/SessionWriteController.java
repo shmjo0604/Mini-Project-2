@@ -47,7 +47,8 @@ public class SessionWriteController extends HttpServlet {
 		obj.setClassday(request.getParameter("day"));
 		obj.setClassstart(request.getParameter("start"));
 		obj.setClassend(request.getParameter("end"));
-		obj.setDiscount(Float.parseFloat(request.getParameter("rate")));
+		float num = Float.parseFloat(request.getParameter("rate"))*0.01f;
+		obj.setDiscount(Math.round(num*100)/100.0f); // 소수점 둘째자리까지
 		obj.setAddprice(Long.parseLong(request.getParameter("addprice")));
 		obj.setClasslevel(request.getParameter("level"));
 		obj.setClasscode(classcode); // 테스트
@@ -58,13 +59,15 @@ public class SessionWriteController extends HttpServlet {
 		try {
 			int ret = sService.insertSessionOne(obj);
 			if(ret == 1) {
-				response.sendRedirect("session.do?menu" + 1);
+				response.sendRedirect("select.do");
 			}
 		} 
 		catch (Exception e) {
 			e.printStackTrace();
-			response.sendRedirect("session.do?menu" + 1);
+			response.sendRedirect("select.do");
 		}
+		
+		
 	}
 
 }

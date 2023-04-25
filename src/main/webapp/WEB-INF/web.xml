@@ -9,14 +9,4 @@
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
-  <servlet>
-    <description></description>
-    <display-name>SessionInsertController</display-name>
-    <servlet-name>SessionInsertController</servlet-name>
-    <servlet-class>controller.SessionInsertController</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>SessionInsertController</servlet-name>
-    <url-pattern>/SessionInsertController</url-pattern>
-  </servlet-mapping>
 </web-app>
