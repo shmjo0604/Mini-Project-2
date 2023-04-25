@@ -55,7 +55,6 @@ public class ClassInsertController extends HttpServlet {
 		/*Classimage img = new Classimage();
 		img.setFilename("filename");*/
 		
-		mService.insertClassOne()
 		
 		request.getRequestDispatcher("/WEB-INF/member/alert.jsp").forward(request, response);
 	}
