@@ -20,8 +20,8 @@ public class SessionServiceImpl implements SessionService{
 	
 	/* (2) 세션 전체 조회 */
 	@Override
-	public List<Session> selectSessionList() throws Exception {
-		return mapper.selectSessionList();	
+	public List<Session> selectSessionList(long classcode) throws Exception {
+		return mapper.selectSessionList(classcode);
 	}
 	
 	/* (3) 세션 수정 */
@@ -41,6 +41,8 @@ public class SessionServiceImpl implements SessionService{
 	public int deleteSessionAll(long classcode) throws Exception {
 		return mapper.deleteSessionAll(classcode);
 	}
+
+	
 
 
 

@@ -1,89 +1,38 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
-<form action="session.do?menu=1" method="post" id="form">
-	
-	<div class="row">
-		<div class="form-floating mb-3 col-lg-6">
-		    <input type="number" id="min" name="min" class="form-control">
-		    <label for="min" class="form-label">최소인원</label>
-		</div>
-		
-		<div class="form-floating mb-3 col-lg-6">
-		    <input type="number" id="max" name="max" class="form-control" required>
-		    <label for="max" class="form-label">최대인원</label>
-		</div>
-	</div>
-	
-	<div class="row">
-		<div class="form-floating mb-3 col-lg-3">
-		    <input type="date" id="date" name="date" class="form-control">
-		    <label for="date" class="form-label">날짜</label>
-		</div>
-		   
-		<div class="form-floating mb-3 col-lg-3">
-		    <select class="selectpicker" id="day" name="day" aria-label="Example select with button addon">
-			   <option selected>요일</option>
-			   <option value="월요일">월요일</option>
-			   <option value="화요일">화요일</option>
-			   <option value="수요일">수요일</option>
-			   <option value="목요일">목요일</option>
-			   <option value="금요일">금요일</option>
-			   <option value="토요일">토요일</option>
-			   <option value="일요일">일요일</option>
-			 </select>
-		</div>
-		   
-		<div class="form-floating mb-3 col-lg-3">
-		    <input type="time" id="start" name="start" class="form-control">
-		    <label for="start" class="form-label">시작시간</label>
-		</div>
-		
-		<div class="form-floating mb-3 col-lg-3">
-		    <input type="time" id="end" name="end" class="form-control">
-		    <label for="end" class="form-label">종료시간</label>
-		</div>
-	</div>
-	
-	
-	<div class="form-floating mb-3">
-		<input type="number" id="default" name="default" class="form-control" value="${price}" readonly>
-		<label for="default" class="form-label">기본가격</label>
-	</div>
-		
-	<div class="form-floating mb-3">  
-		<input type="radio" name="level" value="1" checked> 입문자
-		<input type="radio" name="level" value="2" > 경험자
-		<input type="radio" name="level" value="3" > 숙련자
-	</div>
-	
-	<div class="form-floating mb-3">
-	    <input type="number" id="addprice" name="addprice" class="form-control" >
-	    <label for="addprice" class="form-label">추가금액(수강대상 변경으로 추가비용 발생 시 입력)</label>
-	</div>
-	
-	<div class="form-floating mb-3">
-	    <input type="number" id="discount" name="rate" class="form-control">
-	    <label for="rate" class="form-label">할인률(%)</label>
-	</div>
-	
-	<div>
-		<input type="button" value="할인가격 계산하기" class ="btn btn-success mb-3" onclick="ShowPrice()"/>
-	</div>
-	
-	<div class="form-floating mb-3">
-	 	 <input type="number" id="total" name="total" class="form-control mb-3" readonly> 
-		 <label for="total" class="form-label">판매금액</label>
-	</div>
-	
-	<div>
-	   	<input type="button" value="등록하기" class="btn btn-secondary" onclick="registerSession()" />
-	</div>
-	
-	
-	
-</form>	
-
-
-		
+<!-- jstl - format 만들때 사용 -->
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<div>
+	<a href="write.do" class="btn btn-secondary">일정작성하기</a>
+	<form action="deletesession.do" method="post" id="form4">
+		<table class="table">
+			<thead class="table">
+				  <tr>
+				  	<th scope="col"> </th>
+				    <th scope="col">NO</th>
+				    <th scope="col">날짜</th>
+				    <th scope="col">시작시간</th>
+				    <th scope="col">종료시간</th>
+				    <th scope="col">신청인원</th>
+				    <th scope="col">금액</th>
+				  </tr>
+			</thead>
+			<tbody>
+				 <c:set var="total" value="${0}"/> <!-- 변수 만들기 (초기값은 0) -->
+				 <c:forEach var="obj" items="${list}">
+			   		<tr>
+			   		 <th><input type="checkbox" name="chk[]" value="${obj.no}"></th>
+			   		 <td>${obj.no}</td>
+				     <td>${obj.classdate}</td>
+				     <td>${obj.classstart}</td>
+				     <td>${obj.classend}</td>
+				     <td>${obj.cnt}</td>
+				     <td>${obj.addprice}</td>
+				     <td><a href="imagewrite.do?ino=${obj.no}" class="btn btn-success">변경하기</a></td>
+					</tr>
+				</c:forEach>
+			</tbody>
+		</table>
+	</form>
+</div>

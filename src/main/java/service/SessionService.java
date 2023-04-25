@@ -19,7 +19,7 @@ public interface SessionService {
 	public long selectPriceOne(@Param("classcode") long classcode) throws Exception; 
 	
 	/* (2) 세션 전체 조회 */
-	public List<Session> selectSessionList() throws Exception;
+	public List<Session> selectSessionList(@Param("classcode") long classcode) throws Exception;
 	
 	/* (3) 세션 수정 */
 	public int updateSessionOne(@Param("no") long no) throws Exception;

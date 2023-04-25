@@ -23,15 +23,14 @@ public interface SessionMapper {
 		" #{obj.classstart}, #{obj.classend}, #{obj.discount}, #{obj.addprice}, #{obj.classlevel}, #{obj.classcode}) " })
 	public int insertSessionOne(@Param("obj") Session obj);
 	
-	/* (1)-1 클래스 가격 조회 */
+	/* (1)-1 클래스 가격 조회 => 세션등록시 추가금액 등록을 위해 */
 	@Select({ " SELECT PRICE FROM CLASSPRODUCT WHERE CLASSCODE=#{classcode}" })
 	public long selectPriceOne(@Param("classcode") long classcode); 
 	
 	
 	/* (2) 세션 전체 조회 */
-	@Select({ " SELECT * FROM SESSION ORDER BY DESC "})
-	public List<Session> selectSessionList();
-	
+	@Select({ " SELECT * FROM SESSION WHERE CLASSCODE=#{classcode} ORDER BY REGDATE DESC "})
+	public List<Session> selectSessionList(@Param("classcode") long classcode);
 	
 	/* (3) 세션 수정 */
 	@Update({ " UPDATE ",

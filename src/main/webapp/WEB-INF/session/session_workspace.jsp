@@ -32,11 +32,10 @@
     	<div class="col-lg-3">
 			<div class="col-9">
 		    	<div id="list-example" class="list-group">
-			      <h5 class="text-center">세션 작업실</h5>
-			      <a class="list-group-item list-group-item-action" href="session.do?menu=1">등록하기</a>
-			      <a class="list-group-item list-group-item-action" href="session.do?menu=2">관리하기</a>
-			      <a class="list-group-item list-group-item-action" href="session.do?menu=3">가이드라인</a>
-			      <a class="list-group-item list-group-item-action" href="session.do?menu=4">문의하기</a>
+			      <h5 class="text-center">일정 작업실</h5>
+			      <a class="list-group-item list-group-item-action" href="select.do?menu=1">일정관리하기</a>
+			      <a class="list-group-item list-group-item-action" href="select.do?menu=2">신청자관리하기</a>
+			      <a class="list-group-item list-group-item-action" href="select.do?menu=3">문의하기</a>
 			    </div>
   			</div>
   		</div>
@@ -61,6 +60,5 @@
     <script src="${pageContext.request.contextPath}/resources/js/session.js"></script>
     <script src="${pageContext.request.contextPath}/resources/js/jquery-3.6.4.min.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/js/bootstrap.min.js"></script>
-    
 </body>
 </html>
