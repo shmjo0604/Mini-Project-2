@@ -22,11 +22,6 @@
 	href="${pageContext.request.contextPath}/resources/css/menu1.css">
 </head>
 
-<style>
-.post{
-}
-</style>
-
 <body>
 	<form action="/class/insert.do" method="post" id="form1">
 		<div class="right mt-6">
@@ -82,11 +77,8 @@
 			</div>
 
 			<div class="changepage">
-				<div>
-					<div>
-						<a href="insert.do?menu=2" class="btn btn-primary"
-							onclick="insertcate()">다음</a>
-					</div>
+				<div class="btn_1">
+					<a href="insert.do?menu=2" class="btn_after btn">다음</a> 
 				</div>
 			</div>
 		</div>

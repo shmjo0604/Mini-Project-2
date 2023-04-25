@@ -6,7 +6,8 @@ import java.util.List;
 import config.MyBatisContext;
 import dto.Activitycate;
 import dto.Citycate;
-import dto.Localcate;
+import dto.Classimage;
+import dto.Classproduct;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -22,81 +23,40 @@ public class ClassInsertController extends HttpServlet {
 
 	private ClassInsertService mService = new ClassInsertServiceImpl();
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		String menu = request.getParameter("menu");
-		System.out.println(menu);
-
-		if (menu == null) {
-			response.sendRedirect("insert.do?menu=1");
-			return; // 메소드 종료. 아래쪽 실행 안됨.
-		}
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		if(Integer.parseInt(menu) == 1) {
-			ClassMapper mapper = MyBatisContext.getSqlSession().getMapper(ClassMapper.class);
-			List<Citycate> list = mapper.selectCitycateList();
-			List<Activitycate> list1 = mapper.selectActivitycateList();
-			
-			request.setAttribute("list" , list);
-			request.setAttribute("list1", list1);
-		}
+		ClassMapper mapper = MyBatisContext.getSqlSession().getMapper(ClassMapper.class); 
+		List<Citycate> list = mapper.selectCitycateList(); 
+		List<Activitycate> list1 = mapper.selectActivitycateList();
+  
+		request.setAttribute("list" , list); request.setAttribute("list1", list1); 
 		
-		if(Integer.parseInt(menu)== 2) {
-			
-		}
-			
-		
-
 		request.getRequestDispatcher("/WEB-INF/class/menumain.jsp").forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		int menu = Integer.parseInt(request.getParameter("menu"));
-
-		if (menu == 1) { // 카테고리 설정
-			long code = Integer.getInteger(request.getParameter("code"));
-			String localcate = (String)request.getParameter("localcate");
-			long citycode = Integer.getInteger(request.getParameter("citycode"));
-			
-			Localcate obj = new Localcate();
-			obj.setCode(code);
-			obj.setLocalcate(localcate);
-			obj.setCitycode(citycode);
-			
-			int ret =MyBatisContext.getSqlSession().getMapper(ClassMapper.class).insertClassOne(obj);
-			
-			if(ret==1) {
-				//response.sendRedirect("mypage.do?menu=5");
-				request.setAttribute("message", "카테고리 선택이 완료되었습니다.");
-				request.setAttribute("url", "mypage.do?menu=1");
-				request.getRequestDispatcher("/WEB-INF/member/alert.jsp").forward(request, response);
-			}
-			else {
-				//response.sendRedirect("mypage.do?menu=5");
-				request.setAttribute("message", "카테고리 선택이 실패되었습니다.");
-				request.setAttribute("url", "mypage.do?menu=1");
-				request.getRequestDispatcher("/WEB-INF/member/alert.jsp").forward(request, response);
-			}
 		
-		}
-
-		else if (menu == 2) { //강사 소개
-
-		}
-
-		else if (menu == 3) { //클래스 소개
-
-		}
-
-		else if (menu == 4) { // 커리큘럼
-
-		}
+		Classproduct obj = new Classproduct();
+		obj.setTitle("title");
+		obj.setPostcode(request.getParameter("postcode"));
+		obj.setAddress1(request.getParameter("address1"));
+		obj.setAddress2(request.getParameter("address2"));
+		obj.setAddress3(request.getParameter("address3"));
+		obj.setLatitude("latitude");
+		obj.setLongitude("longitude");
+		obj.setPrice(1000);
+		obj.setIntro("intro");
+		obj.setCurriculum("curiculum");
+		obj.setLocalcode(Long.parseLong(request.getParameter("localcode")));
+		obj.setActcode(Long.parseLong(request.getParameter("actcode")));
+		obj.setMemberid("test2");
 		
-		else if(menu == 5) { // 가격
-    		
-    	}
-
+		/*Classimage img = new Classimage();
+		img.setFilename("filename");*/
+		
+		mService.insertClassOne()
+		
 		request.getRequestDispatcher("/WEB-INF/member/alert.jsp").forward(request, response);
 	}
 

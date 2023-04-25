@@ -19,7 +19,7 @@
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/home.css">
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/menu1.css">
+	href="${pageContext.request.contextPath}/resources/css/menu4.css">
 <!-- Include stylesheet -->
 <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css"
 	rel="stylesheet">
@@ -44,11 +44,9 @@
 
 
 	<div class="changepage">
-		<div>
-			<div>
-			<a href="insert.do?menu=3" class="btn btn-primary" >이전</a>
-			<a href="insert.do?menu=5" class="btn btn-primary" onclick="insertcuri()">다음</a>
-			</div>
+		<div class="btn_1">
+			<a href="insert.do?menu=3" class="btn_before btn">이전</a> 
+			<a href="insert.do?menu=5" class="btn_after btn">다음</a> 
 		</div>
 	</div>
 	</div>

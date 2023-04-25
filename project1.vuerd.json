@@ -3,8 +3,8 @@
     "version": "2.2.11",
     "width": 6000,
     "height": 6000,
-    "scrollTop": -877.6666993829913,
-    "scrollLeft": -2023.6666522953146,
+    "scrollTop": -679.6666993829913,
+    "scrollLeft": -2184.6666522953146,
     "zoomLevel": 0.9,
     "show": {
       "tableComment": true,
@@ -48,7 +48,7 @@
         "columns": [
           {
             "name": "id",
-            "comment": "회원아이디(시퀀스)",
+            "comment": "회원아이디",
             "dataType": "VARCHAR2(100)",
             "default": "",
             "option": {
@@ -63,7 +63,7 @@
               "fk": false,
               "pfk": false,
               "widthName": 60,
-              "widthComment": 113.921875,
+              "widthComment": 67,
               "widthDataType": 96.453125,
               "widthDefault": 60
             },
@@ -258,7 +258,7 @@
           "active": false,
           "left": 2408.2921,
           "top": 84.4307,
-          "zIndex": 8,
+          "zIndex": 23,
           "widthName": 60,
           "widthComment": 71.5703125,
           "color": "#FF9800"
@@ -881,7 +881,7 @@
           },
           {
             "name": "memberid",
-            "comment": "회원아이디(시퀀스)",
+            "comment": "회원아이디",
             "dataType": "VARCHAR2(100)",
             "default": "",
             "option": {
@@ -896,7 +896,7 @@
               "fk": true,
               "pfk": false,
               "widthName": 62.22021484375,
-              "widthComment": 113.921875,
+              "widthComment": 67,
               "widthDataType": 96.453125,
               "widthDefault": 60
             },
@@ -907,7 +907,7 @@
           "active": false,
           "left": 2408.0944,
           "top": 590.7748,
-          "zIndex": 14,
+          "zIndex": 27,
           "widthName": 98.484375,
           "widthComment": 120,
           "color": "#00FF42"
@@ -2009,7 +2009,7 @@
           "active": false,
           "left": 1776.4852,
           "top": 692.4996,
-          "zIndex": 3,
+          "zIndex": 28,
           "widthName": 105.13037109375,
           "widthComment": 120,
           "color": "#009688"
@@ -2097,7 +2097,7 @@
           "columnIds": [
             "e48ef64e-5ddb-447f-bb07-e2f46bc1d96a"
           ],
-          "x": 2922.770615625,
+          "x": 2913.934678125,
           "y": 211.1807,
           "direction": "right"
         },
@@ -2279,7 +2279,7 @@
           "columnIds": [
             "e48ef64e-5ddb-447f-bb07-e2f46bc1d96a"
           ],
-          "x": 2665.5313578125,
+          "x": 2661.1133890625,
           "y": 337.9307,
           "direction": "bottom"
         },

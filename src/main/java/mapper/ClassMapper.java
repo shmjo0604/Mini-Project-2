@@ -20,8 +20,8 @@ public interface ClassMapper {
 
 	// 1. 클래스 한개 등록
 	@Insert({
-			" INSERT INTO classprodouct( title, postcode, address1, address2, address3, price, intro, curriculum, localcode, actcode ) ",
-			" VALUES ( #{obj.title}, #{obj.postcode}, #{obj.address1}, #{obj.address2}, #{obj.address3}, #{obj.price}, #{obj.intro}, #{obj.curriculum}, #{obj.localcode}, #{obj.actcode} )" })
+			" INSERT INTO classprodouct( title, postcode, address1, address2, address3, price, instructor, intro, curriculum, localcode, actcode ) ",
+			" VALUES ( #{obj.title}, #{obj.postcode}, #{obj.address1}, #{obj.address2}, #{obj.address3}, #{obj.price}, #{obj.instructor},#{obj.intro}, #{obj.curriculum}, #{obj.localcode}, #{obj.actcode} )" })
 	public int insertClassOne(@Param("obj")Classproduct obj);
 
 	// 2. 클래스 1개 조회

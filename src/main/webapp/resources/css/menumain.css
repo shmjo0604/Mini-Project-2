@@ -1,0 +1,79 @@
+.btn_1{
+	  text-decoration: none;
+  display: inline-block;
+  padding: 8px 16px;
+	margin: 20px;
+	/* float: right; */
+}
+
+.btn_in {
+	color: white;
+	font-size: 22px;
+	background: #9abf7f;
+	min-height:30px; 
+    min-width: 120px;
+    margin: 5px;
+    border-radius: 20px;
+}
+.btn_in:hover  {
+	color: white;
+    background-color: #419428;
+    transition: 0.4s;
+}
+
+.btn_before{
+	color: white;
+	font-size: 20px;
+	background: #FFB077;
+	min-height:30px; 
+    min-width: 120px;
+    margin: 5px;
+    border-radius: 20px;
+}
+.btn_before:hover  {
+	color: white;
+    background-color: #F08650;
+    transition: 0.4s;
+  }  
+  
+.btn_after {
+	color: white;
+	font-size: 20px;
+	background: #9abf7f;
+	min-height:30px; 
+    min-width: 120px;
+    margin: 5px;
+    border-radius: 20px;
+}
+
+.btn_after:hover  {
+	color: white;
+    background-color: #419428;
+    transition: 0.4s;
+}
+
+.btn_image{
+  border: 2px solid black;
+  background-color: white;
+  color: black;
+  padding: 5px 10px;
+  font-size: 16px;
+  cursor: pointer;
+  border-color: #2196F3;
+  color: dodgerblue;
+  border-radius: 5px;
+}
+
+.btn_image:hover {
+  background: #2196F3;
+  color: white;
+}
+
+#price{
+	outline-color: green;
+    text-align: right;
+    margin-right: 5px;
+    padding: 8px;
+    font-size: 20px;
+    border-radius: 10px;
+}

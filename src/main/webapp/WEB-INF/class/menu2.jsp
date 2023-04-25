@@ -19,7 +19,7 @@
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/home.css">
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/menu1.css">
+	href="${pageContext.request.contextPath}/resources/css/menu2.css">
 <!-- Include stylesheet -->
 <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css"
 	rel="stylesheet">
@@ -70,22 +70,17 @@
 		<p>SNS 링크</p><p>(선택)</p>
 		<input placeholder="https://instagram.com/sample" type="text" class="" value="">
 	</section>
-
-
-
-	<div class="changepage">
-		<div>
-			<div>
-				<a href="insert.do?menu=1" class="btn btn-primary">이전</a> <a
-					href="insert.do?menu=3" class="btn btn-primary" onclick="insertintro()">다음</a>
-			</div>
-			
 			<!-- 가이드 라인 작성 -->
 			<div role="tooltip">
 			<p>가이드 라인</p>
 				<p>• 강사님의 SNS 링크를 작성해 주세요.</p>
 				<p>• 클래스 홍보와 정보제공에 도움이 됩니다.</p>	
 			</div>
+
+	<div class="changepage">
+		<div class="btn_1">
+			<a href="insert.do?menu=1" class="btn_before btn">이전</a> 
+			<a href="insert.do?menu=3" class="btn_after btn">다음</a> 
 		</div>
 	</div>
 

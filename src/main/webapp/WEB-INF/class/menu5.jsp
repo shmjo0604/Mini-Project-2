@@ -33,7 +33,7 @@
 				</div>
 			</div>
 		</div>
-	<div class="btn_2">
+	<div class="btn_1">
 		<a href="insert.do?menu=4" class="btn_before btn">이전</a> 
 		<input class="btn_in btn" type="button" value="등록" onclick="insertClassAction()" />
 	</div>
