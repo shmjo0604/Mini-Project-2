@@ -19,29 +19,19 @@ import mapper.ApplyMapper;
 public class ApplyController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-//	ApplyService applyService;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-//	List<Apply> list = MyBatisContext.getSqlSession().getMapper(ApplyMapper.class)
-//		.selectApplyList();
-//		for( Apply obj : list) {
-//		long ApplyNo = MyBatisContext.getSqlSession()
-//				.getMapper(ApplyMapper.class)
-//				.selectApplyList(obj.getNo());
-//		obj.setNo(ApplyNo);
-//	}
-//		request.setAttribute("list", list);
 
 		request.getRequestDispatcher("./WEB-INF/apply/apply.jsp").forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-//		applyService.insertApply(null);
-		HttpSession httpsession = request.getSession();
 		
 		
+//		request.ge 
 
+		response.sendRedirect("applytatus.do");
 	}
 }

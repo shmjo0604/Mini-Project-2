@@ -11,7 +11,7 @@ import service.ApplyService;
 import service.ApplyStatusService;
 import service.ApplyStatusServiceImpl;
 
-@WebServlet
+@WebServlet(urlPatterns = {"/applytatus.do"})
 public class ApplyStatusController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -20,12 +20,11 @@ public class ApplyStatusController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		request.getRequestDispatcher("").forward(request, response);
+		request.getRequestDispatcher("./WEB-INF/apply/applytatus.jsp").forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		applyStatusService.insertApplyTatus(null); // 파란색으로 된것이 변수라는 의미
 
 	}
 }
