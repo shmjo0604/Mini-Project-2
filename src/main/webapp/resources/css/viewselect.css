@@ -1,0 +1,93 @@
+
+@import url('https://fonts.googleapis.com/css?family=Nanum+Gothic:400,700,800&display=swap');
+
+
+.container{
+	font-family : 'Nanum Gothic';
+	font-weight: bolder;
+}
+#container_main{
+	
+	background-color: floralwhite;
+	border-bottom :1px solid lightgrey;
+	
+}
+
+#scroll{
+	position: relative;
+	height: 150px;
+	overflow-x: hidden;
+	overflow-y: scroll;
+}
+#table1{
+	table-layout: fixed;	
+	font-size: 10px;
+}
+
+#table2{
+	text-align: center;
+}
+
+.images{
+	width: 620px;
+	height: 480px;
+	border: 1px solid lightgray; 
+	box-shadow:0 5px 20px rgba(0, 0, 0, 0.5);
+	border-radius: 5%;
+}
+
+.images1{
+	width: 150px;
+	height: 100px;
+	margin:70px;
+	border: 2px solid gray; 
+	border-radius: 5%;
+}
+
+#calendar{
+	height: 500px;
+	border: 1px solid lightgray; 
+	border-radius: 5%;
+	box-shadow:0 5px 20px rgba(0, 0, 0, 0.5);
+	background-color: white;
+}
+
+h5{
+	margin-bottom: 30px;
+	font-weight: bold;
+	text-decoration: underline;
+	text-decoration-color: tomato;
+	text-decoration-thickness : 2px;
+}
+
+h6{
+	margin-bottom: 30px;
+	font-weight: bold;
+}
+
+.price{
+	margin-right: 120px;
+}
+
+
+.bi-universal-access, .bi-clock, .bi-car-front-fill, 
+.bi-geo-alt-fill, .bi-calendar3-event {
+    font-size: 30px;
+    line-height: 30px;
+}
+
+thead{
+	background-color: lightcyan;
+}
+
+
+.table_class{
+	border: 1px solid lightgray;
+	height: 400px;
+}
+
+
+
+
+
+
