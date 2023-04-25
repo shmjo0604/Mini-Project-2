@@ -24,9 +24,8 @@
          <div class="col-md-7 col-lg-8">
              <h4 class="mb-3">신청한 페이지를 골라주십오</h4>
              <form action="apply.do" method="post" id="form1">
-	             <input type="text" name="memberid" value="test2"/>
-	             <input type="text" name="session" value="13"/>
-	              
+	             <input type="text" name="memberid" /><!-- 유효성 검사때문에 넣은것 값 확인 할때 지워햐함 -->
+	             <input type="text" name="session" /><!-- 유효성 검사때문에 넣은것 값 확인 할때 지워햐함 -->
 	              <label for="person" class="form-label">신청 가능한 인원</label>
 	              <div class="row g-3">                   
 	                  <div class="col-12">                        

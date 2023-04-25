@@ -19,7 +19,7 @@ public interface ApplyMapper {
 	// 수업 등록을 위한 값
 	@Insert({
 		" INSERT INTO Apply (person, memberid, sessionno)",
-		" VALUES(#{obj.person}, #{obj.memberid}, #{obj.sessionno}"
+		" VALUES(#{obj.person}, #{obj.memberid}, #{obj.sessionno})"
 	})
 	public int insertApply(@Param("obj") Apply obj);
 	

@@ -47,6 +47,7 @@
 	<script src="form-validation.js"></script>
 	
 	<script>
+	function
 	document.getElementByid("display").innerHTML = 100 / 20;
 	</script>
 
