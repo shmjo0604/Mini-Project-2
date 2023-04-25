@@ -11,14 +11,14 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import mapper.ReviewMapper;
 
-@WebServlet(urlPatterns = { "/project/reviewinsert.do" })
-public class ReviewInsertController extends HttpServlet {
+@WebServlet(urlPatterns = { "/review/insertreview.do" })
+public class InsertReviewController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		request.getRequestDispatcher("/WEB-INF/insertreview.jsp").forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/review/insertreview.jsp").forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -39,11 +39,11 @@ public class ReviewInsertController extends HttpServlet {
 		int ret = mapper.insertReviewOne(obj);
 
 		if (ret == 1) {	
-			response.sendRedirect("reviewselect.do");
+			response.sendRedirect("selectreview.do");
 			return ;
 		}
 		else {
-			response.sendRedirect("reviewinsert.do");
+			response.sendRedirect("insertreview.do");
 		}
 
 	}

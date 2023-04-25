@@ -12,7 +12,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import mapper.ReviewMapper;
 
-@WebServlet(urlPatterns = { "/project/reviewselect.do" })
+@WebServlet(urlPatterns = { "/review/selectreview.do" })
 public class SelectInsertController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -27,7 +27,7 @@ public class SelectInsertController extends HttpServlet {
 		
 		request.setAttribute("list", list);
 
-		request.getRequestDispatcher("/WEB-INF/selectreview.jsp").forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/review/selectreview.jsp").forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)

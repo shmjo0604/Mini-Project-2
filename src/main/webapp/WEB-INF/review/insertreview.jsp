@@ -43,7 +43,7 @@
 			<hr />
 			<div class="row">
 				<div class="col-sm">
-				<form action="${pageContext.request.contextPath}/project/reviewinsert.do" 
+				<form action="${pageContext.request.contextPath}/review/insertreview.do" 
 						class="mb-3" name="myform" id="myform" method="post">
 						<input type="number" name ="no"  style= " width: 50px; margin-bottom:5px"/>
 					<div class="form-floating mb-2">
@@ -123,7 +123,6 @@
 		});
 	</script>
 
-	</div>
 
 	<!-- footer -->
 	<jsp:include page="footer.jsp"></jsp:include>

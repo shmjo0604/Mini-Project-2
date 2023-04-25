@@ -71,7 +71,7 @@
 				</c:forEach>
 			</tbody>	
 		</table>
-		<a href="reviewinsert.do" class="btn btn-primary float-end" >글쓰기</a>
+		<a href="insertreview.do" class="btn btn-primary float-end" >글쓰기</a>
 	</div>
 
 

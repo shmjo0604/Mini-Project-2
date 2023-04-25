@@ -12,8 +12,8 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import mapper.ReviewMapper;
 
-@WebServlet(urlPatterns = { "/project/viewselect.do" })
-public class ClassProductViewController extends HttpServlet {
+@WebServlet(urlPatterns = { "/review/selectview.do" })
+public class SelectViewController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 
@@ -21,15 +21,16 @@ public class ClassProductViewController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
+		ReviewMapper mapper = MyBatisContext.getSqlSession().getMapper(ReviewMapper.class);
+		List<Review> list = mapper.selectReviewAll();
 		
-
-		request.getRequestDispatcher("/WEB-INF/review/viewselect.jsp").forward(request, response);
+		request.setAttribute("list", list);
+		
+		request.getRequestDispatcher("/WEB-INF/review/selectview.jsp").forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
-
 		
 
 	}
