@@ -1696,7 +1696,7 @@
           },
           {
             "name": "classcode",
-            "comment": "클래스 코드(시퀀스)",
+            "comment": "클래스 코드",
             "dataType": "NUMBER",
             "default": "",
             "option": {
@@ -1711,7 +1711,7 @@
               "fk": true,
               "pfk": false,
               "widthName": 60,
-              "widthComment": 118.4921875,
+              "widthComment": 71.5703125,
               "widthDataType": 60,
               "widthDefault": 60
             },
@@ -1719,10 +1719,10 @@
           }
         ],
         "ui": {
-          "active": false,
+          "active": true,
           "left": 3258.4071,
           "top": 554.0289,
-          "zIndex": 18,
+          "zIndex": 20,
           "widthName": 60,
           "widthComment": 60,
           "color": "#F44336"
