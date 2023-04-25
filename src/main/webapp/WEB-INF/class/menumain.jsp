@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix='c' uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="ko">
@@ -7,18 +7,21 @@
 <meta charset="UTF-8">
 <title>클래스 등록 페이지</title>
 <meta name='viewport' content='width=device-width, initial-scale=1'>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css" />
 <!-- Include stylesheet -->
-<link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+<link href="https://cdn.quilljs.com/1.3.6/quill.snow.css"
+	rel="stylesheet">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css" />
 <!-- style css -->
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/menumain.css">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/css/menumain.css">
+
 </head>
 <style>
-.main{
-	height:100%;
-	display:flex;
+.main {
+	height: 100%;
+	display: flex;
 }
-
 </style>
 
 <body>
@@ -26,221 +29,273 @@
 	<jsp:include page="../header.jsp"></jsp:include>
 	<!-- main 영역 -->
 	<form action="insert.do" method="post">
-	<div class="main col-10">
-		<div class="left col-3 m-5">
-			<button class="btn btn-outline-success m-3" onclick="pagecate()">카테고리</button><br />
-			<button class="btn btn-outline-success m-3" onclick="pageinstructor()">강사소개</button><br />
-			<button class="btn btn-outline-success m-3" onclick="pageintro()">클래스소개</button><br />
-			<button class="btn btn-outline-success m-3" onclick="pagecorri()">커리큘럼</button><br />
-			<button class="btn btn-outline-success m-3" onclick="pageprice()">가격</button><br />
-		</div>     
-			       
-	<div class="right col-9 m-5">
-<!-- 메뉴 1 -->
-	<div id="menu1" style="display: block;" >
-		<div class="m_1 mt-6">
-			<div class="row">
-				<div class="col-4 p-3">
-					<label for="cate1">지역</label> 
-					<select id="cate1" class="form-select" onchange="getLocalcate(this.value)">
-						<option value="">지역을 선택하세요</option>
-							<c:forEach var="obj" items="${list}">
-								<c:if test="${obj.code ne 1}">
-									<option value="${obj.code}">${obj.cate}</option>
-								</c:if>
-							</c:forEach>
-					</select>
-				</div>
-				<div class="col-4 p-3">
-					<label for="cate2">세부 지역</label> 
-					<select id="localselect" class="form-select" onchange="setLocalcate(this.value)">
-						<option value="">세부 지역을 선택하세요</option>
-					</select>
-				</div>
+		<div class="main col-10">
+			<div class="left col-3 m-5">
+				<button class="btn btn-outline-success m-3" onclick="pagecate()">카테고리</button>
+				<br />
+				<button class="btn btn-outline-success m-3"
+					onclick="pageinstructor()">강사소개</button>
+				<br />
+				<button class="btn btn-outline-success m-3" onclick="pageintro()">클래스소개</button>
+				<br />
+				<button class="btn btn-outline-success m-3" onclick="pagecorri()">커리큘럼</button>
+				<br />
+				<button class="btn btn-outline-success m-3" onclick="pageprice()">가격</button>
+				<br />
 			</div>
 
-			<div class="row">
-				<div class="col-4 p-3">
-					<label for="cate3">종류</label> 
-					<select id="cate3" class="form-select" onchange="getActivitycate(this.value)">
-						<option value="">종류를 선택하세요</option>
-							<c:forEach var="obj" items="${list1}">
-								<c:if test="${obj.code ne 1}">
-									<option value="${obj.code}">${obj.cate}</option>
-								</c:if>
-							</c:forEach>
-					</select>
-				</div>
-				<div class="col-4 p-3">
-					<label for="cate4">세부 종류</label> 
-					<select id="actdetailselect" class="form-select" onchange="setActcate(this.value)">
-						<option value="">세부 종류를 선택하세요</option>
-					</select>
-				</div>
-			</div>
+			<div class="right col-9 m-5">
+				<!-- 메뉴 1 -->
+				<div id="menu1" style="display: block;">
+					<div class="m_1 mt-6">
+						<div class="row">
+							<div class="col-4 p-3">
+								<label for="cate1">지역</label> <select id="cate1"
+									class="form-select" onchange="getLocalcate(this.value)">
+									<option value="">지역을 선택하세요</option>
+									<c:forEach var="obj" items="${list}">
+										<c:if test="${obj.code ne 1}">
+											<option value="${obj.code}">${obj.cate}</option>
+										</c:if>
+									</c:forEach>
+								</select>
+							</div>
+							<div class="col-4 p-3">
+								<label for="cate2">세부 지역</label> <select id="localselect"
+									class="form-select" onchange="setLocalcate(this.value)">
+									<option value="">세부 지역을 선택하세요</option>
+								</select>
+							</div>
+						</div>
 
-			<div class="post">
-				<section>
-					<input type="text" class="mb-3" id="sample6_postcode" placeholder="우편번호" name="postcode"> 
-					<input type="button" class="btn btn-sm btn-primary mb-3" onclick="sample6_execDaumPostcode()" value="우편번호 찾기"><br>
-					<input type="text" id="sample6_address" placeholder="주소" name="address"><br> 
-					<input type="text" id="sample6_detailAddress" placeholder="상세주소" name="detailaddress">
-					<input type="text" id="sample6_extraAddress" placeholder="참고항목" name="extraAddress">
-				</section>
-			</div>
+						<div class="row">
+							<div class="col-4 p-3">
+								<label for="cate3">종류</label> <select id="cate3"
+									class="form-select" onchange="getActivitycate(this.value)">
+									<option value="">종류를 선택하세요</option>
+									<c:forEach var="obj" items="${list1}">
+										<c:if test="${obj.code ne 1}">
+											<option value="${obj.code}">${obj.cate}</option>
+										</c:if>
+									</c:forEach>
+								</select>
+							</div>
+							<div class="col-4 p-3">
+								<label for="cate4">세부 종류</label> <select id="actdetailselect"
+									class="form-select" onchange="setActcate(this.value)">
+									<option value="">세부 종류를 선택하세요</option>
+								</select>
+							</div>
+						</div>
+						<br />
 
-			<div class="changepage">
-				<div class="btn_1">
-					<button class="btn_after btn" onclick="nextMenu1()">다음&raquo;</button>
-				</div>
-			</div>
-		</div>
-	</div>
+						<div class="post">
+							<section>
+								<input type="text" class="mb-3" id="sample6_postcode"
+									placeholder="우편번호" name="postcode"> <input
+									type="button" class="btn btn-sm btn-primary m-2"
+									onclick="sample6_execDaumPostcode()" value="우편번호 찾기"><br>
+								<input type="text" id="sample6_address" placeholder="주소"
+									name="address"><br>
+								<br> <input type="text" id="sample6_detailAddress"
+									placeholder="상세주소" name="detailaddress"> <input
+									type="text" id="sample6_extraAddress" placeholder="참고항목"
+									name="extraAddress">
+							</section>
+						</div>
 
-<!-- 메뉴2 -->
-	<div id="menu2" style="display: none;">
-		<div class="m2">
-			<section>
-				<p>프로필 이미지</p>
-				<div id="input-image" class="mb-3 col-4">
-					<img id="insert-img" src="${pageContext.request.contextPath}/resources/images/default.png"
-						style="width: 200px; height: 150px; curosr: pointer;" class="mb-3" onclick="clickItemImage()" /> 
-					<input type="file" name="file" id="file" class="form-control" onchange="changeItemImage(this)" >
-				</div>
-
-				<div>
-					<input type="button" value="등록" class="btn_image" onclick="insertItemImage()" />
-				</div>
-			</section>
-
-	<section>
-		<p>상호명 및 닉네임(필수)</p>
-			<p>
-				<input type="text" id="name" name="name" maxlength="50" autofocus required>
-			</p>
-	</section>
-
-	<section>
-		<p>강사 소개 (필수)</p>
-		<!-- Create the editor container -->
-		<div style="margin-bottom: 5px; background-color: white;">
-			<div id="editor" style="height: 300px;">
-				<p>자신의 경험,경력을 소개해주세요.</p>
-			</div>
-		</div>
-	</section>
-
-	<section>
-		<p>SNS 링크(선택)</p>
-		<input placeholder="https://instagram.com/sample" type="text" class="" value="">
-	</section>
-			<!-- 가이드 라인 작성 -->
-			<div role="tooltip">
-			<p>가이드 라인</p>
-				<p>• 강사님의 SNS 링크를 작성해 주세요.</p>
-				<p>• 클래스 홍보와 정보제공에 도움이 됩니다.</p>	
-			</div>
-
-			<div class="changepage">
-				<div class="btn_1">
-					<button class="btn_before btn" onclick="prevMenu2()">&laquo;이전</button> 
-					<button class="btn_after btn"	onclick="nextMenu2()">다음&raquo;</button>
-				</div>
-			</div>
-		</div>
-	</div>
-	
-<!-- 메뉴3 -->			
-	<div id="menu3" style="display: none;">	
-		<div class="m_3">
-			<section>
-				<p>클래스 제목(필수)</p>
-				<p>
-					<input type="text" id="title" maxlength="50" autofocus required>
-				</p>
-			</section>
-	
-			<section>
-				<p>클래스 소개글(필수)</p>
-				<!-- Create the editor container -->
-				<div style="margin-bottom: 5px; background-color: white;">
-					<div id="editor2" style="height: 300px;">
-						<p>클래스를 소개해주세요.</p>
-						
+						<div class="changepage">
+							<div class="btn_1">
+								<button class="btn_after btn" onclick="nextMenu1()">다음&raquo;</button>
+							</div>
+						</div>
 					</div>
 				</div>
-			</section>
-			
-			<div class="changepage">
-				<div class="btn_1">
-					<button class="btn_before btn" onclick="prevMenu3()">&laquo;이전</button> 
-					<button class="btn_after btn"	onclick="nextMenu3()">다음&raquo;</button>
-				</div>
-			</div>
-		</div>
-	</div>
-	
-<!-- 메뉴4 -->
-	<div id="menu4" style="display: none;">
-		<div class="m_4">		
-			<section>
-			<p>커리큘럼 내용(필수)</p>
-			<!-- Create the editor container -->
-			<div style="margin-bottom: 5px; background-color: white;">
-				<div id="editor3" style="height: 300px;">
-					<p>커리큘럼을 최소 2단계 이상 소개해주세요.<br />예시)<br />STEP1. 수업 소개<br />STEP2. 수업 내용<br />STEP3. 수업 마무리 </p>
+
+				<!-- 메뉴2 -->
+				<div id="menu2" style="display: none;">
+					<div class="m2">
+						<section>
+							<p>프로필 이미지</p>
+							<div id="input-image" class="mb-3 col-4">
+								<img id="insert-img"
+									src="${pageContext.request.contextPath}/resources/image/default.png"
+									style="width: 200px; height: 150px; curosr: pointer;"
+									class="mb-3" onclick="clickItemImage()" /> <input type="file"
+									name="file" id="file" class="form-control"
+									onchange="changeItemImage(this)">
+							</div>
+
+							<div>
+								<input type="button" value="등록" class="btn_image"
+									onclick="insertItemImage()" />
+							</div>
+						</section>
 						<br>
+						<br>
+
+						<section>
+							<p>상호명 및 닉네임(필수)</p>
+							<p>
+								<input type="text" id="name" name="name" maxlength="50"
+									autofocus required>
+							</p>
+						</section>
+						<br>
+						<br>
+
+						<section>
+							<p>강사 소개 (필수)</p>
+							<!-- Create the editor container -->
+							<div style="margin-bottom: 5px; background-color: white;">
+								<div id="editor" style="height: 300px;">
+									<p>자신의 경험,경력을 소개해주세요.</p>
+								</div>
+							</div>
+						</section>
+						<br>
+
+						<section>
+							<div class="sns">
+								<p class="sns_2">SNS 링크 (선택)</p>
+								<!-- 가이드 라인 작성 -->
+								<div class="tool">
+									<span> <img id="insert-img"
+										src="${pageContext.request.contextPath}/resources/image/물음표.png"
+										style="width: 20px; height: 20px; curosr: pointer;"> 도움말
+									</span>
+									<div class="tooltip-content">
+										<p>• 강사님의 SNS 링크를 작성해 주세요.</p>
+										<p>• 클래스 홍보와 정보제공에 도움이 됩니다.</p>
+									</div>
+								</div>
+							</div>
+
+							<input placeholder="https://instagram.com/sample" type="text"
+								class="link" style="width: 350px; height: 35px;"><br>
+							<input placeholder="https://blog.com/sample" type="text"
+								class="link" style="width: 350px; height: 35px;">
+						</section>
+
+						<div class="changepage">
+							<div class="btn_1">
+								<button class="btn_before btn" onclick="prevMenu2()">&laquo;이전</button>
+								<button class="btn_after btn" onclick="nextMenu2()">다음&raquo;</button>
+							</div>
+						</div>
+					</div>
 				</div>
-			</div>
-			</section>
-			
-			<div class="changepage">
-			<div class="btn_1">
-				<button class="btn_before btn" onclick="prevMenu4()">&laquo;이전</button> 
-				<button class="btn_after btn"	onclick="nextMenu4()">다음&raquo;</button>
-			</div>
-			</div>
-		</div>
-	</div>	
-				
-<!-- 메뉴5 -->
-	<div id="menu5" style="display: none;">			
-		<div class="col-10">
-				<div class="won">
-					<h4>가격</h4>
-					<input id="price" name="price" type="text" placeholder="금액을 입력하세요" maxlength="10" onkeyup="addCommas(this)" autofocus>
-					<span style="font-size:22px; margin-left: 2px;">원</span>
+
+				<!-- 메뉴3 -->
+				<div id="menu3" style="display: none;">
+					<div class="m_3">
+						<section>
+							<p>클래스 제목(필수)</p>
+							<p>
+								<input type="text" id="title" name="title" maxlength="50"
+									autofocus required>
+							</p>
+						</section>
+						<br>
+						<br>
+
+						<section>
+							<p>클래스 소개글(필수)</p>
+							<!-- Create the editor container -->
+							<div style="margin-bottom: 5px; background-color: white;">
+								<div id="editor2" style="height: 300px;">
+									<p>클래스를 소개해주세요.</p>
+
+								</div>
+							</div>
+						</section>
+
+						<div class="changepage">
+							<div class="btn_1">
+								<button class="btn_before btn" onclick="prevMenu3()">&laquo;이전</button>
+								<button class="btn_after btn" onclick="nextMenu3()">다음&raquo;</button>
+							</div>
+						</div>
+					</div>
 				</div>
-		</div>
-		
-		<div class="changepage">
-			<div class="btn_1">
-				<button class="btn_before btn" onclick="prevMenu5()">&laquo; 이전</button> 
-				<button class="btn_after btn"	onclick="insertClass()">등록</button>
+
+				<!-- 메뉴4 -->
+				<div id="menu4" style="display: none;">
+					<div class="m_4">
+						<section>
+							<p>커리큘럼 내용(필수)</p>
+							<!-- Create the editor container -->
+							<div style="margin-bottom: 5px; background-color: white;">
+								<div id="editor3" style="height: 300px;">
+									<p>
+										커리큘럼을 최소 2단계 이상 소개해주세요.<br />예시)<br />STEP1. 수업 소개<br />STEP2.
+										수업 내용<br />STEP3. 수업 마무리
+									</p>
+									<br>
+								</div>
+							</div>
+						</section>
+
+						<div class="changepage">
+							<div class="btn_1">
+								<button class="btn_before btn" onclick="prevMenu4()">&laquo;이전</button>
+								<button class="btn_after btn" onclick="nextMenu4()">다음&raquo;</button>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<!-- 메뉴5 -->
+				<div id="menu5" style="display: none;">
+					<div class="col-10" style="margin-top:50px;">
+						<div class="won_1">
+							<h5 style="display:inline; padding-right:50px;">가격</h5>
+							<div class="tool">
+								<span> <img id="insert-img"
+									src="${pageContext.request.contextPath}/resources/image/물음표.png"
+									style="width: 20px; height: 20px; curosr: pointer;"> 도움말
+								</span>
+								<div class="tooltip-content">
+									<p>• 입문자를 기준으로 초기값을 입력하세요.</p>
+									<p>• 이후 추가금액 설정이 가능합니다.</p>
+								</div>
+							</div><br><br>
+							
+							<input id="price" name="price" type="text"
+								placeholder="금액을 입력하세요" maxlength="10" onkeyup="addCommas(this)"
+								autofocus> <span
+								style="font-size: 20px; margin-left: 2px;">원</span>
+						</div>
+					</div>
+
+					<div class="changepage">
+						<div class="btn_1">
+							<button class="btn_before btn" onclick="prevMenu5()">&laquo;
+								이전</button>
+							<button class="btn_after btn" onclick="insertClass()">등록</button>
+						</div>
+					</div>
+				</div>
+
 			</div>
 		</div>
-	</div>
-	
-	</div>
-	</div>
-	<!-- Footer 영역 -->
-	<jsp:include page="../footer.jsp"></jsp:include>
-	
-		
-<!--axios library-->
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.3.5/axios.min.js"></script>
-<!--jQuery-->
-	<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-<!-- daum post bundle -->
-	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-<!--jQuery-->
-	<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-<!-- Include the Quill library -->
-	<script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
-	
-	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-	
-<script>
+		<!-- Footer 영역 -->
+		<jsp:include page="../footer.jsp"></jsp:include>
+
+
+		<!--axios library-->
+		<script
+			src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.3.5/axios.min.js"></script>
+		<!--jQuery-->
+		<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+		<!-- daum post bundle -->
+		<script
+			src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+		<!-- Include the Quill library -->
+		<script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+
+
+		<script>
 /* postcode */
 	function sample6_execDaumPostcode() {
 		new daum.Postcode(
@@ -442,33 +497,11 @@
 	function getEditorContent() {
     	const content = quill.root.innerHTML;  // 위쪽의 editor객체를 통해서 가져오기
 
-    	// <form action="writer.do" method="post">
-    	//		<input type="text" name="title" value="실제입력값"></input>
-    	//		<input type="text" name="content" value="실제입력값"></input>
-    	//		<input type="text" name="writer" value="실제입력값"></input>
-    	// </form>
-    	var form    = document.createElement("form");
-    	form.action = "write.do" 
-    	form.method = "post";
-    	form.style.display = "none";
-    	
-    	var input1  = document.createElement("input");
-    	input1.type = "text";
-    	input1.name = "title";
-    	input1.value = title.value;
-    	form.appendChild(input1);
-    	
     	var input2  = document.createElement("input");
     	input2.type = "text";
     	input2.name = "content";
     	input2.value = content;
     	form.appendChild(input2);
-    	
-    	var input3  = document.createElement("input");
-    	input3.type = "text";
-    	input3.name = "writer";
-    	input3.value = writer.value;
-    	form.appendChild(input3);
     	
     	document.body.appendChild(form);
     	form.submit();
@@ -532,29 +565,12 @@
 	
 	function getEditorContent2() {
     	const content2 = quill2.root.innerHTML;  // 위쪽의 editor객체를 통해서 가져오기
-    	
-    	var form    = document.createElement("form");
-    	form.action = "write.do" 
-    	form.method = "post";
-    	form.style.display = "none";
-    	
-    	var input1  = document.createElement("input");
-    	input1.type = "text";
-    	input1.name = "title";
-    	input1.value = title2.value;
-    	form.appendChild(input1);
-    	
+
     	var input2  = document.createElement("input");
     	input2.type = "text";
     	input2.name = "content";
     	input2.value = content2;
     	form.appendChild(input2);
-    	
-    	var input3  = document.createElement("input");
-    	input3.type = "text";
-    	input3.name = "writer";
-    	input3.value = writer2.value;
-    	form.appendChild(input3);
     	
     	document.body.appendChild(form);
     	form.submit();
@@ -869,7 +885,20 @@
 	
  	function insertClass() {
  		
+ 		const title = document.getElementById("title");
+ 		const postcode = document.getElementById("postcode");
+ 		const address1 = document.getElementById("address1");
+ 		const address2 = document.getElementById("address2");
+ 		const address3 = document.getElementById("address3");
  		const price = document.getElementById("price");
+ 		const instructor = document.getElementById("instructor");
+ 		const intro = document.getElementById("intro");
+ 		const curriculum = document.getElementById("curriculum");
+ 		const localcode = document.getElementById("localcode");
+ 		const actcode = document.getElementById("actcode");
+ 		const memberid = document.getElementById("memberid");
+ 		
+ 		
  		
  		if( price.value.length <= 0) {
 			alert("금액을 입력하세요.");
@@ -883,7 +912,7 @@
 	}
 	 
 
-</script>
+		</script>
 	</form>
 </body>
 </html>
