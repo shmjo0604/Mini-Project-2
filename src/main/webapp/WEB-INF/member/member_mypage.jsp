@@ -13,12 +13,13 @@
 </head>
 <body>
 	<div class="container">
-		<a href="mypage.do?menu=1" class="btn btn-primary">회원정보수정</a> <a
-			href="mypage.do?menu=2" class="btn btn-primary">클래스관리</a> <a
-			href="mypage.do?menu=3" class="btn btn-primary">클래스신청내역</a> <a
-			href="mypage.do?menu=4" class="btn btn-primary">비밀번호재설정</a> <a
-			href="mypage.do?menu=5" class="btn btn-primary">리뷰내역관리</a>
-			<a href="mypage.do?menu=6" class="btn btn-primary">회원탈퇴</a>
+		<a href="home.do" class="btn btn-primary">홈으로</a> 
+		<a href="mypage.do?menu=1" class="btn btn-primary">회원정보수정</a> 
+		<a href="mypage.do?menu=2" class="btn btn-primary">클래스관리</a> 
+		<a href="mypage.do?menu=3" class="btn btn-primary">클래스신청내역</a> 
+		<a href="mypage.do?menu=4" class="btn btn-primary">비밀번호재설정</a> 
+		<a href="mypage.do?menu=5" class="btn btn-primary">리뷰내역관리</a>
+		<a href="mypage.do?menu=6" class="btn btn-primary">회원탈퇴</a>
 			
 		<hr />
 		<c:if test="${param.menu == 1}">

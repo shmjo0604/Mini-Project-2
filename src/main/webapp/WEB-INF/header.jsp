@@ -17,15 +17,17 @@
             <div class="collapse navbar-collapse justify-content-center align-items-center" id="navbarSupportedContent">
                 <ul class="navbar-nav">
                     <li class="nav-item dropdown position-static">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" >카테고리</a>
-                        <!--  드롭다운 메뉴-->
+                        <a class="nav-link dropdown-toggle" href="${pageContext.request.contextPath}/class/select.do">조회하기</a>
+                       
+                       
+                        <!--  드롭다운 메뉴
                         <div class="dropdown-menu dropdown-megamenu">
                             <div class="container">
-                                <!-- 드롭다운 메뉴 섹션-->
                                 <div class=""></div>
                             </div>
                         </div>
-                        <!-- / 드롭다운 메뉴-->
+                        -->
+                        
                     </li>    
                     <li class="nav-item">
                         <a class="nav-link" href="">공지사항</a>

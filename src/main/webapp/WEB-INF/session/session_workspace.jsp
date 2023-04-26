@@ -36,6 +36,7 @@
 			      <a class="list-group-item list-group-item-action" href="select.do?menu=1">일정관리하기</a>
 			      <a class="list-group-item list-group-item-action" href="select.do?menu=2">신청자관리하기</a>
 			      <a class="list-group-item list-group-item-action" href="select.do?menu=3">문의하기</a>
+			      <a class="list-group-item list-group-item-action" href="${pageContext.request.contextPath}/member/mypage.do?menu=2">뒤로가기</a>
 			    </div>
   			</div>
   		</div>
