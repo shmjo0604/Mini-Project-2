@@ -18,7 +18,7 @@
     <link href="https://fonts.googleapis.com/css2?family=DynaPuff&family=Permanent+Marker&display=swap" rel="stylesheet">
     <!-- CSS -->
     <link rel='stylesheet' href="${pageContext.request.contextPath}/resources/css/home.css"/>
-    <link rel='stylesheet' href="${pageContext.request.contextPath}/resources/css/session.css"/>
+    <link rel='stylesheet' href="${pageContext.request.contextPath}/resources/css/session.css?ver=1"/>
 </head>
 
 
@@ -60,6 +60,6 @@
     <script src="${pageContext.request.contextPath}/resources/js/session.js"></script>
     <script src="${pageContext.request.contextPath}/resources/js/jquery-3.6.4.min.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/js/bootstrap.min.js"></script>
-	<script src="${pageContext.request.contextPath}/resources/js/jquery.twbsPagination.min.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/js/jquery.twbsPagination.min.js?ver=1"></script>
 </body>
 </html>

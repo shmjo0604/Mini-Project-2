@@ -29,7 +29,7 @@
 				     <td>${obj.classend}</td>
 				     <td><fmt:formatNumber value="${obj.addprice}" pattern="#,###"/></td>
 				     <td>${obj.cnt}</td>
-				     <td><a href="update.do?ino=${obj.no}" class="btn btn-secondary">수정</a></td>
+				     <td><a href="update.do?no=${obj.no}" class="btn btn-light">조회하기</a></td>
 					</tr>
 				</c:forEach>
 			</tbody>

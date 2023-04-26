@@ -25,10 +25,16 @@ public class SessionServiceImpl implements SessionService{
 		return mapper.selectSessionList(classcode);
 	}
 	
+	/* (2)-1 세션 하나 조회 */
+	@Override
+	public Session selectSessionOne(Session obj) throws Exception {
+		return mapper.selectSessionOne(obj);
+	}
+	
 	/* (3) 세션 수정 */
 	@Override
-	public int updateSessionOne(long no) throws Exception {
-		return mapper.updateSessionOne(no);
+	public int updateSessionOne(Session obj) throws Exception {
+		return mapper.updateSessionOne(obj);
 	}
 	
 	/* (4) 세션 하나 삭제 */
@@ -42,6 +48,10 @@ public class SessionServiceImpl implements SessionService{
 	public int deleteSessionList(Map<String, Object> map) throws Exception {
 		return mapper.deleteSessionList(map);
 	}
+
+	
+
+	
 	
 	
 	

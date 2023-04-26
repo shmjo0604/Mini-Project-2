@@ -19,7 +19,12 @@
     <link rel='stylesheet' href="${pageContext.request.contextPath}/resources/css/home.css"/>
     <!-- datepicker css -->
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/jquery-ui.min.css">
-	<link rel='stylesheet' href="${pageContext.request.contextPath}/resources/css/session.css"/>
+	<link rel='stylesheet' href="${pageContext.request.contextPath}/resources/css/session.css?ver=1"/>
+
+	<style>
+	.session-hr > hr {background-color:#75D63F;}
+	</style>
+
 </head>
 
 <body class="d-flex flex-column min-vh-100"> 
@@ -33,9 +38,9 @@
 			<div class="col-9">
 		    	<div id="list-example" class="list-group">
 			      <h5 class="text-center">일정 작업실</h5>
-			      <a class="list-group-item list-group-item-action" href="session.do?menu=1">일정관리하기</a>
-			      <a class="list-group-item list-group-item-action" href="session.do?menu=2">신청자관리하기</a>
-			      <a class="list-group-item list-group-item-action" href="session.do?menu=3">문의하기</a>
+			      <a class="list-group-item list-group-item-action" href="select.do?menu=1">일정관리하기</a>
+			      <a class="list-group-item list-group-item-action" href="select.do?menu=2">신청자관리하기</a>
+			      <a class="list-group-item list-group-item-action" href="select.do?menu=3">문의하기</a>
 			    </div>
   			</div>
   		</div>
@@ -45,6 +50,10 @@
  		<div class="col-lg-9 right_side" >
  		
 			<form action="write.do" method="post" id="form">
+				<h7>일정관리하기 > 일정등록하기</h7>
+				<div class="session-hr">
+					<hr>
+				</div>
 		   		<div class="guide">'*' 항목은 반드시 입력해주세요.</div>
 		   	   <!-- 일정 상세 입력 영역 -->
 			   <div class="row">
@@ -74,9 +83,7 @@
 			      	<input type="hidden" name="day" id="day">
 			      </div> 
 			   </div>
-			   
-			   	   
-			   
+			    
 			   <!-- 계산영역 -->
 			   <div class="row cal">
 				   	<div class="form-floating mb-3 col-lg-3">
@@ -85,7 +92,7 @@
 				   </div>
 				   <div class="form-floating mb-3 col-lg-6 align-self-center" >
 				      <div class="form-check form-check-inline">
-					  <input class="form-check-input radio-value" type="radio" name="level" id="inlineRadio1" value="1" checked>
+					  <input class="form-check-input radio-value level-value-detail" type="radio" name="level" id="inlineRadio1" value="1" checked>
 					  <label class="form-check-label" for="inlineRadio1">입문자</label>
 					</div>
 					<div class="form-check form-check-inline">
@@ -101,24 +108,26 @@
 			   
 			   <div class="row">
 				   <div class="form-floating mb-3 col-lg-3">
-				     <input type="number" id="addprice" name="addprice" class="form-control radio-value-detail" disabled="disabled"  >
+				     <input type="number" id="addprice" name="addprice" class="form-control radio-value-detail " readonly>
 				     <label for="addprice" class="form-label">추가금액</label>
 				   </div>		   
 				   <div class="form-floating mb-3 col-lg-3">
-				       <input type="number" id="rate" name="rate" class="form-control">
+				       <input type="number" id="rate" name="rate" class="form-control rate-value-detail">
 				       <label for="rate" class="form-label">할인률(%)</label>
 				   </div>		   
 				   <div class="form-floating mb-3 col-lg-3 align-self-center">
 				      <input type="button" value="계산하기" class ="btn btn-secondary" onclick="showPrice()"/>
 				   </div>		   
 				   <div class="form-floating mb-3 col-lg-3">
-				        <input type="number" id="total" name="total" class="form-control" readonly> 
+				        <input type="number" id="total" name="total" class="form-control sale-value-detail" readonly> 
 				       <label for="total" class="form-label">판매금액</label>
 				   </div>	
 			   </div>   
-			  	   
+			  	<br><br>
+			  	<hr>    
 			   <div>
 			         <input type="button" value="등록하기" class="btn btn-success register-btn" disabled="disabled" onclick="registerSession()" />
+			         <a href="select.do" class="btn btn-secondary register-btn">뒤로가기</a>  
 			   </div>   
 			</form> 
 		</div>
@@ -132,7 +141,12 @@
     <!-- datepicker js -->
     <script src="${pageContext.request.contextPath}/resources/js/jquery-3.6.4.min.js"></script>
     <script src="${pageContext.request.contextPath}/resources/js/jquery-ui.min.js"></script>
-    <script src="${pageContext.request.contextPath}/resources/js/session.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/js/session.js?ver=5"></script>
+    
+    <script>
+    
+    
+    </script>
 
 </body>
 </html>

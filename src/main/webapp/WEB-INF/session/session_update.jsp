@@ -19,7 +19,12 @@
     <link rel='stylesheet' href="${pageContext.request.contextPath}/resources/css/home.css"/>
     <!-- datepicker css -->
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/jquery-ui.min.css">
-	<link rel='stylesheet' href="${pageContext.request.contextPath}/resources/css/session.css"/>
+	<link rel='stylesheet' href="${pageContext.request.contextPath}/resources/css/session.css?ver=1"/>
+
+	<style>
+	.session-hr > hr {background-color:#75D63F;}
+	</style>
+
 </head>
 
 <body class="d-flex flex-column min-vh-100"> 
@@ -33,9 +38,9 @@
 			<div class="col-9">
 		    	<div id="list-example" class="list-group">
 			      <h5 class="text-center">일정 작업실</h5>
-			      <a class="list-group-item list-group-item-action" href="session.do?menu=1">일정관리하기</a>
-			      <a class="list-group-item list-group-item-action" href="session.do?menu=2">신청자관리하기</a>
-			      <a class="list-group-item list-group-item-action" href="session.do?menu=3">문의하기</a>
+			      <a class="list-group-item list-group-item-action" href="select.do?menu=1">일정관리하기</a>
+			      <a class="list-group-item list-group-item-action" href="select.do?menu=2">신청자관리하기</a>
+			      <a class="list-group-item list-group-item-action" href="select.do?menu=3">문의하기</a>
 			    </div>
   			</div>
   		</div>
@@ -43,30 +48,35 @@
  		
  		<!-- right side -->
  		<div class="col-lg-9 right_side" >
-			<form action="write.do" method="post" id="form">
+			<form action="update.do?no=${info.no}" method="post" id="form">
+				<h7>일정관리하기 > 일정변경하기</h7>
+				<div class="session-hr">
+					<hr>
+				</div>
+				
 		   		<div class="guide">'*' 항목은 반드시 입력해주세요.</div>
 		   	   <!-- 일정 상세 입력 영역 -->
 			   <div class="row">
 			      <div class="form-floating mb-3 col-lg-3">
-			          <input type="number" id="min" name="min" class="form-control min" autofocus>
+			          <input type="number" id="min" name="min" value="${info.minimum}" class="form-control min" autofocus>
 			          <label for="min" class="form-label">* 최소인원</label>
 			      </div>
 			      <div class="form-floating mb-3 col-lg-3">
-			          <input type="number" id="max" name="max" class="form-control max" required>
+			          <input type="number" id="max" name="max" value="${info.maximum}" class="form-control max" required>
 			          <label for="max" class="form-label">* 최대인원</label>
 			      </div>	
 			   </div>
 			   <div class="row">
 			      <div class="form-floating mb-3 col-lg-3">
-			          <input id="date" name="date" class="form-control datepicker date">
+			          <input id="date" name="date" value="${info.classdate}" class="form-control datepicker date">
 			          <label for="date" class="form-label">* 날짜</label>
 			      </div>
 			      <div class="form-floating mb-3 col-lg-3">
-			          <input type="time" id="start" name="start" class="form-control start">
+			          <input type="time" id="start" name="start" value="${info.classstart}" class="form-control start">
 			          <label for="start" class="form-label">* 시작시각</label>
 			      </div>
 			      <div class="form-floating mb-3 col-lg-3">
-			          <input type="time" id="end" name="end" class="form-control end">
+			          <input type="time" id="end" name="end" value="${info.classend}" class="form-control end">
 			          <label for="end" class="form-label">* 종료시각</label>
 			      </div>
 			      <div class="form-floating mb-3 col-lg-3">
@@ -83,41 +93,67 @@
 				      <label for="default" class="form-label">기본가격</label>
 				   </div>
 				   <div class="form-floating mb-3 col-lg-6 align-self-center" >
+				      
 				      <div class="form-check form-check-inline">
-					  <input class="form-check-input radio-value" type="radio" name="level" id="inlineRadio1" value="1" checked>
-					  <label class="form-check-label" for="inlineRadio1">입문자</label>
-					</div>
-					<div class="form-check form-check-inline">
-					  <input class="form-check-input radio-value" type="radio" name="level" id="inlineRadio2" value="2">
-					  <label class="form-check-label" for="inlineRadio2">경험자</label>
-					</div>
-					<div class="form-check form-check-inline">
-					  <input class="form-check-input radio-value" type="radio" name="level" id="inlineRadio3" value="3">
-					  <label class="form-check-label" for="inlineRadio3">숙련자</label>
-					</div>	
+					      <c:if test="${info.classlevel == 1}">
+					      	<input class="form-check-input radio-value" type="radio" name="level" id="inlineRadio1" value="1" checked>
+					      </c:if> 
+					      <c:if test="${info.classlevel != 1}">
+					      	<input class="form-check-input radio-value" type="radio" name="level" id="inlineRadio1" value="1">
+					      </c:if> 
+						  <label class="form-check-label" for="inlineRadio1">입문자</label>
+					  </div>
+					  
+					  <div class="form-check form-check-inline">
+					  	 <c:if test="${info.classlevel == 2}">
+					  	 	<input class="form-check-input radio-value" type="radio" name="level" id="inlineRadio2" value="2" checked>
+					  	 </c:if>
+					  	 <c:if test="${info.classlevel != 2}">
+					  	 	<input class="form-check-input radio-value" type="radio" name="level" id="inlineRadio2" value="2">
+					  	 </c:if>
+			    	  	 <label class="form-check-label" for="inlineRadio2">경험자</label>
+					  </div>
+					  
+					  <div class="form-check form-check-inline">
+					  	  <c:if test="${info.classlevel == 3}">
+					  	  	<input class="form-check-input radio-value" type="radio" name="level" id="inlineRadio3" value="3" checked>
+					  	  </c:if>
+					  	  <c:if test="${info.classlevel != 3}">
+					  	  	<input class="form-check-input radio-value" type="radio" name="level" id="inlineRadio3" value="3">
+					  	  </c:if>
+					  	  <label class="form-check-label" for="inlineRadio3">숙련자</label>
+					  </div>	
+					  
 				   </div>
 			   </div>
 			   
 			   <div class="row">
 				   <div class="form-floating mb-3 col-lg-3">
-				     <input type="number" id="addprice" name="addprice" class="form-control radio-value-detail" disabled="disabled"  >
+				   	<c:if test="${info.classlevel == 2 || info.classlevel == 3}">
+				   		<input type="number" id="addprice" name="addprice" value="${info.addprice}" class="form-control radio-value-detail"  >
+				   	</c:if>
+				   	<c:if test="${info.classlevel == 1}">
+				   		<input type="number" id="addprice" name="addprice" value="${info.addprice}" class="form-control radio-value-detail" readonly >
+				   	</c:if>
 				     <label for="addprice" class="form-label">추가금액</label>
 				   </div>		   
 				   <div class="form-floating mb-3 col-lg-3">
-				       <input type="number" id="rate" name="rate" class="form-control">
+				       <input type="number" id="rate" name="rate" value="${info.discount}" class="form-control rate-value-detail">
 				       <label for="rate" class="form-label">할인률(%)</label>
 				   </div>		   
 				   <div class="form-floating mb-3 col-lg-3 align-self-center">
 				      <input type="button" value="계산하기" class ="btn btn-secondary" onclick="showPrice()"/>
 				   </div>		   
 				   <div class="form-floating mb-3 col-lg-3">
-				        <input type="number" id="total" name="total" class="form-control" readonly> 
+				        <input type="number" id="total" name="total" class="form-control sale-value-detail" readonly> 
 				       <label for="total" class="form-label">판매금액</label>
 				   </div>	
 			   </div>   
-			  	   
+			  	<br><br>
+			  	<hr>   
 			   <div>
-			         <input type="button" value="변경하기" class="btn btn-success register-btn" disabled="disabled" onclick="registerSession()" />
+			         <input type="button" value="변경하기" class="btn btn-success register-btn" onclick="updateSession()" />
+			         <a href="select.do" class="btn btn-secondary register-btn">뒤로가기</a>        
 			   </div>   
 			</form> 
 		</div>
@@ -131,7 +167,18 @@
     <!-- datepicker js -->
     <script src="${pageContext.request.contextPath}/resources/js/jquery-3.6.4.min.js"></script>
     <script src="${pageContext.request.contextPath}/resources/js/jquery-ui.min.js"></script>
-    <script src="${pageContext.request.contextPath}/resources/js/session.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/js/session.js?ver=4"></script>
+    
+    <script>
+    	window.onload = function() {
+			// DB에 float로 계산해서 들어간 값 다시 변환
+    		document.getElementById("rate").value = ${info.discount}*100;
+    	}
+    	
+    	
+    	// 수강대상자를 입문자로 바꿀경우 할인률도 reset
+    	
+    </script>
 
 </body>
 </html>

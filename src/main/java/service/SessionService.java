@@ -22,8 +22,11 @@ public interface SessionService {
 	/* (2) 세션 전체 조회 */
 	public List<Session> selectSessionList(@Param("classcode") long classcode) throws Exception;
 	
+	/* (2)-1 세션 하나 조회 */
+	public Session selectSessionOne(@Param("obj") Session obj) throws Exception;
+	
 	/* (3) 세션 수정 */
-	public int updateSessionOne(@Param("no") long no) throws Exception;
+	public int updateSessionOne(@Param("obj") Session obj) throws Exception;
 	
 	/* (4) 세션 하나 삭제 */
 	public int deleteSessionOne(@Param("no") long no) throws Exception;

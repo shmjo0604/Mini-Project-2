@@ -33,11 +33,18 @@ public interface SessionMapper {
 	@Select({ " SELECT * FROM SESSION WHERE CLASSCODE=#{classcode} ORDER BY REGDATE DESC "})
 	public List<Session> selectSessionList(@Param("classcode") long classcode);
 	
+	/* (2)-1 세션 하나 조회 */
+	@Select({
+		" SELECT * FROM SESSION WHERE CLASSCODE=#{obj.classcode} AND NO=#{obj.no} "
+	})
+	public Session selectSessionOne(@Param("obj") Session obj);
+	
+	
 	/* (3) 세션 수정 */
-	@Update({ " UPDATE ",
+	@Update({ " UPDATE SESSION ",
 			  " SET MINIMUM=#{obj.minimum}, MAXIMUM=#{obj.maximum}, CLASSDATE=#{obj.classdate}, CLASSDAY=#{obj.classday}, CLASSSTART=#{obj.classstart}, CLASSEND=#{obj.classend}, DISCOUNT=#{obj.discount}, ADDPRICE=#{obj.addprice}, CLASSLEVEL=#{obj.classlevel} ",
-			  " WHERE NO=#{no} " })
-	public int updateSessionOne(@Param("no") long no);
+			  " WHERE NO=#{obj.no} AND CLASSCODE=#{obj.classcode} " })
+	public int updateSessionOne(@Param("obj") Session obj);
 	
 	/* (4) 세션 하나 삭제 */
 	@Delete({ " DELETE FROM SESSION WHERE NO=#{no} " })

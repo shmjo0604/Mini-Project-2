@@ -41,17 +41,31 @@ public class SessionWriteController extends HttpServlet {
 		long classcode = 107;
 		
 		Session obj = new Session();
+		obj.setClasscode(classcode); // 테스트
 		obj.setMinimum(Long.parseLong(request.getParameter("min")));
 		obj.setMaximum(Long.parseLong(request.getParameter("max")));
 		obj.setClassdate(request.getParameter("date"));
 		obj.setClassday(request.getParameter("day"));
 		obj.setClassstart(request.getParameter("start"));
 		obj.setClassend(request.getParameter("end"));
-		float num = Float.parseFloat(request.getParameter("rate"))*0.01f;
-		obj.setDiscount(Math.round(num*100)/100.0f); // 소수점 둘째자리까지
-		obj.setAddprice(Long.parseLong(request.getParameter("addprice")));
+		
 		obj.setClasslevel(request.getParameter("level"));
-		obj.setClasscode(classcode); // 테스트
+		obj.setAddprice(Long.parseLong(request.getParameter("addprice")));
+		
+
+		
+		System.out.println(request.getParameter("rate"));
+		System.out.println(Long.parseLong(request.getParameter("rate")));
+		System.out.println(Float.parseFloat(request.getParameter("rate")));
+		
+		if(Long.parseLong(request.getParameter("rate")) == 0) {
+			obj.setDiscount( Long.parseLong(request.getParameter("rate")));
+		}
+		else {
+			float num = Float.parseFloat(request.getParameter("rate"))*0.01f;
+			obj.setDiscount(Math.round(num*100)/100.0f); // 소수점 둘째자리까지
+		}
+		
 		
 		System.out.println(obj.toString());
 		
@@ -60,6 +74,9 @@ public class SessionWriteController extends HttpServlet {
 			int ret = sService.insertSessionOne(obj);
 			if(ret == 1) {
 				response.sendRedirect("select.do");
+			}
+			else {
+				response.sendRedirect("write.do");
 			}
 		} 
 		catch (Exception e) {

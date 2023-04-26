@@ -1,6 +1,7 @@
 
 /* ------------------------ session_workspace.jsp ---------------------------- */
 h5 {font-weight: bold;}
+h7 {color: gray;}
 	
 .body { margin-top : 50px;
 		margin-left : 100px;
@@ -17,9 +18,12 @@ h5 {font-weight: bold;}
 
 
 /* ------------------------ session_write.jsp ---------------------------- */
+
+
+
 /*가이드라인 글*/
 form > .guide {font-size:10px;
-				margin-bottom : 20px;
+				margin-bottom : 30px;
 				color : gray;}
 
 /* datepicker css */
@@ -202,6 +206,7 @@ form > .guide {font-size:10px;
 /* 등록버튼 */
 .register-btn {
 	margin-top : 20px;
+	margin-right : 10px;
 	float: right;
 }
   		   
