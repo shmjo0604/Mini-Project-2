@@ -8,44 +8,45 @@
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css"
 	rel="stylesheet" />
-<script src='main.js'></script>
+
 <title>신청 상태 페이지</title>
 </head>
 <body>
 	<jsp:include page="/WEB-INF/header.jsp"></jsp:include>
-	<main class="container">
-		<div class="py-5 text-center">
-			<h2>신청페이지</h2>
-			<p class="lead">신청하신 클래스 화면</p>
+	<div class="container">
+		<div style="width: 500px; margin-top: 10px;">
+			<form class="row g-2">
+				<div class="col-auto">
+					<input type="text" name="text" class="form-control"
+						placeholder="검색어" style="width: 300px;" />
+				</div>
+				<div class="col-auto">
+					<input type="submit" class="btn btn-primary" value="검색" />
+				</div>
+			</form>
 		</div>
-		
-		
-		
-		
-		<form>
-  <div class="form-group">
-    <label for="exampleInputEmail1">신청 처리상태(1:결제완료, 2:결제취소, 3:참여완료)</label>
-    <input class="form-control" type="text" placeholder="chk- 신청 처리 상태" readonly>
-  </div>
-  <div class="form-group">
-    <label for="exampleInputPassword1">상태 등록 일자</label>
-    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="상태 등록 일자">
-  </div>
-  <a href="home.do" class="btn btn-primary btn-lg" onclick="ApplyclearAction()">홈으로</a>
-  <!--  <input type="button" value="홈으로" class="btn btn-primary btn-lg" 
-					href="home.do" onclick="ApplyclearAction()"/> -->
-  
-  </form>
+
+		<table class="table table-hover">
+			<thead>
+				<tr>
+					<th scope="col">글번호</th>
+					<th scope="col">신청번호</th>
+					<th scope="col">신청처리상태</th>
+					<th scope="col">상태등록일자</th>
+				</tr>
+			</thead>
+			
+		</table>
+	</div>
 
 
-	</main>
 	<jsp:include page="/WEB-INF/footer.jsp"></jsp:include>
 	<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
 	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-	<script src="form-validation.js"></script>
-	
+
+
 	<script>
 	function
 	document.getElementByid("display").innerHTML = 100 / 20;

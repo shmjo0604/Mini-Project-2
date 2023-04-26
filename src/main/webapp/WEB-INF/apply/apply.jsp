@@ -7,7 +7,7 @@
 <head>
     <meta charset='utf-8'>
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
-    <title>신청 페이지</title>
+    <title>클래스 신청</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet" />
 </head>
@@ -17,8 +17,8 @@
     
     <main class="container">
         <div class="py-5 text-center">
-            <h2>신청페이지</h2>
-            <p class="lead">신청하실 페이지를 선택하세요.</p>
+            <h2>클래스신청</h2> 
+            <!-- <p class="lead">신청하실 페이지를 선택하세요.</p> -->
         </div>
 
          <div class="col-md-7 col-lg-8">
@@ -30,10 +30,18 @@
 	              <div class="row g-3">                   
 	                  <div class="col-12">                        
 	                          <label for="person" class="form-label">참여인원</label> 
-	                        <input type="text" name="person" class="form-control" id="person" placeholder="최대 인원은 30명 입니다."  value="" required>
+	                        <input type="text" name="person" class="form-control" id="person" size="15" placeholder="최대 인원은 30명 입니다."  value="" required>
+	  	                   <!--   <input type="text"  class="form-control" id="person" placeholder="참여인원수 x 가격."  value="" required> -->
 	  	                    <div class="invalid-feedback">Valid first name is required.</div>
+	  	                    <form name='sumform'>
+								<input type='text'  id='person1' placeholder="참여인원수" size="15" onkeyup='call()'> x
+								<input type='text'  id='price2' placeholder="가격" size="15" onkeyup='call()'> =
+								<input type='text'  placeholder="참여인원수 x 가격." size="20" id='total price' >(원)
+							</form>
 	                  </div>
 	              </div>    
+	               
+	                
 	                  	
 				  <input type="button" value="신청완료" class="btn btn-sm btn-primary" onclick="ApplyInsertAction()"/> 
                   <input type="button" value="신청취소" class="btn btn-sm btn-primary" onclick="ApplyAction()"/> 
@@ -59,8 +67,15 @@
 			return false; // 함수 종료, 전송하지 않음
 		}
 		*/
-		
+	
 		document.getElementById('form1').submit();
+	}
+	
+	function call()
+	{
+	 if(document.getElementById("person1").value && document.getElementById("price2").value){
+	  document.getElementById('total price').value =parseInt(document.getElementById('person1').value) * parseInt(document.getElementById('price2').value);
+	 }
 	}
 	</script>
 </body>
