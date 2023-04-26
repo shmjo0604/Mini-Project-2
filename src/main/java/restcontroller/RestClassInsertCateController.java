@@ -18,12 +18,12 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import mapper.ClassMapper;
 
-@WebServlet(urlPatterns = {"/api/class/selectcatelist.json"})
-public class RestClassCateSelectController extends HttpServlet {
+@WebServlet(urlPatterns = {"/api/class/selectcatelist1.json"})
+public class RestClassInsertCateController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private Gson gson = new Gson();
        
-    public RestClassCateSelectController() {
+    public RestClassInsertCateController() {
         super();
     }
 

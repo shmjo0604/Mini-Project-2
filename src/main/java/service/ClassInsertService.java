@@ -1,5 +1,9 @@
 package service;
 
+import java.util.List;
+
+import dto.Activitycate;
+import dto.Citycate;
 import dto.Classproduct;
 
 public interface ClassInsertService {
@@ -14,4 +18,10 @@ public interface ClassInsertService {
 
 	// 4. 클래스 수정
 	public int updateClassOne(Classproduct obj) throws Exception;
+	
+	// 5. 지역 상위 카테고리 조회
+	public List<Citycate> selectCitycateList();
+	
+	// 6. 클래스 상위 카테고리 조회
+	public List<Activitycate> selectActivitycateList();
 }
