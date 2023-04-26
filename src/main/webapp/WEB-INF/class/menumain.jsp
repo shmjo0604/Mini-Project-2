@@ -29,18 +29,20 @@
 	<jsp:include page="../header.jsp"></jsp:include>
 	
 	<!-- main 영역 -->
-		<div class="main col-10">
-			<div class="left col-2">
-				<button class="btn btn-outline-success m-3" onclick="pagecate()">카테고리</button>
+		<div class="main col-11">
+			<div class="left col-3 m-4" id="btn_cate">
+			<div class="left2 m-4">
+				<button class="btn_c non-click btn-outline-success m-3" onclick="pagecate()">카테고리</button>
 				<br />
-				<button class="btn btn-outline-success m-3" onclick="pageinstructor()">강사소개</button>
+				<button class="btn_c non-click btn-outline-success m-3" onclick="pageinstructor()">강사소개</button>
 				<br />
-				<button class="btn btn-outline-success m-3" onclick="pageintro()">클래스소개</button>
+				<button class="btn_c non-click btn-outline-success m-3" onclick="pageintro()">클래스소개</button>
 				<br />
-				<button class="btn btn-outline-success m-3" onclick="pagecorri()">커리큘럼</button>
+				<button class="btn_c non-click btn-outline-success m-3" onclick="pagecorri()">커리큘럼</button>
 				<br />
-				<button class="btn btn-outline-success m-3" onclick="pageprice()">가격</button>
+				<button class="btn_c non-click btn-outline-success m-3" onclick="pageprice()">가격</button>
 				<br />
+			</div>
 			</div>
 		
 			<div class="right col-8 m-4">
@@ -111,7 +113,7 @@
 
 						<div class="changepage">
 							<div class="btn_1">
-								<button class="btn_after btn" onclick="nextMenu1()">다음&raquo;</button>
+								<button class="btn_after non-click btn" onclick="nextMenu1()">다음&raquo;</button>
 							</div>
 						</div>
 					</div>
@@ -144,7 +146,7 @@
 							<h6 style="display:inline; padding-right:50px; color: #FF8E8E">(필수)</h6></h6>
 							<p>
 								<input type="text" class="text" id="nickname" name="nickname" maxlength="50"
-									autofocus required>
+									placeholder="ex)나무이야기" autofocus required>
 							</p>
 						</section>
 						<br>
@@ -196,8 +198,8 @@
 
 						<div class="changepage">
 							<div class="btn_1">
-								<button class="btn_before btn" onclick="prevMenu2()">&laquo;이전</button>
-								<button class="btn_after btn" onclick="nextMenu2()">다음&raquo;</button>
+								<button class="btn_before btn non-click" onclick="prevMenu2()">&laquo;이전</button>
+								<button class="btn_after btn non-click" onclick="nextMenu2()">다음&raquo;</button>
 							</div>
 						</div>
 					</div>
@@ -211,7 +213,7 @@
 							<h6 style="display:inline; padding-right:50px; color: #FF8E8E">(필수)</h6>
 							<p>
 								<input type="text" id="title" class="text" name="title" maxlength="50"
-									autofocus required>
+									placeholder="ex)원데이 목공 클래스" autofocus required>
 							</p>
 						</section><br>
 
@@ -239,8 +241,8 @@
 
 						<div class="changepage">
 							<div class="btn_1">
-								<button class="btn_before btn" onclick="prevMenu3()">&laquo;이전</button>
-								<button class="btn_after btn" onclick="nextMenu3()">다음&raquo;</button>
+								<button class="btn_before btn non-click" onclick="prevMenu3()">&laquo;이전</button>
+								<button class="btn_after btn non-click" onclick="nextMenu3()">다음&raquo;</button>
 							</div>
 						</div>
 					</div>
@@ -265,7 +267,7 @@
 							<div style="margin-top: 10px; background-color: white;">
 								<div id="editor3" style="height: 300px;">
 									<p>
-										커리큘럼을 최소 2단계 이상 소개해주세요.<br />예시)<br /> STEP1. 수업 소개<br /> STEP2.
+										커리큘럼을 최소 2단계 이상 소개해주세요.^^<br />예시)<br /> STEP1. 수업 소개<br /> STEP2.
 										수업 내용<br /> STEP3. 수업 마무리
 									</p>
 									<br>
@@ -275,8 +277,8 @@
 
 						<div class="changepage">
 							<div class="btn_1">
-								<button class="btn_before btn" onclick="prevMenu4()">&laquo;이전</button>
-								<button class="btn_after btn" onclick="nextMenu4()">다음&raquo;</button>
+								<button class="btn_before non-click btn" onclick="prevMenu4()">&laquo;이전</button>
+								<button class="btn_after non-click btn" onclick="nextMenu4()">다음&raquo;</button>
 							</div>
 						</div>
 					</div>
@@ -307,7 +309,7 @@
 
 					<div class="changepage">
 						<div class="btn_1">
-							<button class="btn_before btn" onclick="prevMenu5()">&laquo;
+							<button class="btn_before btn non-click" onclick="prevMenu5()">&laquo;
 								이전</button>
 							<button class="btn_after btn" onclick="insertClass()">등록</button>
 						</div>
@@ -692,6 +694,7 @@
 	
 /* 페이지 이동 함수 */	
 	function pagecate(){
+		
 		$('#menu1').css('display', 'block');
 		$('#menu2').css('display', 'none');
 		$('#menu3').css('display', 'none');
@@ -779,6 +782,22 @@
 		$('#menu3').css('display', 'none');
 		$('#menu4').css('display', 'none');
 		$('#menu5').css('display', 'none');
+		
+		/* button click 색상유지 함수 */
+		const nonClick = document.querySelectorAll(".non-click");
+
+		function handleClick(event) {
+		  // div에서 모든 "click" 클래스 제거
+		  nonClick.forEach((e) => {
+		    e.classList.remove("click");
+		  });
+		  // 클릭한 div만 "click"클래스 추가
+		  event.target.classList.add("click");
+		}
+		
+		nonClick.forEach((e) => {
+		  e.addEventListener("click", handleClick);
+		});
 	}
 	
 	function prevMenu2() {
@@ -787,6 +806,22 @@
 		$('#menu3').css('display', 'none');
 		$('#menu4').css('display', 'none');
 		$('#menu5').css('display', 'none');
+		
+		/* button click 색상유지 함수 */
+		const nonClick = document.querySelectorAll(".non-click");
+
+		function handleClick(event) {
+		  // div에서 모든 "click" 클래스 제거
+		  nonClick.forEach((e) => {
+		    e.classList.remove("click");
+		  });
+		  // 클릭한 div만 "click"클래스 추가
+		  event.target.classList.add("click");
+		}
+		
+		nonClick.forEach((e) => {
+		  e.addEventListener("click", handleClick);
+		});
 	}
 	
 	function nextMenu2() {
@@ -816,6 +851,22 @@
 		$('#menu3').css('display', 'block');
 		$('#menu4').css('display', 'none');
 		$('#menu5').css('display', 'none');
+		
+		/* button click 색상유지 함수 */
+		const nonClick = document.querySelectorAll(".non-click");
+
+		function handleClick(event) {
+		  // div에서 모든 "click" 클래스 제거
+		  nonClick.forEach((e) => {
+		    e.classList.remove("click");
+		  });
+		  // 클릭한 div만 "click"클래스 추가
+		  event.target.classList.add("click");
+		}
+		
+		nonClick.forEach((e) => {
+		  e.addEventListener("click", handleClick);
+		});
 	}
 	
 	function prevMenu3() {
@@ -825,6 +876,22 @@
 		$('#menu3').css('display', 'none');
 		$('#menu3').css('display', 'none');
 		$('#menu5').css('display', 'none');
+		
+		/* button click 색상유지 함수 */
+		const nonClick = document.querySelectorAll(".non-click");
+
+		function handleClick(event) {
+		  // div에서 모든 "click" 클래스 제거
+		  nonClick.forEach((e) => {
+		    e.classList.remove("click");
+		  });
+		  // 클릭한 div만 "click"클래스 추가
+		  event.target.classList.add("click");
+		}
+		
+		nonClick.forEach((e) => {
+		  e.addEventListener("click", handleClick);
+		});
 	}
 	
 	function nextMenu3() {
@@ -847,11 +914,43 @@
 		$('#menu3').css('display', 'none');
 		$('#menu4').css('display', 'block');
 		$('#menu5').css('display', 'none');
+		
+		/* button click 색상유지 함수 */
+		const nonClick = document.querySelectorAll(".non-click");
+
+		function handleClick(event) {
+		  // div에서 모든 "click" 클래스 제거
+		  nonClick.forEach((e) => {
+		    e.classList.remove("click");
+		  });
+		  // 클릭한 div만 "click"클래스 추가
+		  event.target.classList.add("click");
+		}
+		
+		nonClick.forEach((e) => {
+		  e.addEventListener("click", handleClick);
+		});
 	}
 	
 	function prevMenu4() {
 		$('#menu3').css('display', 'block');
 		$('#menu4').css('display', 'none');
+		
+		/* button click 색상유지 함수 */
+		const nonClick = document.querySelectorAll(".non-click");
+
+		function handleClick(event) {
+		  // div에서 모든 "click" 클래스 제거
+		  nonClick.forEach((e) => {
+		    e.classList.remove("click");
+		  });
+		  // 클릭한 div만 "click"클래스 추가
+		  event.target.classList.add("click");
+		}
+		
+		nonClick.forEach((e) => {
+		  e.addEventListener("click", handleClick);
+		});
 	}
 	
 	function nextMenu4() {
@@ -868,6 +967,22 @@
 		$('#menu3').css('display', 'none');
 		$('#menu4').css('display', 'none');
 		$('#menu5').css('display', 'block');
+		
+		/* button click 색상유지 함수 */
+		const nonClick = document.querySelectorAll(".non-click");
+
+		function handleClick(event) {
+		  // div에서 모든 "click" 클래스 제거
+		  nonClick.forEach((e) => {
+		    e.classList.remove("click");
+		  });
+		  // 클릭한 div만 "click"클래스 추가
+		  event.target.classList.add("click");
+		}
+		
+		nonClick.forEach((e) => {
+		  e.addEventListener("click", handleClick);
+		});
 	}
 	
 	function prevMenu5() {
@@ -1077,9 +1192,23 @@
  		// 5. 전송
  		
     	form.submit();
- 		
 	}
-	 
+		
+	/* button click 색상유지 함수 */
+		const nonClick = document.querySelectorAll(".non-click");
+
+		function handleClick(event) {
+		  // div에서 모든 "click" 클래스 제거
+		  nonClick.forEach((e) => {
+		    e.classList.remove("click");
+		  });
+		  // 클릭한 div만 "click"클래스 추가
+		  event.target.classList.add("click");
+		}
+		
+		nonClick.forEach((e) => {
+		  e.addEventListener("click", handleClick);
+		});
 
 	</script>
 </body>

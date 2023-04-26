@@ -7,12 +7,59 @@
 .left {
 	position: relative;
 	background-color: #EAF4F4;
+	display: grid;
+	justify-content: center;
 }
 
 .changepage {
 	margin:auto;
 	float: right;
 }
+
+#btn_cate{
+	width:200px;
+	text-align: center; /* 중앙정렬 */
+}
+
+/* 카테고리 선택시 색상 변경 */
+.left2, .btn_1 {
+	grid-template-columns: 20px 200px;
+	justify-content: center;
+	justify-items: center;
+	align-content: stretch;
+	gap: 20px 20px;
+}
+.btn_c, .btn_after, .btn_before {
+	font-weight: bold;
+	font-size: 18px;
+ 	width: 130px;
+ 	height: 40px;
+ 	border: 0;
+ 	border-radius: 10px;
+}
+.btn_c:hover {
+	box-shadow: 0 3px 5px rgba(0,0,0,0.3), 0 3px 5px rgba(0,0,0,0.5);
+  	transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+}
+.btn_after:hover{
+	box-shadow: 0 3px 5px rgba(0,0,0,0.3), 0 3px 5px rgba(0,0,0,0.5);
+  	transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+}
+.btn_before:hover{
+	box-shadow: 0 3px 5px rgba(0,0,0,0.3), 0 3px 5px rgba(0,0,0,0.5);
+  	transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+}
+.non-click {
+  background-color: white;
+	outline: green;
+  color: #004000;
+  border-radius: 20px;
+}
+.click {
+  background-color: #008080;
+  color: white;
+}
+/*  */
 
 .btn_1 {
 	text-decoration: none;
