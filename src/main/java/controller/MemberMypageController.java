@@ -33,7 +33,6 @@ public class MemberMypageController extends HttpServlet {
 		//클래스 등록관리
 		else if(Integer.parseInt(menu)==2) {
 			
-			
 		}
 		//리뷰내역관리
 		else if(Integer.parseInt(menu)==5) {
