@@ -15,13 +15,14 @@
 
 #scroll{
 	position: relative;
-	height: 150px;
+	height: 300px;
 	overflow-x: hidden;
 	overflow-y: scroll;
 }
 #table1{
 	table-layout: fixed;	
 	font-size: 10px;
+	text-align: center
 }
 
 #table2{
@@ -39,13 +40,20 @@
 .images1{
 	width: 150px;
 	height: 100px;
-	margin:70px;
+	margin:30px;
 	border: 2px solid gray; 
 	border-radius: 5%;
 }
+.images2{
+	display:inline;
+	width: 150px;
+	height: 80px;
+	
+}
 
 #calendar{
-	height: 500px;
+	width:600px;
+	height: 600px;
 	border: 1px solid lightgray; 
 	border-radius: 5%;
 	box-shadow:0 5px 20px rgba(0, 0, 0, 0.5);
@@ -65,13 +73,19 @@ h6{
 	font-weight: bold;
 }
 
+#rode{
+	margin-bottom: 10px;
+	font-weight: bold;
+}
+
+
 .price{
 	margin-right: 120px;
 }
 
 
 .bi-universal-access, .bi-clock, .bi-car-front-fill, 
-.bi-geo-alt-fill, .bi-calendar3-event {
+.bi-geo-alt-fill, .bi-calendar3-event,.bi-cash-coin {
     font-size: 30px;
     line-height: 30px;
 }

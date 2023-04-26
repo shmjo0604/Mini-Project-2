@@ -28,6 +28,8 @@ public class ClassSessionView {
 	private String intro;
 	// 커리큘럼
 	private String curriculum;
+	// 강사소개
+	private String instructor;
 	// 조회수
 	private long hit;
 	// 등록일자
@@ -78,6 +80,5 @@ public class ClassSessionView {
 	private String actcate;
 	
 	private long totalprice;
-	
 	
 }
