@@ -1,5 +1,7 @@
 package serviceImpl;
 
+import org.apache.ibatis.javassist.bytecode.stackmap.BasicBlock.Catch;
+
 import config.MyBatisContext;
 import dto.Member;
 import mapper.MemberMapper;
@@ -80,6 +82,12 @@ public class MemberServiceImpl implements MemberService {
 			e.printStackTrace();
 			return 0;
 		}
+	}
+
+	@Override
+	public Member findMemberId(Member obj) {
+		return MyBatisContext.getSqlSession().getMapper(MemberMapper.class).findMemberId(obj);
+		
 	}
 
 
