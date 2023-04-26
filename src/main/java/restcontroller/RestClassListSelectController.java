@@ -9,15 +9,13 @@ import java.util.Map;
 import com.google.gson.Gson;
 
 import config.MyBatisContext;
-import dto.Actdetailcate;
 import dto.ClassSessionView;
-import dto.Localcate;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import mapper.ClassMapper;
+import mapper.ClassSelectMapper;
 
 @WebServlet(urlPatterns = { "/api/class/selectclasslist.json" })
 public class RestClassListSelectController extends HttpServlet {
@@ -33,10 +31,12 @@ public class RestClassListSelectController extends HttpServlet {
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 
-		ClassMapper cMapper = MyBatisContext.getSqlSession().getMapper(ClassMapper.class);
+		ClassSelectMapper cMapper = MyBatisContext.getSqlSession().getMapper(ClassSelectMapper.class);
 
 		if (request.getParameter("classdate") == null) {
 			Map<String, Object> map = new HashMap<>();
+			
+			//System.out.println(request.getParameter("keyword"));
 
 			map.put("citycode", request.getParameter("citycode"));
 			map.put("localcode", request.getParameter("localcode"));
@@ -45,7 +45,7 @@ public class RestClassListSelectController extends HttpServlet {
 			map.put("classlevel", request.getParameter("classlevel"));
 			map.put("minprice", request.getParameter("minprice"));
 			map.put("maxprice", request.getParameter("maxprice"));
-			map.put("keyword", null);
+			map.put("keyword", request.getParameter("keyword"));
 
 			List<ClassSessionView> list = cMapper.selectClassSessionViewList2(map);
 			
@@ -77,7 +77,7 @@ public class RestClassListSelectController extends HttpServlet {
 			map.put("classlevel", request.getParameter("classlevel"));
 			map.put("minprice", request.getParameter("minprice"));
 			map.put("maxprice", request.getParameter("maxprice"));
-			map.put("keyword", null);
+			map.put("keyword", request.getParameter("keyword"));
 
 			List<ClassSessionView> list = cMapper.selectClassSessionViewList1(map);
 			// System.out.println(list.toString());
@@ -98,12 +98,6 @@ public class RestClassListSelectController extends HttpServlet {
 			out.print(jsonString);
 			out.flush();
 		}
-
-	}
-
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		// TODO Auto-generated method stub
 
 	}
 

@@ -7,21 +7,15 @@
 		<div class="col d-flex">
 			<div class="d-flex">
 				<div class="input-group me-3">
-					<!-- <select class="form-select" aria-label="Default select example">
-                            <option selected value="title">제목</option>
-                            <option value="keyword">내용</option>
-                            <option value="2"></option>
-                            <option value="3">Three</option>
-                        </select> -->
-					<input type="text" class="form-control" placeholder="검색어를 입력하세요."
-						aria-label="Text input with dropdown button">
-					<button class="btn btn-primary" type="button">
+					<input id="keyword_map" type="search" class="form-control" placeholder="검색어를 입력하세요."
+						aria-label="Text input with dropdown button" onkeyup="if(window.event.keyCode==13){searchClassActionMap()}"/>
+					<button class="btn btn-primary" type="button" onclick="searchClassActionMap()">
 						<i class="fas fa-search fa-sm"></i>
 					</button>
 				</div>
 			</div>
 			<div class="d-flex me-3">
-				<div class="me-3">지역</div>
+				<div class="searchhead_map me-3">지역</div>
 				<div>
 					<select class="form-select" aria-label="Default select example" onchange="getLocalcate_map(this.value)">
 					<c:forEach var="obj" items="${list2}">
@@ -31,7 +25,7 @@
 				</div>
 			</div>
 			<div class="d-flex me-3">
-				<div class="me-3">카테고리</div>
+				<div class="searchhead_map me-3">카테고리</div>
 				<div>
 					<select class="form-select" aria-label="Default select example" onchange="getActcate_map(this.value)">
 					<c:forEach var="obj" items="${list1}">
@@ -41,14 +35,15 @@
 				</div>
 			</div>
 			<div class="d-flex">
-				<div class="me-3">날짜</div>
+				<div class="searchhead_map me-3">날짜</div>
 				<div>
-					<input id="classdate" class="form-control datepicker">
+					<input id="classdate_map" type="search" class="form-control datepicker" placeholder="날짜를 선택하세요">
 				</div>
 			</div>
 			<div class="ms-auto">
+				<button class="btn btn-outline-success" onclick="searchClassActionMap()"><i class="bi bi-search me-2"></i>검색</button>
 				<a href="select.do?search=list">
-					<button class="btn btn-outline-success">목록 보기</button>
+					<button class="btn btn-outline-success"><i class="bi bi-card-list me-2"></i>목록 보기</button>
 				</a>
 			</div>
 		</div>
@@ -58,7 +53,8 @@
 </div>
 <div class="container-fluid">
 	<div class="row mb-3">
-		<div id = "classlist_map" class="col-3">
+		<div id = "classlist_map" class="col-3" style="height:750px; overflow-y: scroll;">
+			<!-- 동적 생성 -->
 		
  			<%-- <c:forEach var="obj" items="${list3}">
  				<a href="product.do?classcode=${obj.classcode}">
@@ -114,7 +110,10 @@
 	var classlevel_map = 0;
 	var minprice_map = 0;
 	var maxprice_map = 0;
+	var keyword_map = null;
 
+	var mapdata = null;
+	
 	searchClassActionMap();
 	
 	function getLocalcate_map(code) {
@@ -139,11 +138,17 @@
 	
 async function searchClassActionMap() {
 		
-		if($('#classdate').val().length !== 0) {
-			classdate = $("#classdate").val();
+		if($('#classdate_map').val().length !== 0) {
+			classdate_map = $("#classdate_map").val();
 		}
 		else {
-			classdate = null;
+			classdate_map = null;
+		}
+		if($('#keyword_map').val().length !== 0) {
+			keyword_map = $('#keyword_map').val();
+		}
+		else {
+			keyword_map = null;
 		}
 		
 		const url = "${pageContext.request.contextPath}/api/class/selectclasslist.json";
@@ -155,38 +160,65 @@ async function searchClassActionMap() {
 					citycode : citycode_map, activitycode : activitycode_map,
 					localcode : localcode_map, actcode : actcode_map,
 					classlevel : classlevel_map, classdate : classdate_map,
-					minprice : minprice_map, maxprice : maxprice_map
+					minprice : minprice_map, maxprice : maxprice_map, keyword : keyword_map
 				} 
 				}, 
 				{headers});
+		
 		console.log(data);
 		
 		const classlist_map = $('#classlist_map')[0];
 		classlist_map.innerHTML = '';
 		for(let obj of data.list) {
 			classlist_map.innerHTML +=
-				'<div class="col">' +
-					'<div class="card shadow-sm mb-3">' + 
-						'<div class="card-body">' +
-							'<h4 class="card-text text-center">' + obj.title + '</h4>' +
-							'<p class="card-text"> 가격 : ' + obj.price + '</p>' +
-							'<p class="card-text"> 주소 : ' + obj.address1 + '</p>' +
-							'<div class="d-flex justify-content-between align-items-center">' + 
-								'<div>' +
-									'<button class="btn btn-sm btn-outline-success"> 상세조회' + '</button>' +
-								'<div>' +
-							'</div>' +
+				'<div class="col mb-3">' +
+					'<a href="product.do?classcode='+ obj.classcode + '" class="nav-link">' +
+						'<div class="card shadow-sm">' + 
+							'<div class="card-header text-center">' + obj.title + '</div>' +
+							'<div class="card-body">' +
+								'<p class="card-text"> 날짜 : ' + obj.classdate + '</p>' +
+								'<p class="card-text"> 가격(1인) : ' + obj.price + '원' + '</p>' +
+								'<p class="card-text"> 주소 : ' + obj.address1 + " " + obj.address2 + " " + obj.address3 + '</p>' +
+								/* '<div class="d-flex justify-content-between align-items-center">' + 
+									'<div>' +
+										'<button class="btn btn-sm btn-outline-success">' + '<a href="product.do?classcode=' 
+												+ obj.classcode + '" class="nav-link">' + '상세 정보 조회' + '</a>' + '</button>' +
+									'<div>' +
+								'</div>' + */
+							'</div>'
 						'</div>'
-					'</div>'
+					'</a>' +
 				'</div>';
 		}
+		var position = [];
+		for(let obj of data.list) {
+			/* var jsonObj = new Object();
+			
+			var lat = obj.latitude;
+			var lng = obj.longitude;
+			
+			jsonObj.title = obj.title;
+			jsonObj.latlng = new kakao.maps.LatLng(lat, lng); */
+			
+			//jsonObj = JSON.stringify(jsonObj);
+			
+			position.push({
+				title : obj.title,
+				latlng : new kakao.maps.LatLng(parseFloat(obj.latitude), parseFloat(obj.longitude)),
+				price : obj.price
+			});
+			
+		}
+		console.log(position);
 	}
+	
 	var container = document.getElementById('map');
 	var options = {
 		center : new kakao.maps.LatLng(35.180182599322045, 129.07538647683208), // 위도, 경도
 		level : 8
 	// 지도의 레벨
 	};
+	
 	// 지도 생성 함수
 	var map = new kakao.maps.Map(container, options);
 
@@ -199,6 +231,8 @@ async function searchClassActionMap() {
 
 	// 마커가 지도 위에 표시되도록 설정합니다
 	marker1.setMap(map);
+	
+	
 	
 	// 마커를 표시할 위치와 title 객체 배열입니다 
 	var positions = [
@@ -224,7 +258,13 @@ async function searchClassActionMap() {
 	    }
 	];
 	
-	var contents = [
+	
+	
+	positions.forEach(function(pos) {
+		console.log(pos);
+	});
+	
+	/* var contents = [
 		{
 			content : '<div class="wrap">' + 
             '    <div class="info">' + 
@@ -245,87 +285,8 @@ async function searchClassActionMap() {
             '    </div>' +    
             '</div>'
 		},
-		{
-			content : '<div class="wrap">' + 
-            '    <div class="info">' + 
-            '        <div class="title">' + 
-            '            카카오 스페이스닷원2' + 
-            '            <div class="close" onclick="closeOverlay(this)" title="닫기"></div>' + 
-            '        </div>' + 
-            '        <div class="body">' + 
-            '            <div class="img">' +
-            '                <img src="" width="73" height="70">' +
-            '           </div>' + 
-            '            <div class="desc">' + 
-            '                <div class="ellipsis">제주특별자치도 제주시 첨단로 242</div>' + 
-            '                <div class="jibun ellipsis">(우) 63309 (지번) 영평동 2181</div>' + 
-            '                <div><a href="https://www.kakaocorp.com/main" target="_blank" class="link">홈페이지</a></div>' + 
-            '            </div>' + 
-            '        </div>' + 
-            '    </div>' +    
-            '</div>'
-		},
-		{
-			content : '<div class="wrap">' + 
-            '    <div class="info">' + 
-            '        <div class="title">' + 
-            '            카카오 스페이스닷원3' + 
-            '            <div class="close" onclick="closeOverlay(this)" title="닫기"></div>' + 
-            '        </div>' + 
-            '        <div class="body">' + 
-            '            <div class="img">' +
-            '                <img src="" width="73" height="70">' +
-            '           </div>' + 
-            '            <div class="desc">' + 
-            '                <div class="ellipsis">제주특별자치도 제주시 첨단로 242</div>' + 
-            '                <div class="jibun ellipsis">(우) 63309 (지번) 영평동 2181</div>' + 
-            '                <div><a href="https://www.kakaocorp.com/main" target="_blank" class="link">홈페이지</a></div>' + 
-            '            </div>' + 
-            '        </div>' + 
-            '    </div>' +    
-            '</div>'
-		},
-		{
-			content : '<div class="wrap">' + 
-            '    <div class="info">' + 
-            '        <div class="title">' + 
-            '            카카오 스페이스닷원4' + 
-            '            <div class="close" onclick="closeOverlay(this)" title="닫기"></div>' + 
-            '        </div>' + 
-            '        <div class="body">' + 
-            '            <div class="img">' +
-            '                <img src="" width="73" height="70">' +
-            '           </div>' + 
-            '            <div class="desc">' + 
-            '                <div class="ellipsis">제주특별자치도 제주시 첨단로 242</div>' + 
-            '                <div class="jibun ellipsis">(우) 63309 (지번) 영평동 2181</div>' + 
-            '                <div><a href="https://www.kakaocorp.com/main" target="_blank" class="link">홈페이지</a></div>' + 
-            '            </div>' + 
-            '        </div>' + 
-            '    </div>' +    
-            '</div>'
-		},
-		{
-			content : '<div class="wrap">' + 
-            '    <div class="info">' + 
-            '        <div class="title">' + 
-            '            카카오 스페이스닷원5' + 
-            '            <div class="close" onclick="closeOverlay(this)" title="닫기"></div>' + 
-            '        </div>' + 
-            '        <div class="body">' + 
-            '            <div class="img">' +
-            '                <img src="" width="73" height="70">' +
-            '           </div>' + 
-            '            <div class="desc">' + 
-            '                <div class="ellipsis">제주특별자치도 제주시 첨단로 242</div>' + 
-            '                <div class="jibun ellipsis">(우) 63309 (지번) 영평동 2181</div>' + 
-            '                <div><a href="https://www.kakaocorp.com/main" target="_blank" class="link">홈페이지</a></div>' + 
-            '            </div>' + 
-            '        </div>' + 
-            '    </div>' +    
-            '</div>'
-		},
-	] 
+		
+	]  */
 	
 	// 마커 이미지의 이미지 주소입니다
 	var imageSrc = "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png"; 
@@ -354,7 +315,7 @@ async function searchClassActionMap() {
 	    // 마커를 중심으로 커스텀 오버레이를 표시하기위해 CSS를 이용해 위치를 설정했습니다
 	    var overlay = new kakao.maps.CustomOverlay({
 	        content: contents[i].content,
-	        map: map,
+	        map: map, // map을 선언하지 않으면 지도 위에 올라가지 않음 -> 클릭하면 다시 생성?
 	        position: marker.getPosition()       
 	    });
 
@@ -369,9 +330,6 @@ async function searchClassActionMap() {
 	    }
 	}
 	
-	
-	
-	            
 	// 지도에 클릭 이벤트를 등록합니다
 	// 지도를 클릭하면 마지막 파라미터로 넘어온 함수를 호출합니다
 	kakao.maps.event.addListener(map, 'click', function(mouseEvent) {        

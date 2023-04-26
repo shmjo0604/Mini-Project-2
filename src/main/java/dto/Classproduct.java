@@ -29,6 +29,8 @@ public class Classproduct {
 	private String instructor;
 	// 소개글
 	private String intro;
+	// 강사소개
+	private String instructor;
 	// 커리큘럼
 	private String curriculum;
 	// 조회수

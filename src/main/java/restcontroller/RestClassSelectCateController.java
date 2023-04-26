@@ -16,17 +16,17 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import mapper.ClassMapper;
+import mapper.ClassSelectMapper;
 
 
 
 
 @WebServlet(urlPatterns = {"/api/class/selectcatelist.json"})
-public class RestClassCateSelectController extends HttpServlet {
+public class RestClassSelectCateController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private Gson gson = new Gson(); // 라이브러리를 이용한 객체 생성
        
-    public RestClassCateSelectController() {
+    public RestClassSelectCateController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -34,13 +34,7 @@ public class RestClassCateSelectController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		
-//		String pageStr = request.getParameter("page");
-//		if(pageStr == null) {
-//			response.sendRedirect("select.do?page=1"); // 강제로 page=1
-//			return; //메소드 종료시키기
-//		}
-		
-		ClassMapper cMapper = MyBatisContext.getSqlSession().getMapper(ClassMapper.class);
+		ClassSelectMapper cMapper = MyBatisContext.getSqlSession().getMapper(ClassSelectMapper.class);
 		
 		if(request.getParameter("chk").equals("classcate")) {
 			
@@ -91,11 +85,6 @@ public class RestClassCateSelectController extends HttpServlet {
 			// 두 개가 전송은 되는데, 데이터를 꺼낼 때 인덱스로 꺼내나? 일단 꺼내기 쉬운 건 Map 타입이다. key를 이용해서 쉽게 꺼낼 수 있음.
 		}
 	
-	}
-
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		
 	}
 
 }
