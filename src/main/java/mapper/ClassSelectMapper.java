@@ -47,7 +47,7 @@ public interface ClassSelectMapper {
 			" AND totalprice <![CDATA[ < ]]> #{map.maxprice} ",
 		" </if> ",
 		" <if test = 'map.keyword != null'> ",
-			" AND classtitle LIKE '%' ||  #{map.keyword} || '%' ",
+			" AND (title || intro || citycate || localcate || actdetailcate || actcate) LIKE '%' ||  #{map.keyword} || '%' ",
 			/* " OR talent LIKE '%' ||  #{map.keyword} || '%' ", */
 		" </if> ",
 		" </trim> ",
@@ -95,7 +95,7 @@ public interface ClassSelectMapper {
 			" <if test = 'map.classlevel != 0'> ", " AND classlevel = #{map.classlevel} ", " </if> ",
 			" <if test = 'map.minprice != 0'> ", " AND totalprice <![CDATA[ > ]]> #{map.minprice} ", " </if> ",
 			" <if test = 'map.maxprice != 0'> ", " AND totalprice <![CDATA[ < ]]> #{map.maxprice} ", " </if> ",
-			" <if test = 'map.keyword != null'> ", " AND classtitle LIKE '%' ||  #{map.keyword} || '%' ",
+			" <if test = 'map.keyword != null'> ", " AND (title || intro || citycate || localcate || actdetailcate || actcate) LIKE '%' ||  #{map.keyword} || '%' ",
 			/* " OR talent LIKE '%' ||  #{map.keyword} || '%' ", */
 			" </if> ", " ORDER BY s.classcode DESC ", " </script> " })
 	public List<ClassSessionView> selectClassSessionViewList2(@Param("map") Map<String, Object> map);

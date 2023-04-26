@@ -35,6 +35,8 @@ public class RestClassListSelectController extends HttpServlet {
 
 		if (request.getParameter("classdate") == null) {
 			Map<String, Object> map = new HashMap<>();
+			
+			//System.out.println(request.getParameter("keyword"));
 
 			map.put("citycode", request.getParameter("citycode"));
 			map.put("localcode", request.getParameter("localcode"));
@@ -43,7 +45,7 @@ public class RestClassListSelectController extends HttpServlet {
 			map.put("classlevel", request.getParameter("classlevel"));
 			map.put("minprice", request.getParameter("minprice"));
 			map.put("maxprice", request.getParameter("maxprice"));
-			map.put("keyword", null);
+			map.put("keyword", request.getParameter("keyword"));
 
 			List<ClassSessionView> list = cMapper.selectClassSessionViewList2(map);
 			
@@ -75,7 +77,7 @@ public class RestClassListSelectController extends HttpServlet {
 			map.put("classlevel", request.getParameter("classlevel"));
 			map.put("minprice", request.getParameter("minprice"));
 			map.put("maxprice", request.getParameter("maxprice"));
-			map.put("keyword", null);
+			map.put("keyword", request.getParameter("keyword"));
 
 			List<ClassSessionView> list = cMapper.selectClassSessionViewList1(map);
 			// System.out.println(list.toString());

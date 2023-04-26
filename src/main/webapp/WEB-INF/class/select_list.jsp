@@ -10,16 +10,16 @@
 			<div class="col d-flex">
 				<div>
 					<div class="input-group">
-						<input type="text" class="form-control" placeholder="검색어를 입력하세요."
-							aria-label="Text input with dropdown button">
-						<button class="btn btn-primary" type="button">
+						<input id="keyword" type="text" class="form-control" placeholder="검색어를 입력하세요."
+							aria-label="Text input with dropdown button"  onkeyup="if(window.event.keyCode==13){searchClassAction()}"/>
+						<button class="btn btn-primary" type="button" onclick="searchClassAction()">
 							<i class="fas fa-search fa-sm"></i>
 						</button>
 					</div>
 				</div>
 				<div class="ms-auto">
 					<a href="select.do?search=map">
-						<button class="btn btn-outline-success">지도 보기</button>
+						<button class="btn btn-outline-success"><i class="bi bi-map-fill me-2"></i>지도 보기</button>
 					</a>
 				</div>
 			</div>
@@ -74,7 +74,7 @@
 					<input id="classdate" class="form-control datepicker" placeholder="날짜를 선택하세요">
 				</div>
 			</div>
-			<div class="col-2">시간</div>
+			<div class="col-2" style="display:none;">시간</div>
 			<div class="col-4"></div>
 		</div>
 		<div class="row mb-4">
@@ -97,8 +97,8 @@
 		
 		<div class="row mb-3 ">
 			<div class="text-center">
-				<button class="btn btn-outline-success" onclick="resetSearchOption()">검색 조건 초기화</button>
-				<button class="btn btn-outline-primary" type="button" onclick="searchClassAction()">검색</button>
+				<button class="btn btn-outline-success" onclick="resetSearchOption()"><i class="bi bi-arrow-clockwise me-2"></i>검색 조건 초기화</button>
+				<button class="btn btn-outline-primary" type="button" onclick="searchClassAction()"><i class="bi bi-search me-2"></i>검색</button>
 			</div>
 		</div>
 		
@@ -130,6 +130,7 @@
 	var minprice = 0;
 	var maxprice = 0;
 	var classdate = null;
+	var keyword = null;
 
 	searchClassAction();
 	
@@ -277,6 +278,12 @@
 		else {
 			maxprice = 0;
 		}
+		if($('#keyword').val().length !== 0) {
+			keyword = $('#keyword').val();
+		}
+		else {
+			keyword = null;
+		}
 		
 		const url = "${pageContext.request.contextPath}/api/class/selectclasslist.json";
 		const headers = {"Content-Type":"application/json"};
@@ -287,7 +294,7 @@
 					citycode : citycode, activitycode : activitycode,
 					localcode : localcode, actcode : actcode,
 					classlevel : classlevel, classdate : classdate,
-					minprice : minprice, maxprice : maxprice
+					minprice : minprice, maxprice : maxprice, keyword : keyword
 				} 
 				}, 
 				{headers});
@@ -299,13 +306,15 @@
 			classlist.innerHTML +=
 				'<div class="col">' +
 					'<div class="card shadow-sm">' + 
+						'<div class="card-header text-center">' + obj.title + '</div>' +
 						'<div class="card-body">' +
-							'<h4 class="card-text text-center">' + obj.title + '</h4>' +
-							'<p class="card-text"> 가격 : ' + obj.price + '</p>' +
-							'<p class="card-text"> 주소 : ' + obj.address1 + '</p>' +
+							'<p class="card-text"> 날짜 : ' + obj.classdate + '</p>' +
+							'<p class="card-text"> 가격(1인) : ' + obj.price + '원' + '</p>' +
+							'<p class="card-text"> 주소 : ' + obj.address1 + " " + obj.address2 + " " + obj.address3 + '</p>' +
 							'<div class="d-flex justify-content-between align-items-center">' + 
 								'<div>' +
-									'<button class="btn btn-sm btn-outline-success"> 상세조회' + '</button>' +
+									'<button class="btn btn-sm btn-outline-success">' + '<a href="product.do?classcode=' 
+											+ obj.classcode + '" class="nav-link">' + '상세 정보 조회' + '</a>' + '</button>' +
 								'<div>' +
 							'</div>' +
 						'</div>'
@@ -330,8 +339,9 @@
 		$('#actdetailselect').children('option').remove();
 		$('#actdetailselect').append('<option value="">전체</option>');
 		
-		// 3. 날짜, 최소 가격, 최대 가격 input 태그 값 초기화
+		// 3. 키워드, 날짜, 최소 가격, 최대 가격 input 태그 값 초기화
 		
+		$('#keyword').val('');
 		$('#classdate').val('');
 		$('#minprice').val('');
 		$('#maxprice').val('');
@@ -348,6 +358,7 @@
 		minprice = 0;
 		maxprice = 0;
 		classdate = null;
+		keyword = null;
 		
 	};
 </script>

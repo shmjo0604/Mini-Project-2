@@ -7,15 +7,15 @@
 		<div class="col d-flex">
 			<div class="d-flex">
 				<div class="input-group me-3">
-					<input type="text" class="form-control" placeholder="검색어를 입력하세요."
-						aria-label="Text input with dropdown button">
-					<button class="btn btn-primary" type="button">
+					<input id="keyword_map" type="search" class="form-control" placeholder="검색어를 입력하세요."
+						aria-label="Text input with dropdown button" onkeyup="if(window.event.keyCode==13){searchClassActionMap()}"/>
+					<button class="btn btn-primary" type="button" onclick="searchClassActionMap()">
 						<i class="fas fa-search fa-sm"></i>
 					</button>
 				</div>
 			</div>
 			<div class="d-flex me-3">
-				<div class="me-3">지역</div>
+				<div class="searchhead me-3">지역</div>
 				<div>
 					<select class="form-select" aria-label="Default select example" onchange="getLocalcate_map(this.value)">
 					<c:forEach var="obj" items="${list2}">
@@ -25,7 +25,7 @@
 				</div>
 			</div>
 			<div class="d-flex me-3">
-				<div class="me-3">카테고리</div>
+				<div class="searchhead me-3">카테고리</div>
 				<div>
 					<select class="form-select" aria-label="Default select example" onchange="getActcate_map(this.value)">
 					<c:forEach var="obj" items="${list1}">
@@ -35,15 +35,15 @@
 				</div>
 			</div>
 			<div class="d-flex">
-				<div class="me-3">날짜</div>
+				<div class="searchhead me-3">날짜</div>
 				<div>
-					<input id="classdate" class="form-control datepicker" placeholder="날짜를 선택하세요">
+					<input id="classdate_map" type="search" class="form-control datepicker" placeholder="날짜를 선택하세요">
 				</div>
 			</div>
 			<div class="ms-auto">
-				<button class="btn btn-outline-success" onclick="searchClassActionMap()">검색</button>
+				<button class="btn btn-outline-success" onclick="searchClassActionMap()"><i class="bi bi-search me-2"></i>검색</button>
 				<a href="select.do?search=list">
-					<button class="btn btn-outline-success">목록 보기</button>
+					<button class="btn btn-outline-success"><i class="bi bi-card-list me-2"></i>목록 보기</button>
 				</a>
 			</div>
 		</div>
@@ -110,6 +110,7 @@
 	var classlevel_map = 0;
 	var minprice_map = 0;
 	var maxprice_map = 0;
+	var keyword_map = null;
 
 	searchClassActionMap();
 	
@@ -135,11 +136,17 @@
 	
 async function searchClassActionMap() {
 		
-		if($('#classdate').val().length !== 0) {
-			classdate = $("#classdate").val();
+		if($('#classdate_map').val().length !== 0) {
+			classdate_map = $("#classdate_map").val();
 		}
 		else {
-			classdate = null;
+			classdate_map = null;
+		}
+		if($('#keyword_map').val().length !== 0) {
+			keyword_map = $('#keyword_map').val();
+		}
+		else {
+			keyword_map = null;
 		}
 		
 		const url = "${pageContext.request.contextPath}/api/class/selectclasslist.json";
@@ -151,7 +158,7 @@ async function searchClassActionMap() {
 					citycode : citycode_map, activitycode : activitycode_map,
 					localcode : localcode_map, actcode : actcode_map,
 					classlevel : classlevel_map, classdate : classdate_map,
-					minprice : minprice_map, maxprice : maxprice_map
+					minprice : minprice_map, maxprice : maxprice_map, keyword : keyword_map
 				} 
 				}, 
 				{headers});
@@ -161,15 +168,17 @@ async function searchClassActionMap() {
 		classlist_map.innerHTML = '';
 		for(let obj of data.list) {
 			classlist_map.innerHTML +=
-				'<div class="col">' +
-					'<div class="card shadow-sm mb-3">' + 
+				'<div class="col mb-3">' +
+					'<div class="card shadow-sm">' + 
+						'<div class="card-header text-center">' + obj.title + '</div>' +
 						'<div class="card-body">' +
-							'<h4 class="card-text text-center">' + obj.title + '</h4>' +
-							'<p class="card-text"> 가격 : ' + obj.price + '</p>' +
-							'<p class="card-text"> 주소 : ' + obj.address1 + '</p>' +
+							'<p class="card-text"> 날짜 : ' + obj.classdate + '</p>' +
+							'<p class="card-text"> 가격(1인) : ' + obj.price + '원' + '</p>' +
+							'<p class="card-text"> 주소 : ' + obj.address1 + " " + obj.address2 + " " + obj.address3 + '</p>' +
 							'<div class="d-flex justify-content-between align-items-center">' + 
 								'<div>' +
-									'<button class="btn btn-sm btn-outline-success"> 상세조회' + '</button>' +
+									'<button class="btn btn-sm btn-outline-success">' + '<a href="product.do?classcode=' 
+											+ obj.classcode + '" class="nav-link">' + '상세 정보 조회' + '</a>' + '</button>' +
 								'<div>' +
 							'</div>' +
 						'</div>'

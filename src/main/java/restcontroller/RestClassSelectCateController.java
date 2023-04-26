@@ -22,11 +22,11 @@ import mapper.ClassSelectMapper;
 
 
 @WebServlet(urlPatterns = {"/api/class/selectcatelist.json"})
-public class RestClassCateSelectController extends HttpServlet {
+public class RestClassSelectCateController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private Gson gson = new Gson(); // 라이브러리를 이용한 객체 생성
        
-    public RestClassCateSelectController() {
+    public RestClassSelectCateController() {
         super();
         // TODO Auto-generated constructor stub
     }
