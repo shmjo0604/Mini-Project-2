@@ -30,7 +30,7 @@
 
 		<div class="row mb-4">
 			<div class="col-2">
-				<div>지역</div>
+				<div class="searchhead">지역</div>
 			</div>
 			<div class="col-4">
 				<select id="cityselect" class="form-select" aria-label="Default select example" onchange="getLocalcate(this.value)">
@@ -40,7 +40,7 @@
 				</select>
 			</div>
 			<div class="col-2">
-				<div>세부 지역</div>
+				<div class="searchhead">세부 지역</div>
 			</div>
 			<div class="col-4">
 				<select id="localselect" class="form-select" aria-label="Default select example" onchange="setLocalcate(this.value)">
@@ -50,7 +50,7 @@
 		</div>
 		<div class="row mb-4">
 			<div class="col-2">
-				<div>클래스 카테고리</div>
+				<div class="searchhead">클래스 카테고리</div>
 			</div>
 			<div class="col-4">
 				<select id="activityselect" class="form-select" aria-label="Default select example" onchange="getClasscate(this.value)">
@@ -60,7 +60,7 @@
 				</select>
 			</div>
 			<div class="col-2">
-				<div>세부 카테고리</div>
+				<div class="searchhead">세부 카테고리</div>
 			</div>
 			<div class="col-4">
 				<select id="actdetailselect" class="form-select" aria-label="Default select example" onchange="setActcate(this.value)">
@@ -69,7 +69,9 @@
 			</div>
 		</div>
 		<div class="row mb-4">
-			<div class="col-2">날짜</div>
+			<div class="col-2">
+				<div class="searchhead">날짜</div>
+			</div>
 			<div class="col-4">
 				<div>
 					<input id="classdate" class="form-control datepicker" placeholder="날짜를 선택하세요">
@@ -79,7 +81,9 @@
 			<div class="col-4"></div>
 		</div>
 		<div class="row mb-4">
-			<div class="col-2">난이도</div>
+			<div class="col-2">
+				<div class="searchhead">난이도</div>
+			</div>
 			<div class="col-4">
 				<div>
 					<button class="levelchk btn btn-outline-success" value="1">입문자</button>
@@ -87,7 +91,9 @@
 					<button class="levelchk btn btn-outline-success" value="3">숙련자</button>
 				</div>
 			</div>
-			<div class="col-2">가격</div>
+			<div class="col-2">
+				<div class="searchhead">가격</div>
+			</div>
 			<div class="col-2">
 				<input id="minprice" class="form-control" type="number" placeholder="최소 가격" />
 			</div>
@@ -305,22 +311,26 @@
 		classlist.innerHTML = '';
 		for(let obj of data.list) {
 			classlist.innerHTML +=
+				
 				'<div class="col">' +
-					'<div class="card shadow-sm">' + 
-						'<div class="card-header text-center">' + obj.title + '</div>' +
-						'<div class="card-body">' +
-							'<p class="card-text"> 날짜 : ' + obj.classdate + '</p>' +
-							'<p class="card-text"> 가격(1인) : ' + obj.price + '원' + '</p>' +
-							'<p class="card-text"> 주소 : ' + obj.address1 + " " + obj.address2 + " " + obj.address3 + '</p>' +
-							'<div class="d-flex justify-content-between align-items-center">' + 
-								'<div>' +
-									'<button class="btn btn-sm btn-outline-success">' + '<a href="product.do?classcode=' 
-											+ obj.classcode + '" class="nav-link">' + '상세 정보 조회' + '</a>' + '</button>' +
-								'<div>' +
+					'<a href="product.do?classcode='+ obj.classcode + '" class="nav-link">' +
+						'<div class="card shadow-sm">' + 
+							'<div class="card-header text-center">' + obj.title + '</div>' +
+							'<div class="card-body">' +
+								'<p class="card-text"> 날짜 : ' + obj.classdate + '</p>' +
+								'<p class="card-text"> 가격(1인) : ' + obj.price + '원' + '</p>' +
+								'<p class="card-text"> 주소 : ' + obj.address1 + " " + obj.address2 + " " + obj.address3 + '</p>' +
+								/* '<div class="d-flex justify-content-between align-items-center">' + 
+									'<div>' +
+										'<button class="btn btn-sm btn-outline-success">' + '<a href="product.do?classcode=' 
+												+ obj.classcode + '" class="nav-link">' + '상세 정보 조회' + '</a>' + '</button>' +
+									'<div>' +
+								'</div>' + */
 							'</div>' +
-						'</div>'
-					'</div>'
+						'</div>' +
+					'</a>' +
 				'</div>';
+		
 		}
 		
 	};

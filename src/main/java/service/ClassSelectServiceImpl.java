@@ -15,14 +15,28 @@ public class ClassSelectServiceImpl implements ClassSelectService {
 	
 	@Override
 	public List<Citycate> classCitycateList() {
-		return cMapper.selectCitycateList();
+		
+		try {
+			return cMapper.selectCitycateList();
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+			return null;
+		}
 	}
 
 	// 2. 클래스 상위 카테고리 전달
 	
 	@Override
 	public List<Activitycate> classActivitycateList() {
-		return cMapper.selectActivitycateList();
+		
+		try {
+			return cMapper.selectActivitycateList();
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+			return null;
+		}
 	}
 
 }
