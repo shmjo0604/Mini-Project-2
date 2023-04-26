@@ -21,7 +21,7 @@
 	rel="stylesheet">
 <!-- sources -->
 <link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath}/resources/css/viewselect.css" />
+	href="${pageContext.request.contextPath}/resources/css/product.css" />
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/resources/css/home.css" />
 
@@ -32,34 +32,31 @@
 
 <body>
 	<!-- header -->
-	<jsp:include page="header.jsp"></jsp:include>
+	<jsp:include page="../header.jsp"></jsp:include>
 	<hr />
 	<div class="container mb-5" id="container_main">
 		<div class="row mt-5 mb-5 d-flex flex-nowrap">
-			<div class="row col-6 mx-1 " style="height: 500px;">
+			<div class="row col-6 mx-1 " id="main_image" style="height: 600px;">
 				<div >
 				<img class="images mt-3 mx-1" src="${pageContext.request.contextPath}/resources/images/design.jpg" >
 				</div>
+					<div class= "mt-3 d-flex flex-row justify-content-between" style=" width:600px;  height: 150px;">
+						<div class="images2">
+						<img class="images1 mt-2 " src="${pageContext.request.contextPath}/resources/images/design.jpg" >
+						</div >
+						<div class="images2">
+						<img class="images1 mt-2 " src="${pageContext.request.contextPath}/resources/images/design.jpg" >
+						</div>
+						<div class="images2">
+						<img class="images1 mt-2 " src="${pageContext.request.contextPath}/resources/images/design.jpg" >
+						</div>	
+						</div>
 			</div>
-			<div class= "col mt-3">
-			<div>
-			<img class="images1 mt-3 mx-1" src="${pageContext.request.contextPath}/resources/images/design.jpg" >
-			</div>
-			<div>
-			<img class="images1 mt-1 mx-1" src="${pageContext.request.contextPath}/resources/images/design.jpg" >
-			</div>
-			<div>
-			<img class="images1 mt-1 mx-1" src="${pageContext.request.contextPath}/resources/images/design.jpg" >
-			</div>
-			
-			</div>
-			
-			
-			<div class="col-4 mt-3 mx-3" id="calendar"  >
+			<div class="col-5 mt-3 mx-3" id="calendar"  >
 			<div class="row">
 			<div class="mt-3">
-					<button type="button" class="btn btn-primary float-end mx-1" data-bs-toggle="modal"
-						data-bs-target="#exampleModal">신청하기</button>
+				<!-- <button type="button" class="btn btn-primary float-end mx-1" data-bs-toggle="modal"
+						data-bs-target="#exampleModal">신청하기</button> -->
 					
 				</div>
 				<div style="height: 240px; text-align: center;"> 달력</div></div>
@@ -68,38 +65,31 @@
 					<table class="table table-hover" id="table1">
 						<thead>
 							<tr>
+								<th scope="col">세션.NO</th>
+								<th scope="col">현재인원</th>
+								<th scope="col">최소인원</th>
+								<th scope="col">최대인원</th>
 								<th scope="col">날짜</th>
 								<th scope="col">요일</th>
-								<th scope="col">시간</th>
-								<th scope="col">인원</th>
-
+								<th scope="col">시작</th>
+								<th scope="col">종료</th>
+								<th scope="col">난이도</th>
 							</tr>
 						</thead>
 						<tbody>
-							<tr>
-								<td>2023년 5월1일</td>
-								<td>(월)</td>
-								<td>14:00~ 16:00</td>
-								<td>남은인원</td>
-							</tr>
-							<tr>
-								<td style="">2023년 5월3일</td>
-								<td>(수)</td>
-								<td>15:00~ 18:00</td>
-								<td>남은인원</td>
-							</tr>
-							<tr>
-								<td style="">2023년 5월4일</td>
-								<td>(목)</td>
-								<td>13:00~ 14:00</td>
-								<td>남은인원</td>
-							</tr>
-							<tr>
-								<td style="">2023년 5월7일</td>
-								<td>(일)</td>
-								<td>09:00~ 12:00</td>
-								<td>남은인원</td>
-							</tr>
+							<c:forEach var="obj" items="${list1}">
+								<tr onclick="modalAction(${obj.no})">
+									<td >${obj.no}</td>
+									<td>${obj.cnt}명</td>
+									<td>${obj.minimum}명</td>
+									<td>${obj.maximum}명</td>
+									<td>${obj.classdate}</td>
+									<td>${obj.classday}</td>
+									<td>${obj.classstart}</td>
+									<td>${obj.classend}</td>
+									<td>${obj.classlevel}</td>
+								</tr>
+							</c:forEach>
 						</tbody>
 					</table>
 				</div>
@@ -114,13 +104,13 @@
 			<div class="row d-flex flex-nowrap">
 				<div class="col-8 mx-1">
 					<div style="width: 500px; height: 50px; margin-left: 10px; margin-bottom : 5px;">
-						<h6>■ 제목 :</h6>
+						<h6>■ 제목 : ${obj.title}</h6>
 					</div>
 					<div style="width: 700px; height: 250px; margin-left: 10px;">
-						<h6>■ 소개글 :</h6>
+						<h6>■ 소개글 : ${obj.intro}</h6>
 					</div>
 				</div>
-				<div class="col-4 ">
+				<div class="col-4 " style="position: relative; top: -20px; left: -20px;">
 					<div style="width: 600px; margin-right: 100px;">
 						<h6><i class="bi bi-universal-access mx-1"></i>
 						난이도 :</h6>
@@ -129,6 +119,12 @@
 						<h6><i class="bi bi-clock mx-1"></i>
 						시간 :</h6>
 					</div>
+					
+					<div style="width: 600px; margin-right: 100px;">
+						<h6><i class="bi bi-cash-coin mx-1"></i>
+						가격 :</h6>
+					</div>
+					
 					<div style="width: 600px; height: 100px; margin-right: 100px;">
 						<h6> <i class="bi bi-geo-alt-fill mx-1"></i>
 						주소 :</h6>
@@ -146,35 +142,27 @@
 		<!-- 커리큘럼 -->
 		<div class="col mt-1 " style = "height: 400px;">
 			<h5 class="mt-5 mx-1">커리큘럼</h5>
-			<div style="width: 500px; height: 80px; margin-left: 20px;">
-				<h6>스텝1:</h6>
-			</div>
-			<div style="width: 500px; height: 80px; margin-left: 20px;">
-				<h6>스텝2:</h6>
-			</div>
-			<div style="width: 500px; height: 80px; margin-left: 20px;">
-				<h6>스텝3:</h6>
-			</div>
-			<div style="width: 500px; height: 80px; margin-left: 20px;">
-				<h6>스텝4:</h6>
-			</div>
+			<h6 class="mx-1">Step1. ${obj.curriculum}</h6>
 		</div>
 		
 		<hr/>
 		<div class="row d-flex flex-nowrap">
 		<div class="col-6 mx-1 mt-1 mb-2 " style="height: 500px;">
 			<h5 class="mt-1 mb-4" >위치</h5>
-			<div class="mt-1" id="map" style="width:550px;height:300px; border: 1px solid; #cccccc;"></div>
+			<h6> <i class="bi bi-geo-alt-fill mx-1"></i>
+			주소 : ${obj.address1} ${obj.address2} ${obj.address3}</h6>
+			<div class="mt-1 mx-1" id="map" style="width:600px;height:300px; border: 1px solid; #cccccc;"></div>
 			<div class="mt-1" style="width: 550px; height: 100px;">
-			<h6 class="mt-3 mx-1">
+			<h6 class="mt-3 mx-1" id="rode">
 			<i class="bi bi-car-front-fill"></i>
 			찾아오는길</h6>
+			<h6 class="mb-3"> 망원역 2번 출구에서239m </h6>
 			</div>
 		</div>
-		
+		<div style="width:10px; height: 480px; border-left: 1px solid lightgray;"></div>
 		<div class="col-5 mt-1 mb-2 " style= "height: 500px;">
 			<h5 class="mt-1" >리뷰테이블</h5>
-			<div class= "table_class" style="width: 600px;">
+			<div class= "table_class" style="width: 570px;">
 			<table class="table table-hover" id="table2">
 			<thead>
 				<tr >
@@ -208,12 +196,8 @@
 	</div>
 	
 <!-- footer -->
-	<jsp:include page="footer.jsp"></jsp:include>
+	<jsp:include page="../footer.jsp"></jsp:include>
 
-
-
-	
-</body>
 
 <!-- Modal -->
 <form action="" method="get" id="form1">
@@ -222,15 +206,24 @@
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h1 class="modal-title " id="exampleModalLabel">가격</h1>
+					<h1 class="modal-title " id="exampleModalLabel">세션정보</h1>
 					<button type="button" class="btn-close" data-bs-dismiss="modal"
 						aria-label="Close"></button>
 				</div>
 				<div class="modal-body">
-					<h6>금액 : </h6>
-					<h6>할인률 : </h6>
-					<h6>할인된 금액 : </h6>
+					<h6 class="mt-3">현재인원 : </h6>
+					<h6>최소인원 : ${obj2.minimum} </h6>
+					<h6>최대인원 : ${obj2.maximum} </h6>
+					<h6>난이도 : </h6>
+					<hr/>
+					<h6 class="mt-3" >날짜/요일 : </h6>
+					<h6>시간 : </h6>
+					<hr/>
+					<h6 class="mt-3" >할인 : </h6>
 					<h6>추가금액 : </h6>
+			
+					
+					
 					<h4 class="float-end price" id="price">총 금액 : </h4>
 					
 				</div>
@@ -247,12 +240,13 @@
 	<script src="${pageContext.request.contextPath}/resources/js/jquery-3.6.4.min.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/js/jquery.twbsPagination.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.3.5/axios.min.js"></script>
+	
 
 	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=a5f1e914e5a27b778530448bed230f5e"></script>
 	<script>
 	var container = document.getElementById('map');
 	var options = {
-		center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심 위치, 경도
+		center: new kakao.maps.LatLng(${obj.latitude}, ${obj.longitude}), // 지도의 중심 위치, 경도
 		level: 6 //지도의 레벨
 	};
 	
@@ -284,8 +278,42 @@
 	    // 생성된 마커를 배열에 추가합니다
 	    markers.push(marker);
 	}
-
+	
+	function modalAction() {
+		console.log(1)
+	
+	}
 	</script>
+	
+	<script>
+	function modalAction(no) {
+			 	
+		console.log(no)
+		
+		/* var form = document.createElement("form");
+				form.setAttribute("action", "product.do");
+				form.setAttribute("method", "post");
+				form.style.display="block";
+		
+		var input = document.createElement("input");
+				input.setAttribute("type", "hidden");
+				input.setAttribute("name", "sessionno");
+				input.setAttribute("value", Number(no));
+				
+				document.body.appendChild(form);
+				form.appendChild(input);
+				form.submit(); */
+		// rest 로 번호 => 값받기
+		// const {data} = await ();
+				
+		const modal = new bootstrap.Modal(document.getElementById("exampleModal"),{});
+		modal.show();
+		
+		
+	}		
+	</script>	
+	
+</body>
 
 </html>
 

@@ -28,7 +28,7 @@
 
 <body>
 	<!-- header -->
-	<jsp:include page="header.jsp"></jsp:include>
+	<jsp:include page="../header.jsp"></jsp:include>
 	<hr />
 	<div class="container">
 		<h2 class="float-start mb-4"> 리뷰게시판</h2>
@@ -104,7 +104,7 @@
 	</script> -->
 
 	<!-- footer -->
-	<jsp:include page="footer.jsp"></jsp:include>
+	<jsp:include page="../footer.jsp"></jsp:include>
 
 </body>
 
