@@ -32,6 +32,7 @@ public class MemberResetPWController extends HttpServlet {
 		obj.setId(request.getParameter("id"));
 		obj.setEmail(request.getParameter("email"));
 		obj.setPhone(request.getParameter("phone"));
+		obj.setBirth(request.getParameter("Birth"));
 		
 	
 		
