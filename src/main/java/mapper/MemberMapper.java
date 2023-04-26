@@ -45,6 +45,14 @@ public interface MemberMapper {
 	@Update({
 		"update member set password = #{obj.newpassword} where password =#{obj.password} "
 	})public int updateMemberPassword(@Param("obj") Member obj);
+	//비밀번호 재설정1 
+	@Update({
+		" update member set password = #{obj.newpassword} where id =#{obj.id}"
+	})public int resetupdatePassword(@Param("obj")Member obj);
+	@Select({
+		"select * from member where id =#{obj.id} and email =#{obj.email} and phone =#{obj.phone} and chk = 1 "
+	})public Member resetMemberPassword(@Param("obj") Member obj);
+	
 	//로그아웃
 	
 	//회원탈퇴 
