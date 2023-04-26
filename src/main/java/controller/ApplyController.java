@@ -2,15 +2,12 @@ package controller;
 
 import java.io.IOException;
 
-import config.MyBatisContext;
 import dto.Apply;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
-import mapper.ApplyMapper;
 import service.ApplyService;
 import service.ApplyServiceImpl;
 
@@ -27,7 +24,7 @@ public class ApplyController extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
-		long per= Long.parseLong(request.getParameter("person"));//유효성 검사때문에 넣은것 값 확인 할때 지워햐함
+		int per= Integer.parseInt(request.getParameter("person"));//유효성 검사때문에 넣은것 값 확인 할때 지워햐함
 		String id= request.getParameter("memberid");//유효성 검사때문에 넣은것 값 확인 할때 지워햐함
 		long session= Long.parseLong(request.getParameter("session"));//유효성 검사때문에 넣은것 값 확인 할때 지워햐함
 		// id값을 session으로 꺼내는것 request.getsession  id

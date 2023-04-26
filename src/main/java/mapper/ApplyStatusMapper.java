@@ -1,13 +1,11 @@
 package mapper;
 
-import java.util.List;
-
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 
-import dto.ApplyStatus;
+import dto.Applystatus;
 
 @Mapper
 public interface ApplyStatusMapper {
@@ -26,7 +24,7 @@ public interface ApplyStatusMapper {
 		" INSERT INTO APPLYTATUS (applyno,chk) ",
 		" value(#{obj.applyno},#{obj.chk})"
 	})
-	public int insertApplyStatus(@Param("obj") ApplyStatus obj);
+	public int insertApplyStatus(@Param("obj") Applystatus obj);
 	
 	
 }

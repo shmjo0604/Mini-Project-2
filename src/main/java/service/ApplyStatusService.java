@@ -1,10 +1,9 @@
 package service;
 
-import dto.ApplyStatus;
+import dto.Applystatus;
 
 public interface ApplyStatusService {
 	
-	public int insertApplyTatus(ApplyStatus obj);
-	
+	public int insertApplyTatus(Applystatus obj);
 
 }

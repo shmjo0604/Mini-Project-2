@@ -9,12 +9,11 @@
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
     <title>Home</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
-    
     <!-- Bootstrap -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css" />
     <!-- Google Font -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=DynaPuff&family=Permanent+Marker&display=swap" rel="stylesheet">
     <!-- CSS -->
     <link rel='stylesheet' href="${pageContext.request.contextPath}/resources/css/home.css"/>
@@ -22,7 +21,7 @@
 
 <body>
 	<!-- header -->
-    <jsp:include page="header.jsp"></jsp:include>
+    <jsp:include page="./main/header.jsp"></jsp:include>
     
     <div>
          <!-- 슬라이드쇼 -->
@@ -108,7 +107,7 @@
     </div>
     
     <!-- footer -->
-    <jsp:include page="footer.jsp"></jsp:include>
+    <jsp:include page="./main/footer.jsp"></jsp:include>
 </body>
 
 </html>

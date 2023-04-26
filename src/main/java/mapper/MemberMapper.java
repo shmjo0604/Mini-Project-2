@@ -36,7 +36,7 @@ public interface MemberMapper {
 	@Select({
 		"select m.id from member m where name =#{obj.name}, and phone =#{obj.phone} and email = #{obj.email} and chk = 1 "
 		
-	})public Member selectMemberId(@Param("obj")Member obj);
+	})public Member findMemberId(@Param("obj")Member obj);
 	//회원정보수정
 	@Update({
 		"update member set name = #{obj.name},email = #{obj.email},phone = #{obj.phone} WHERE id = #{obj.id} " 
@@ -52,6 +52,8 @@ public interface MemberMapper {
 		"update member set chk = 0 where id= #{obj.id} and password =#{obj.password} "
 		
 	})public int deleteMemberOne(@Param("obj")Member obj);
+	
+	
 	
 
 }

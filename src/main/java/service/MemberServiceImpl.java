@@ -1,11 +1,10 @@
-package serviceImpl;
+package service;
 
 import org.apache.ibatis.javassist.bytecode.stackmap.BasicBlock.Catch;
 
 import config.MyBatisContext;
 import dto.Member;
 import mapper.MemberMapper;
-import service.MemberService;
 
 public class MemberServiceImpl implements MemberService {
 	

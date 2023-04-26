@@ -1,14 +1,13 @@
 package service;
 
 import config.MyBatisContext;
-import dto.ApplyStatus;
-import mapper.ApplyMapper;
+import dto.Applystatus;
 import mapper.ApplyStatusMapper;
 
 public class ApplyStatusServiceImpl implements ApplyStatusService{
 
 	@Override
-	public int insertApplyTatus(ApplyStatus obj) {
+	public int insertApplyTatus(Applystatus obj) {
 		try {
 			return MyBatisContext.getSqlSession().getMapper(ApplyStatusMapper.class)
 					.insertApplyStatus(obj);
