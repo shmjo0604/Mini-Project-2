@@ -7,35 +7,42 @@
 <meta charset="UTF-8">
 <title>클래스 등록 페이지</title>
 <meta name='viewport' content='width=device-width, initial-scale=1'>
-<!-- Google Font -->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com">
-<link href="https://fonts.googleapis.com/css2?family=DynaPuff&family=Permanent+Marker&display=swap" rel="stylesheet">
 <!-- Include stylesheet -->
-<link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+<link href="https://cdn.quilljs.com/1.3.6/quill.snow.css"
+	rel="stylesheet">
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css" />
 <!-- style css -->
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/main.css">
+	href="${pageContext.request.contextPath}/resources/css/menumain.css">
+
 </head>
+<style>
+.main {
+	height: 100%;
+	display: flex;
+}
+</style>
+
 <body>
 	<!-- Header 영역 -->
 	<jsp:include page="../header.jsp"></jsp:include>
 	
 	<!-- main 영역 -->
-		<div class="main1 col-10">
-			<div class="left col-2 m-4">
-				<button class="btn btn-outline-success m-3" onclick="pagecate()">카테고리</button>
+		<div class="main col-11">
+			<div class="left col-3 m-4" id="btn_cate">
+			<div class="left2 m-4">
+				<button class="btn_c non-click btn-outline-success m-3" onclick="pagecate()">카테고리</button>
 				<br />
-				<button class="btn btn-outline-success m-3" onclick="pageinstructor()">강사소개</button>
+				<button class="btn_c non-click btn-outline-success m-3" onclick="pageinstructor()">강사소개</button>
 				<br />
-				<button class="btn btn-outline-success m-3" onclick="pageintro()">클래스소개</button>
+				<button class="btn_c non-click btn-outline-success m-3" onclick="pageintro()">클래스소개</button>
 				<br />
-				<button class="btn btn-outline-success m-3" onclick="pagecorri()">커리큘럼</button>
+				<button class="btn_c non-click btn-outline-success m-3" onclick="pagecorri()">커리큘럼</button>
 				<br />
-				<button class="btn btn-outline-success m-3" onclick="pageprice()">가격</button>
+				<button class="btn_c non-click btn-outline-success m-3" onclick="pageprice()">가격</button>
 				<br />
+			</div>
 			</div>
 		
 			<div class="right col-8 m-4">
@@ -44,8 +51,9 @@
 					<div class="m_1 mt-6">
 						<div class="row">
 							<div class="col-5 p-3">
-								<label for="cate1">지역</label> <select id="cate1"
-									class="form-select" onchange="getLocalcate(this.value)">
+								<label for="cate1" style="font-weight:bold;">지역
+								<h6 style="display:inline; padding-right:50px; color: #FF8E8E">(필수)</h6></label> 
+								<select id="cate1" class="form-select" onchange="getLocalcate(this.value)">
 									<option value="">지역을 선택하세요</option>
 									<c:forEach var="obj" items="${list}">
 										<c:if test="${obj.code ne 1}">
@@ -55,8 +63,9 @@
 								</select>
 							</div>
 							<div class="col-5 p-3">
-								<label for="cate2">세부 지역</label> <select id="localselect"
-									class="form-select" onchange="setLocalcate(this.value)">
+								<label for="cate2" style="font-weight:bold;">세부 지역
+								<h6 style="display:inline; padding-right:50px; color: #FF8E8E">(필수)</h6></label> 
+								<select id="localselect" class="form-select" onchange="setLocalcate(this.value)">
 									<option value="">세부 지역을 선택하세요</option>
 								</select>
 							</div>
@@ -64,8 +73,9 @@
 
 						<div class="row">
 							<div class="col-5 p-3">
-								<label for="cate3">종류</label> <select id="cate3"
-									class="form-select" onchange="getActivitycate(this.value)">
+								<label for="cate3" style="font-weight:bold;">종류
+								<h6 style="display:inline; padding-right:50px; color: #FF8E8E">(필수)</h6></label> 
+								<select id="cate3" class="form-select" onchange="getActivitycate(this.value)">
 									<option value="">종류를 선택하세요</option>
 									<c:forEach var="obj" items="${list1}">
 										<c:if test="${obj.code ne 1}">
@@ -75,8 +85,9 @@
 								</select>
 							</div>
 							<div class="col-5 p-3">
-								<label for="cate4">세부 종류</label> <select id="actdetailselect"
-									class="form-select" onchange="setActcate(this.value)">
+								<label for="cate4" style="font-weight:bold;">세부 종류
+								<h6 style="display:inline; padding-right:50px; color: #FF8E8E">(필수)</h6></label> 
+								<select id="actdetailselect" class="form-select" onchange="setActcate(this.value)">
 									<option value="">세부 종류를 선택하세요</option>
 								</select>
 							</div>
@@ -85,22 +96,24 @@
 
 						<div class="post">
 							<section>
-								<input type="text" class="mb-3" id="sample6_postcode"
+								<input type="text" class="text mb-3" id="sample6_postcode"
 									placeholder="우편번호" name="postcode"> <input
 									type="button" class="btn btn-sm btn-primary m-2"
-									onclick="sample6_execDaumPostcode()" value="우편번호 찾기"><br>
-								<input type="text" id="sample6_address" placeholder="주소"
+									onclick="sample6_execDaumPostcode()" value="우편번호 찾기">
+									<h6 style="display:inline; padding-right:50px; color: #FF8E8E">(필수)</h6>
+									<br>
+								<input type="text" class="text" id="sample6_address" placeholder="주소"
 									name="address"><br>
-								<br> <input type="text" id="sample6_detailAddress"
+								<br> <input type="text" class="text" id="sample6_detailAddress"
 									placeholder="상세주소" name="detailaddress"> <input
-									type="text" id="sample6_extraAddress" placeholder="참고항목"
+									type="text" class="text" id="sample6_extraAddress" placeholder="참고항목"
 									name="extraAddress">
 							</section>
 						</div>
 
 						<div class="changepage">
 							<div class="btn_1">
-								<button class="btn_after btn" onclick="nextMenu1()">다음&raquo;</button>
+								<button class="btn_after non-click btn" onclick="nextMenu1()">다음&raquo;</button>
 							</div>
 						</div>
 					</div>
@@ -110,14 +123,15 @@
 				<div id="menu2" style="display: none;">
 					<div class="m2">
 						<section>
-							<p>프로필 이미지</p>
+							<h6 style="display:inline; font-weight:bold;">프로필 이미지
+							<h6 style="display:inline; padding-right:50px; color: #FF8E8E">(필수)</h6></h6>
 							<div id="input-image" class="mb-3 col-4">
 								<img id="insert-img"
 									src="${pageContext.request.contextPath}/resources/image/default.png"
 									style="width: 200px; height: 150px; curosr: pointer;"
 									class="mb-3" onclick="clickItemImage()" /> <input type="file"
 									name="file" id="file" class="form-control"
-									onchange="changeItemImage(this)">
+									onchange="changeItemImage(this)" >
 							</div>
 
 							<div>
@@ -128,28 +142,41 @@
 						<br>
 
 						<section>
-							<p>상호명 및 닉네임(필수)</p>
+							<h6 style="display:inline; font-weight:bold;">상호명 및 닉네임
+							<h6 style="display:inline; padding-right:50px; color: #FF8E8E">(필수)</h6></h6>
 							<p>
-								<input type="text" id="nickname" name="nickname" maxlength="50"
-									autofocus required>
+								<input type="text" class="text" id="nickname" name="nickname" maxlength="50"
+									placeholder="ex)나무이야기" autofocus required>
 							</p>
 						</section>
 						<br>
 
 						<section>
-							<p>강사 소개 (필수)</p>
-							<!-- Create the editor container -->
-							<div style="margin-bottom: 5px; background-color: white;">
-								<div id="editor1" style="height: 300px;">
-									<p>자신의 경험,경력을 소개해주세요.</p>
+							<div>
+								<h6 style="display:inline; font-weight: bold;">강사 소개
+								<h6 style="display:inline; padding-right:50px; color: #FF8E8E">(필수)</h6></h6>
+								<!-- Create the editor container -->
+								<div class="tool">
+								<span> <img id="insert-img"
+									src="${pageContext.request.contextPath}/resources/image/물음표.png"
+									style="width: 20px; height: 20px; curosr: pointer;"> 도움말
+								</span>
+								<div class="tooltip-content">
+									<p>• 최소 30자이상 작성해주세요.</p>
 								</div>
 							</div>
+								<div style="margin-top: 10px; background-color: white;">
+									<div id="editor1" style="height: 300px;">
+										<p>자신의 경험,경력을 소개해주세요.^^</p>
+									</div>
+									</div>
+								</div>
 						</section>
 						<br>
 
 						<section>
 							<div class="sns">
-								<p class="sns_2">SNS 링크 (선택)</p>
+								<p class="sns_2" style="font-weight:bold;">SNS 링크 (선택)</p>
 								<!-- 가이드 라인 작성 -->
 								<div class="tool">
 									<span> <img id="insert-img"
@@ -171,8 +198,8 @@
 
 						<div class="changepage">
 							<div class="btn_1">
-								<button class="btn_before btn" onclick="prevMenu2()">&laquo;이전</button>
-								<button class="btn_after btn" onclick="nextMenu2()">다음&raquo;</button>
+								<button class="btn_before btn non-click" onclick="prevMenu2()">&laquo;이전</button>
+								<button class="btn_after btn non-click" onclick="nextMenu2()">다음&raquo;</button>
 							</div>
 						</div>
 					</div>
@@ -182,30 +209,40 @@
 				<div id="menu3" style="display: none;">
 					<div class="m_3">
 						<section>
-							<p>클래스 제목(필수)</p>
+							<p style="display:inline; font-weight:bold;">클래스 제목</p>
+							<h6 style="display:inline; padding-right:50px; color: #FF8E8E">(필수)</h6>
 							<p>
-								<input type="text" id="title" name="title" maxlength="50"
-									autofocus required>
+								<input type="text" id="title" class="text" name="title" maxlength="50"
+									placeholder="ex)원데이 목공 클래스" autofocus required>
 							</p>
-						</section>
-						<br>
-						<br>
+						</section><br>
 
 						<section>
-							<p>클래스 소개글(필수)</p>
+							<h6 style="display:inline; font-weight:bold;">클래스 소개글
+							<h6 style="display:inline; padding-right:50px; color: #FF8E8E">(필수)</h6></h6>
+								<div class="tool">
+									<span> <img id="insert-img"
+										src="${pageContext.request.contextPath}/resources/image/물음표.png"
+										style="width: 20px; height: 20px; curosr: pointer;"> 도움말
+									</span>
+									<div class="tooltip-content">
+										<p>• 최소 30자이상 작성해주세요.</p>
+										<p>•작성 tip : 인사말 /본인 클래스만의 특징 /<br>
+										클래스의 장점 및 효과 / 클래스 난이도</p>
+									</div>
+								</div>
 							<!-- Create the editor container -->
-							<div style="margin-bottom: 5px; background-color: white;">
+							<div style="margin-top: 10px; background-color: white;">
 								<div id="editor2" style="height: 300px;">
-									<p>클래스를 소개해주세요.</p>
-
+									<p>클래스를 소개해주세요.^^</p>
 								</div>
 							</div>
 						</section>
 
 						<div class="changepage">
 							<div class="btn_1">
-								<button class="btn_before btn" onclick="prevMenu3()">&laquo;이전</button>
-								<button class="btn_after btn" onclick="nextMenu3()">다음&raquo;</button>
+								<button class="btn_before btn non-click" onclick="prevMenu3()">&laquo;이전</button>
+								<button class="btn_after btn non-click" onclick="nextMenu3()">다음&raquo;</button>
 							</div>
 						</div>
 					</div>
@@ -215,13 +252,23 @@
 				<div id="menu4" style="display: none;">
 					<div class="m_4">
 						<section>
-							<p>커리큘럼 내용(필수)</p>
+							<h6 style="display:inline; font-weight:bold;">커리큘럼 내용
+							<h6 style="display:inline; padding-right:50px; color: #FF8E8E">(필수)</h6></h6>
+								<div class="tool">
+									<span> <img id="insert-img"
+										src="${pageContext.request.contextPath}/resources/image/물음표.png"
+										style="width: 20px; height: 20px; curosr: pointer;"> 도움말
+									</span>
+									<div class="tooltip-content">
+										<p>• 최소 30자이상 작성해주세요.</p>
+									</div>
+								</div>
 							<!-- Create the editor container -->
-							<div style="margin-bottom: 5px; background-color: white;">
+							<div style="margin-top: 10px; background-color: white;">
 								<div id="editor3" style="height: 300px;">
 									<p>
-										커리큘럼을 최소 2단계 이상 소개해주세요.<br />예시)<br />STEP1. 수업 소개<br />STEP2.
-										수업 내용<br />STEP3. 수업 마무리
+										커리큘럼을 최소 2단계 이상 소개해주세요.^^<br />예시)<br /> STEP1. 수업 소개<br /> STEP2.
+										수업 내용<br /> STEP3. 수업 마무리
 									</p>
 									<br>
 								</div>
@@ -230,8 +277,8 @@
 
 						<div class="changepage">
 							<div class="btn_1">
-								<button class="btn_before btn" onclick="prevMenu4()">&laquo;이전</button>
-								<button class="btn_after btn" onclick="nextMenu4()">다음&raquo;</button>
+								<button class="btn_before non-click btn" onclick="prevMenu4()">&laquo;이전</button>
+								<button class="btn_after non-click btn" onclick="nextMenu4()">다음&raquo;</button>
 							</div>
 						</div>
 					</div>
@@ -241,7 +288,8 @@
 				<div id="menu5" style="display: none;">
 					<div class="col-10" style="margin-top:50px;">
 						<div class="won_1">
-							<h5 style="display:inline; padding-right:50px;">가격</h5>
+							<h6 style="display:inline; font-weight:bold;">가격
+							<h6 style="display:inline; padding-right:50px; color: #FF8E8E">(필수)</h6></h6>
 							<div class="tool">
 								<span> <img id="insert-img"
 									src="${pageContext.request.contextPath}/resources/image/물음표.png"
@@ -251,18 +299,17 @@
 									<p>• 입문자를 기준으로 초기값을 입력하세요.</p>
 									<p>• 이후 추가금액 설정이 가능합니다.</p>
 								</div>
-							</div><br><br>
+							</div><br>
 							
-							<input id="price" name="price" type="text"
-								placeholder="금액을 입력하세요" maxlength="10" onkeyup="addCommas(this)"
-								autofocus> <span
-								style="font-size: 20px; margin-left: 2px;">원</span>
+							<input id="price" name="price" type="text" style="margin-top:10px;"
+								placeholder="금액을 입력하세요" maxlength="10" onkeyup="addCommas(this)"autofocus> 
+								<span style="font-size: 20px; margin-left: 2px;">원</span>
 						</div>
 					</div>
 
 					<div class="changepage">
 						<div class="btn_1">
-							<button class="btn_before btn" onclick="prevMenu5()">&laquo;
+							<button class="btn_before btn non-click" onclick="prevMenu5()">&laquo;
 								이전</button>
 							<button class="btn_after btn" onclick="insertClass()">등록</button>
 						</div>
@@ -285,6 +332,7 @@
 	src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <!-- Include the Quill library -->
 <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+
 
 <script>
 
@@ -368,7 +416,7 @@
 
 	// 지역 카테고리 함수
 	async function getLocalcate(code){
-		//console.log(code);
+		console.log(code);
 
 		if( code==1 || code=="" ){
 			$('#localselect').children('option').remove();
@@ -386,7 +434,7 @@
 			
 			var options = "";
 			for(let obj of data.list){
-				//console.log(obj.code);
+				console.log(obj.code);
 				if(obj.code%100 != 1) {
 					options += "<option value=" + obj.code + ">" + obj.localcate + "</option>";
 				}
@@ -397,13 +445,13 @@
 	}
 	
 	function setLocalcate(code) {
-		//console.log(code);
+		console.log(code);
 		code = document.getElementById("localselect").value;
 	} 
 	
 	// 종류 카테고리 함수
 	async function getActivitycate(code){
-		//console.log(code);
+		console.log(code);
 		
 		if( code==1 || code==""){
 			$('#actdetailselect').children('option').remove();
@@ -421,7 +469,7 @@
 			
 			var options = "";
 			for(let obj of data.list1){
-				//console.log(obj.code);
+				console.log(obj.code);
 				if(obj.code%100 != 1){
 					options += "<option value=" + obj.code + ">" + obj.actcate + "</option>";
 				}
@@ -606,7 +654,6 @@
 	function clickItemImage() {
 		document.getElementById("file").click();
 	}
-	
 	function changeItemImage(e) {
 		const img = document.getElementById("insert-img");
 		console.log(e.files);
@@ -647,6 +694,7 @@
 	
 /* 페이지 이동 함수 */	
 	function pagecate(){
+		
 		$('#menu1').css('display', 'block');
 		$('#menu2').css('display', 'none');
 		$('#menu3').css('display', 'none');
@@ -734,6 +782,22 @@
 		$('#menu3').css('display', 'none');
 		$('#menu4').css('display', 'none');
 		$('#menu5').css('display', 'none');
+		
+		/* button click 색상유지 함수 */
+		const nonClick = document.querySelectorAll(".non-click");
+
+		function handleClick(event) {
+		  // div에서 모든 "click" 클래스 제거
+		  nonClick.forEach((e) => {
+		    e.classList.remove("click");
+		  });
+		  // 클릭한 div만 "click"클래스 추가
+		  event.target.classList.add("click");
+		}
+		
+		nonClick.forEach((e) => {
+		  e.addEventListener("click", handleClick);
+		});
 	}
 	
 	function prevMenu2() {
@@ -742,6 +806,22 @@
 		$('#menu3').css('display', 'none');
 		$('#menu4').css('display', 'none');
 		$('#menu5').css('display', 'none');
+		
+		/* button click 색상유지 함수 */
+		const nonClick = document.querySelectorAll(".non-click");
+
+		function handleClick(event) {
+		  // div에서 모든 "click" 클래스 제거
+		  nonClick.forEach((e) => {
+		    e.classList.remove("click");
+		  });
+		  // 클릭한 div만 "click"클래스 추가
+		  event.target.classList.add("click");
+		}
+		
+		nonClick.forEach((e) => {
+		  e.addEventListener("click", handleClick);
+		});
 	}
 	
 	function nextMenu2() {
@@ -761,7 +841,7 @@
 			nickname.focus();
 			return false;
 		}
-		if( content_length.value < 2) {
+		if( content_length.value < 30) {
 			alert("강사소개를 작성하세요.");
 			return false;
 		} 
@@ -771,6 +851,22 @@
 		$('#menu3').css('display', 'block');
 		$('#menu4').css('display', 'none');
 		$('#menu5').css('display', 'none');
+		
+		/* button click 색상유지 함수 */
+		const nonClick = document.querySelectorAll(".non-click");
+
+		function handleClick(event) {
+		  // div에서 모든 "click" 클래스 제거
+		  nonClick.forEach((e) => {
+		    e.classList.remove("click");
+		  });
+		  // 클릭한 div만 "click"클래스 추가
+		  event.target.classList.add("click");
+		}
+		
+		nonClick.forEach((e) => {
+		  e.addEventListener("click", handleClick);
+		});
 	}
 	
 	function prevMenu3() {
@@ -780,6 +876,22 @@
 		$('#menu3').css('display', 'none');
 		$('#menu3').css('display', 'none');
 		$('#menu5').css('display', 'none');
+		
+		/* button click 색상유지 함수 */
+		const nonClick = document.querySelectorAll(".non-click");
+
+		function handleClick(event) {
+		  // div에서 모든 "click" 클래스 제거
+		  nonClick.forEach((e) => {
+		    e.classList.remove("click");
+		  });
+		  // 클릭한 div만 "click"클래스 추가
+		  event.target.classList.add("click");
+		}
+		
+		nonClick.forEach((e) => {
+		  e.addEventListener("click", handleClick);
+		});
 	}
 	
 	function nextMenu3() {
@@ -792,7 +904,7 @@
 			title.focus();
 			return false;
 		}
-		if( content_length2 < 20) {
+		if( content_length2 < 30) {
 			alert("클래스 소개를 작성하세요.");
 			content.focus();
 			return false;
@@ -802,18 +914,50 @@
 		$('#menu3').css('display', 'none');
 		$('#menu4').css('display', 'block');
 		$('#menu5').css('display', 'none');
+		
+		/* button click 색상유지 함수 */
+		const nonClick = document.querySelectorAll(".non-click");
+
+		function handleClick(event) {
+		  // div에서 모든 "click" 클래스 제거
+		  nonClick.forEach((e) => {
+		    e.classList.remove("click");
+		  });
+		  // 클릭한 div만 "click"클래스 추가
+		  event.target.classList.add("click");
+		}
+		
+		nonClick.forEach((e) => {
+		  e.addEventListener("click", handleClick);
+		});
 	}
 	
 	function prevMenu4() {
 		$('#menu3').css('display', 'block');
 		$('#menu4').css('display', 'none');
+		
+		/* button click 색상유지 함수 */
+		const nonClick = document.querySelectorAll(".non-click");
+
+		function handleClick(event) {
+		  // div에서 모든 "click" 클래스 제거
+		  nonClick.forEach((e) => {
+		    e.classList.remove("click");
+		  });
+		  // 클릭한 div만 "click"클래스 추가
+		  event.target.classList.add("click");
+		}
+		
+		nonClick.forEach((e) => {
+		  e.addEventListener("click", handleClick);
+		});
 	}
 	
 	function nextMenu4() {
 		const content = quill3.root.innerHTML;
 		const content_length3 = quill3.getLength();
 		
-		if( content_length3 < 20) {
+		if( content_length3 < 30) {
 			alert("커리큘럼 내용을 작성하세요.");
 			content.focus();
 			return false;
@@ -823,6 +967,22 @@
 		$('#menu3').css('display', 'none');
 		$('#menu4').css('display', 'none');
 		$('#menu5').css('display', 'block');
+		
+		/* button click 색상유지 함수 */
+		const nonClick = document.querySelectorAll(".non-click");
+
+		function handleClick(event) {
+		  // div에서 모든 "click" 클래스 제거
+		  nonClick.forEach((e) => {
+		    e.classList.remove("click");
+		  });
+		  // 클릭한 div만 "click"클래스 추가
+		  event.target.classList.add("click");
+		}
+		
+		nonClick.forEach((e) => {
+		  e.addEventListener("click", handleClick);
+		});
 	}
 	
 	function prevMenu5() {
@@ -841,9 +1001,9 @@
 		const file = document.getElementById("file");
 		const nickname = document.getElementById("nickname");
 		const content = quill1.root.innerHTML;
-		const content_length = quill1.getLength();
+		/* const content_length = quill1.getLength();
 		const content_length2 = quill2.getLength();
-		const content_length3 = quill3.getLength();
+		const content_length3 = quill3.getLength(); */
  		const title = document.getElementById("title");
  		const postcode = document.getElementById("sample6_postcode");
  		const address1 = document.getElementById("sample6_address");
@@ -902,7 +1062,7 @@
 			pagecate();
 			return false;
 		}
-		if ( address2.value.length <= 0 ) {
+		if ( detailAddress.value.length <= 0 ) {
 			alert('상세주소를 입력하세요.');
 			pagecate();
 			return false;
@@ -918,11 +1078,11 @@
 			pageinstructor()
 			return false;
 		}
-		if( content_length.value < 2) {
+		if( content_length.value < 30) {
 			alert("강사소개를 작성하세요.");
 			pageinstructor()
 			return false;
-		} 
+		}  
 		
 		if(title.value === "") {
 			alert("클래스 제목을 작성하세요.");
@@ -930,17 +1090,16 @@
 			return false;
 		}
 		
-		if( content_length < 2) {
+	/* 	if( content_length2 < 30) {
 			alert("클래스 소개를 작성하세요.");
 			pageintro();
 			return false;
 		} 
 		
-		if( content_length2 < 2) {
+		if( content_length3 < 30) {
 			alert("커리큘럼 내용을 작성하세요.");
 			pagecorri();
-			return false;
-		}
+			return false; */
  		
  		if( price.value.length <= 0) {
 			alert("금액을 입력하세요.");
@@ -1033,10 +1192,24 @@
  		// 5. 전송
  		
     	form.submit();
- 		
 	}
-	 
+		
+	/* button click 색상유지 함수 */
+		const nonClick = document.querySelectorAll(".non-click");
 
-</script>
+		function handleClick(event) {
+		  // div에서 모든 "click" 클래스 제거
+		  nonClick.forEach((e) => {
+		    e.classList.remove("click");
+		  });
+		  // 클릭한 div만 "click"클래스 추가
+		  event.target.classList.add("click");
+		}
+		
+		nonClick.forEach((e) => {
+		  e.addEventListener("click", handleClick);
+		});
+
+	</script>
 </body>
 </html>
