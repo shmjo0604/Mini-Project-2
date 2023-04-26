@@ -27,14 +27,13 @@
 <body>
 	<!-- Header 영역 -->
 	<jsp:include page="../header.jsp"></jsp:include>
-	<!-- main 영역 -->
 	
+	<!-- main 영역 -->
 		<div class="main col-10">
-			<div class="left col-3 m-5">
+			<div class="left col-2 m-4">
 				<button class="btn btn-outline-success m-3" onclick="pagecate()">카테고리</button>
 				<br />
-				<button class="btn btn-outline-success m-3"
-					onclick="pageinstructor()">강사소개</button>
+				<button class="btn btn-outline-success m-3" onclick="pageinstructor()">강사소개</button>
 				<br />
 				<button class="btn btn-outline-success m-3" onclick="pageintro()">클래스소개</button>
 				<br />
@@ -43,13 +42,13 @@
 				<button class="btn btn-outline-success m-3" onclick="pageprice()">가격</button>
 				<br />
 			</div>
-
-			<div class="right col-9 m-5">
+		
+			<div class="right col-8 m-4">
 				<!-- 메뉴 1 -->
 				<div id="menu1" style="display: block;">
 					<div class="m_1 mt-6">
 						<div class="row">
-							<div class="col-4 p-3">
+							<div class="col-5 p-3">
 								<label for="cate1">지역</label> <select id="cate1"
 									class="form-select" onchange="getLocalcate(this.value)">
 									<option value="">지역을 선택하세요</option>
@@ -60,7 +59,7 @@
 									</c:forEach>
 								</select>
 							</div>
-							<div class="col-4 p-3">
+							<div class="col-5 p-3">
 								<label for="cate2">세부 지역</label> <select id="localselect"
 									class="form-select" onchange="setLocalcate(this.value)">
 									<option value="">세부 지역을 선택하세요</option>
@@ -69,7 +68,7 @@
 						</div>
 
 						<div class="row">
-							<div class="col-4 p-3">
+							<div class="col-5 p-3">
 								<label for="cate3">종류</label> <select id="cate3"
 									class="form-select" onchange="getActivitycate(this.value)">
 									<option value="">종류를 선택하세요</option>
@@ -80,7 +79,7 @@
 									</c:forEach>
 								</select>
 							</div>
-							<div class="col-4 p-3">
+							<div class="col-5 p-3">
 								<label for="cate4">세부 종류</label> <select id="actdetailselect"
 									class="form-select" onchange="setActcate(this.value)">
 									<option value="">세부 종류를 선택하세요</option>
@@ -132,7 +131,6 @@
 							</div>
 						</section>
 						<br>
-						<br>
 
 						<section>
 							<p>상호명 및 닉네임(필수)</p>
@@ -141,7 +139,6 @@
 									autofocus required>
 							</p>
 						</section>
-						<br>
 						<br>
 
 						<section>
@@ -713,7 +710,7 @@
 			alert('세부 지역을 선택하세요');
 			$('#cate2').focus();
 			return false; 	// 함수 종료
-		}  //??세부지역은??
+		}  
 
 		if(cate3.val() <= 1){
 			alert('종류를 선택하세요');
@@ -793,14 +790,14 @@
 	function nextMenu3() {
 		const title = document.getElementById("title");
 		const content = quill2.root.innerHTML;
-		const content_length = quill2.getLength();
+		const content_length2 = quill2.getLength();
 		
 		if(title.value === "") {
 			alert("클래스 제목을 작성하세요.");
 			title.focus();
 			return false;
 		}
-		if( content_length < 2) {
+		if( content_length2 < 20) {
 			alert("클래스 소개를 작성하세요.");
 			content.focus();
 			return false;
@@ -819,9 +816,9 @@
 	
 	function nextMenu4() {
 		const content = quill3.root.innerHTML;
-		const content_length = quill3.getLength();
+		const content_length3 = quill3.getLength();
 		
-		if( content_length < 2) {
+		if( content_length3 < 20) {
 			alert("커리큘럼 내용을 작성하세요.");
 			content.focus();
 			return false;
@@ -842,12 +839,19 @@
  		
  		// 1. 아이디 선택자
  		
+ 		const cate1 = $('#cate1');
+		const cate2 = $('#localselect');
+		const cate3 = $('#cate3');
+		const cate4 = $('#actdetailselect');
+		const file = document.getElementById("file");
+		const nickname = document.getElementById("nickname");
+		const content = quill1.root.innerHTML;
+		const content_length = quill1.getLength();
  		const title = document.getElementById("title");
  		const postcode = document.getElementById("sample6_postcode");
  		const address1 = document.getElementById("sample6_address");
  		const address2 = document.getElementById("sample6_detailAddress");
  		const address3 = document.getElementById("sample6_extraAddress");
- 		const nickname = document.getElementById("nickname");
  		const price = document.getElementById("price");
  		const localcode = document.getElementById("localselect");
  		const actcode = document.getElementById("actdetailselect");
@@ -873,6 +877,75 @@
  		console.log(curriculum); */
  		
  		// 3. 유효성 검사
+ 		
+		const content_length2 = quill2.getLength();
+		
+ 		if(cate1.val() <= 1){
+			alert('지역을 선택하세요');
+			pagecate();
+			return false; 	// 함수 종료
+		}
+		
+		if(cate2.val() === ""){
+			alert('세부 지역을 선택하세요');
+			pagecate();
+			return false; 	// 함수 종료
+		}  
+
+		if(cate3.val() <= 1){
+			alert('종류를 선택하세요');
+			pagecate();
+			return false; 	// 함수 종료
+		}
+		if(cate4.val() === ""){
+			alert('세부 종류를 선택하세요');
+			pagecate();
+			return false; 	// 함수 종료
+		}
+		
+		if ( postcode.value.length <= 0 ) {
+			alert('우편번호를 입력하세요.');
+			pagecate();
+			return false;
+		}
+		if ( detailAddress.value.length <= 0 ) {
+			alert('상세주소를 입력하세요.');
+			pagecate();
+			return false;
+		} 
+		
+		if(file.value === "") {
+			alert("이미지 파일을 첨부하세요.");
+			pageinstructor();
+			return false;
+		}
+		if(nickname.value === "") {
+			alert("상호명을 작성하세요.");
+			pageinstructor()
+			return false;
+		}
+		if( content_length.value < 2) {
+			alert("강사소개를 작성하세요.");
+			pageinstructor()
+			return false;
+		} 
+		
+		if(title.value === "") {
+			alert("클래스 제목을 작성하세요.");
+			pageintro();
+			return false;
+		}
+		
+		if( content_length < 2) {
+			alert("클래스 소개를 작성하세요.");
+			pageintro();
+			return false;
+		} 
+		
+		if( content_length2 < 2) {
+			alert("커리큘럼 내용을 작성하세요.");
+			pagecorri();
+			return false;
  		
  		if( price.value.length <= 0) {
 			alert("금액을 입력하세요.");

@@ -1,3 +1,14 @@
+.main {
+	margin-right: auto;
+	margin-left: auto;
+	max-width: 1400px;
+}
+
+.left{
+	position: relative;
+	background-color: #EAF4F4;
+}
+
 .btn_1 {
 	text-decoration: none;
 	display: inline-block;

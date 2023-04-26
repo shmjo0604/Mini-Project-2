@@ -69,7 +69,7 @@ public class ClassInsertController extends HttpServlet {
 			if(ret==1) {
 				
 				request.setAttribute("message", "클래스 등록 완료했습니다.");
-				request.setAttribute("url", request.getContextPath()+"member/mypage.do");
+				request.setAttribute("url", request.getContextPath()+"/member/mypage.do?menu=2");
 				
 			}
 			else {

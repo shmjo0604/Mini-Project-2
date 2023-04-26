@@ -1,18 +1,21 @@
 package controller;
 
+import java.io.IOException;
+import java.util.List;
+
+import config.Hash;
+import config.MyBatisContext;
+import dto.Classproduct;
+import dto.Member;
+import dto.Session;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import mapper.ClassMapper;
 import mapper.MemberMapper;
-
-import java.io.IOException;
-
-import config.Hash;
-import config.MyBatisContext;
-import dto.Member;
 
 @WebServlet(urlPatterns = {"/member/mypage.do"})
 public class MemberMypageController extends HttpServlet {
@@ -21,7 +24,7 @@ public class MemberMypageController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String menu = request.getParameter("menu");
 		if(menu == null) {
-			response.sendRedirect("mypage.do?menu=1");
+			response.sendRedirect("mypage.do?menu=2"); //=>menu=1로 추후에 변경
 			return;
 		}
 		
@@ -31,11 +34,18 @@ public class MemberMypageController extends HttpServlet {
 			request.setAttribute("obj",obj);
 			
 		}
-		//클래스 등록관리
+		//내 클래스 등록관리
 		else if(Integer.parseInt(menu)==2) {
+			String memberid =(String)request.getSession().getAttribute("id");
 			
-			
+			List<Classproduct> list = MyBatisContext.getSqlSession().getMapper(ClassMapper.class).selectMyClassList(memberid);
+			request.setAttribute("list", list);
 		}
+		
+		//클래스 등록관리
+		else if(Integer.parseInt(menu)==3) {
+		}
+		
 		//리뷰내역관리
 		else if(Integer.parseInt(menu)==5) {
 			
@@ -78,6 +88,7 @@ public class MemberMypageController extends HttpServlet {
 				
 			
 		}else if (menu == 2) {
+			
 			
 			
 		}else if (menu == 3) {
