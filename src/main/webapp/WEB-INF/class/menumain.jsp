@@ -137,7 +137,7 @@
 						<section>
 							<p>상호명 및 닉네임(필수)</p>
 							<p>
-								<input type="text" id="name" name="name" maxlength="50"
+								<input type="text" id="nickname" name="nickname" maxlength="50"
 									autofocus required>
 							</p>
 						</section>
@@ -148,7 +148,7 @@
 							<p>강사 소개 (필수)</p>
 							<!-- Create the editor container -->
 							<div style="margin-bottom: 5px; background-color: white;">
-								<div id="editor" style="height: 300px;">
+								<div id="editor1" style="height: 300px;">
 									<p>자신의 경험,경력을 소개해주세요.</p>
 								</div>
 							</div>
@@ -283,19 +283,23 @@
 		<jsp:include page="../footer.jsp"></jsp:include>
 
 
-		<!--axios library-->
-		<script
-			src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.3.5/axios.min.js"></script>
-		<!--jQuery-->
-		<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-		<!-- daum post bundle -->
-		<script
-			src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-		<!-- Include the Quill library -->
-		<script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+<!--axios library-->
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.3.5/axios.min.js"></script>
+<!--jQuery-->
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<!-- daum post bundle -->
+<script
+	src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<!-- Include the Quill library -->
+<script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
 
 
-		<script>
+<script>
+
+	var localcode = 0;
+	var actcode = 0;
+
 /* postcode */
 	function sample6_execDaumPostcode() {
 		new daum.Postcode(
@@ -380,14 +384,14 @@
 			$('#localselect').append('<option>전체</option>');
 		}
 		else{
-			const url =  '${pageContext.request.contextPath}/api/class/selectcatelist.json?refcode='+code+'&chk=local';
+			const url =  '${pageContext.request.contextPath}/api/class/selectcatelist1.json?refcode='+code+'&chk=local';
 			const headers =  {"Content-Type":"application/json"};
 			
 			const{data} = await axios.get(url, {headers});
 			
 			$('#localselect').children('option').remove();
 			
-			$('#localselect').append('<option>세부 지역을 선택하세요</option>');
+			$('#localselect').append('<option value="">세부 지역을 선택하세요</option>');
 			
 			var options = "";
 			for(let obj of data.list){
@@ -415,12 +419,14 @@
 			$('#actdetailselect').append('<option>전체</option>');
 		}
 		else{
-			const url =  '${pageContext.request.contextPath}/api/class/selectcatelist.json?refcode='+code+'&chk=act';
+			const url =  '${pageContext.request.contextPath}/api/class/selectcatelist1.json?refcode='+code+'&chk=act';
 			const headers =  {"Content-Type":"application/json"};
 			
 			const{data} = await axios.get(url, {headers});
 			
 			$('#actdetailselect').children('option').remove();
+			
+			$('#actdetailselect').append('<option value="">세부 종류를 선택하세요</option>');
 			
 			var options = "";
 			for(let obj of data.list1){
@@ -487,26 +493,12 @@
 	];
 
 	// 위쪽에 있는 태그중에서 id가 editor인것을 찾아서 toolbar는 toolbarOptions의 값으로 대체하고 태마를 snow로 해서 변경
-	const quill = new Quill('#editor', {
+	const quill1 = new Quill('#editor1', {
 		modules : {
 			toolbar : toolbarOptions
 		},
 		theme : 'snow'
 	});
-	
-	function getEditorContent() {
-    	const content = quill.root.innerHTML;  // 위쪽의 editor객체를 통해서 가져오기
-
-    	var input2  = document.createElement("input");
-    	input2.type = "text";
-    	input2.name = "content";
-    	input2.value = content;
-    	form.appendChild(input2);
-    	
-    	document.body.appendChild(form);
-    	form.submit();
-    	
-    } 
 	
 //클래스소개 Quill
 	var toolbarOptions = [ [ 'bold', 'italic', 'underline', 'strike' ], // toggled buttons
@@ -563,19 +555,6 @@
 		theme : 'snow'
 	});
 	
-	function getEditorContent2() {
-    	const content2 = quill2.root.innerHTML;  // 위쪽의 editor객체를 통해서 가져오기
-
-    	var input2  = document.createElement("input");
-    	input2.type = "text";
-    	input2.name = "content";
-    	input2.value = content2;
-    	form.appendChild(input2);
-    	
-    	document.body.appendChild(form);
-    	form.submit();
-    	
-    } 
 	
 //커리큘럼 Quill
 	var toolbarOptions = [ [ 'bold', 'italic', 'underline', 'strike' ], // toggled buttons
@@ -631,38 +610,6 @@
 		},
 		theme : 'snow'
 	});
-	
-	function getEditorContent3() {
-    	const content2 = quill3.root.innerHTML;  // 위쪽의 editor객체를 통해서 가져오기
-    	
-    	var form    = document.createElement("form");
-    	form.action = "write.do" 
-    	form.method = "post";
-    	form.style.display = "none";
-    	
-    	var input1  = document.createElement("input");
-    	input1.type = "text";
-    	input1.name = "title";
-    	input1.value = title2.value;
-    	form.appendChild(input1);
-    	
-    	var input2  = document.createElement("input");
-    	input2.type = "text";
-    	input2.name = "content";
-    	input2.value = content2;
-    	form.appendChild(input2);
-    	
-    	var input3  = document.createElement("input");
-    	input3.type = "text";
-    	input3.name = "writer";
-    	input3.value = writer2.value;
-    	form.appendChild(input3);
-    	
-    	document.body.appendChild(form);
-    	form.submit();
-    	
-    } 
-	
 	
 	/* 이미지 함수 */
 	function clickItemImage() {
@@ -747,14 +694,14 @@
 /* 다음,이전 함수 */
 	function nextMenu1() {
 		const cate1 = $('#cate1');
-		const cate2 = $('#cate2');
+		const cate2 = $('#localselect');
 		const cate3 = $('#cate3');
-		const cate4 = $('#cate4');
+		const cate4 = $('#actdetailselect');
 		const postcode = document.getElementById("sample6_postcode");
 		const detailAddress = document.getElementById("sample6_detailAddress");
 
 		console.log(cate1.val());
-		//console.log(cate2.val());
+		console.log(cate2.val());
 		
 		if(cate1.val() <= 1){
 			alert('지역을 선택하세요');
@@ -773,13 +720,20 @@
 			cate3.focus();
 			return false; 	// 함수 종료
 		}
+		if(cate4.val() === ""){
+			alert('세부 종류를 선택하세요');
+			cate4.focus();
+			return false; 	// 함수 종료
+		}
 		
 		if ( postcode.value.length <= 0 ) {
 			alert('우편번호를 입력하세요.');
+			postcode.focus();
 			return false;
 		}
 		if ( detailAddress.value.length <= 0 ) {
 			alert('상세주소를 입력하세요.');
+			detailAddress.focus();
 			return false;
 		} 
 		
@@ -800,9 +754,9 @@
 	
 	function nextMenu2() {
 		const file = document.getElementById("file");
-		const name = document.getElementById("name").value;
-		const content = quill.root.innerHTML;
-		const content_length = quill.getLength();
+		const nickname = document.getElementById("nickname");
+		const content = quill1.root.innerHTML;
+		const content_length = quill1.getLength();
 		console.log(content_length);
 		console.log(content);
 		
@@ -810,8 +764,9 @@
 			alert("이미지 파일을 첨부하세요.");
 			return false;
 		}
-		if(name.value === "") {
+		if(nickname.value === "") {
 			alert("상호명을 작성하세요.");
+			nickname.focus();
 			return false;
 		}
 		if( content_length.value < 2) {
@@ -885,40 +840,135 @@
 	
  	function insertClass() {
  		
+ 		// 1. 아이디 선택자
+ 		
  		const title = document.getElementById("title");
  		const postcode = document.getElementById("sample6_postcode");
  		const address1 = document.getElementById("sample6_address");
  		const address2 = document.getElementById("sample6_detailAddress");
  		const address3 = document.getElementById("sample6_extraAddress");
+ 		const nickname = document.getElementById("nickname");
  		const price = document.getElementById("price");
- 		//const instructor = document.getElementById("instructor");
- 		//const intro = document.getElementById("intro");
- 		//const curriculum = document.getElementById("curriculum");
- 		const localcode = document.getElementById("localcode");
- 		const actcode = document.getElementById("actcode");
+ 		const localcode = document.getElementById("localselect");
+ 		const actcode = document.getElementById("actdetailselect");
  		
- 		console.log(title.value);
+ 		
+ 		/* console.log(title.value);
  		console.log(postcode.value);
  		console.log(address1.value);
  		console.log(address2.value);
  		console.log(address3.value);
  		console.log(price.value.replace(/[^\d]+/g, ''));
  		console.log(localcode.value);
- 		console.log(actcode.value);
+ 		console.log(actcode.value); */
+ 		
+ 		// 2. quill 내용
+ 		
+ 		const instructor = quill1.root.innerHTML;
+ 		const intro = quill2.root.innerHTML;
+ 		const curriculum = quill3.root.innerHTML;
+ 		
+ 		/* console.log(instructor);
+ 		console.log(intro);
+ 		console.log(curriculum); */
+ 		
+ 		// 3. 유효성 검사
  		
  		if( price.value.length <= 0) {
 			alert("금액을 입력하세요.");
 			price.focus();
 			return false;
-		} 
+		}
  		
+ 		// 4. 동적 form 태그 생성
  		
+ 		var form = document.createElement("form");
+			
+		form.action = "insert.do";
+		form.method = "post";
+		form.style.display = "none";
  		
-
+ 		var input1 = document.createElement("input");
+ 		input1.type = "text";
+ 		input1.name = "title";
+ 		input1.value = title.value;
+ 		form.appendChild(input1);
+ 		
+ 		var input2 = document.createElement("input");
+ 		input2.type = "text";
+ 		input2.name = "postcode";
+ 		input2.value = postcode.value;
+ 		form.appendChild(input2);
+ 		
+ 		var input3 = document.createElement("input");
+ 		input3.type = "text";
+ 		input3.name = "address1";
+ 		input3.value = address1.value;
+ 		form.appendChild(input3);
+ 		
+ 		var input4 = document.createElement("input");
+ 		input4.type = "text";
+ 		input4.name = "address2";
+ 		input4.value = address2.value;
+ 		form.appendChild(input4);
+ 		
+ 		var input5 = document.createElement("input");
+ 		input5.type = "text";
+ 		input5.name = "address3";
+ 		input5.value = address3.value;
+ 		form.appendChild(input5);
+ 		
+ 		var input6 = document.createElement("input");
+ 		input6.type = "number";
+ 		input6.name = "price";
+ 		input6.value = price.value.replace(/[^\d]+/g, '');
+ 		form.appendChild(input6);
+ 		
+ 		var input7 = document.createElement("input");
+ 		input7.type = "number";
+ 		input7.name = "localcode";
+ 		input7.value = localcode.value;
+ 		form.appendChild(input7);
+ 		
+ 		var input8 = document.createElement("input");
+ 		input8.type = "number";
+ 		input8.name = "actcode";
+ 		input8.value = actcode.value;
+ 		form.appendChild(input8);
+ 		
+ 		var input9  = document.createElement("input");
+    	input9.type = "text";
+    	input9.name = "instructor";
+    	input9.value = instructor;
+    	form.appendChild(input9);
+ 		
+ 		var input10  = document.createElement("input");
+    	input10.type = "text";
+    	input10.name = "intro";
+    	input10.value = intro;
+    	form.appendChild(input10);
+    	
+    	var input11  = document.createElement("input");
+    	input11.type = "text";
+    	input11.name = "curriculum";
+    	input11.value = curriculum;
+    	form.appendChild(input11);
+    	
+    	var input12  = document.createElement("input");
+    	input12.type = "text";
+    	input12.name = "nickname";
+    	input12.value = nickname.value;
+    	form.appendChild(input12);
+    	
+    	document.body.appendChild(form);
+    	
+ 		// 5. 전송
+ 		
+    	form.submit();
+ 		
 	}
 	 
 
-		</script>
-	</form>
+</script>
 </body>
 </html>
