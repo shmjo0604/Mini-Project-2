@@ -1,5 +1,7 @@
 package service;
 
+import org.apache.ibatis.annotations.Param;
+
 import dto.Member;
 
 public interface MemberService {
@@ -11,6 +13,8 @@ public interface MemberService {
 	public Member selectMemberLogin(Member obj);
 	
 	public Member selectMemberOne(String obj);
+	
+	public Member findMemberId(Member obj);
 	
 	public int updateMemberOne(Member obj);
 	

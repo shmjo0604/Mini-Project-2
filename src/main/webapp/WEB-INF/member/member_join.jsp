@@ -43,7 +43,7 @@
 							ex)a1@gmail.com</label>
 					</div>
 					<div class="form-floating mb-2">
-						<input type="text" name="phone" id="phone" class="form-control" />
+						<input type="tel" name="phone" id="phone" class="form-control" />
 						<label for="phone" class="form-label">전화번호 11자리를 입력해주세요</label>
 					</div>
 					<div class="form-floating mb-2">
@@ -126,6 +126,7 @@
 			id.focus();
 			return false;
 		}		
+		
 		document.getElementById("form").submit();
 	}
 	

@@ -27,12 +27,12 @@ public class MemberLoginController extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		 String hashPw = Hash.hashPw(request.getParameter("id"),request.getParameter("pw"));
-		 
+		
 		 
 		 Member obj = new Member();
 		 obj.setId(request.getParameter("id"));
 		 obj.setPassword(hashPw);
-		 //obj.setChk((int) request.getSession().getAttribute("chk"));
+
 
 		 
 		 Member ret = MyBatisContext.getSqlSession().getMapper(MemberMapper.class).selectMemberLogin(obj);
@@ -42,7 +42,7 @@ public class MemberLoginController extends HttpServlet {
 			 HttpSession httpSession = request.getSession();
 			 httpSession.setAttribute("id", ret.getId());
 			 httpSession.setAttribute("name", ret.getName());
-			// httpSession.setAttribute("chk", ret.getChk());
+			
 			 
 			 String url = (String)httpSession.getAttribute("url");
 			 if(url == null) {

@@ -13,9 +13,9 @@
 
 <div>
 	<form action ="mypage.do?menu=1"method ="post">
-	<input type ="text"placeholder ="이름" name ="name" value ="${obj.name}" /><br />
-	<input type ="text"placeholder ="이메일" name ="email" value ="${obj.email}"/><br />
-	<input type ="text"placeholder ="전화번호" name ="phone" value ="${obj.phone}"/><br />
-	<input type ="button" value ="정보변경" onclick ="updateMember()"/>
+	<input type ="text" placeholder ="이름" name ="name" value ="${obj.name}" /><br />
+	<input type ="text" placeholder ="이메일" name ="email" value ="${obj.email}"/><br />
+	<input type ="text" placeholder ="전화번호" name ="phone" value ="${obj.phone}"/><br />
+	<input type ="button" value ="정보변경" class ="btn btn-primary" onclick ="updateMemberOne()"/>
 	</form>
 </div>
