@@ -21,9 +21,6 @@ public class SessionUpdateController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		
-		
-		
-		
 		request.getRequestDispatcher("/WEB-INF/session/session_update.jsp").forward(request, response);
 	}
 
