@@ -37,7 +37,7 @@
                         <a class="nav-link" href="">FAQ</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="">마이페이지</a>
+                        <a class="nav-link" href="${pageContext.request.contextPath}/member/mypage.do">마이페이지</a>
                     </li>
                 </ul>           
                  

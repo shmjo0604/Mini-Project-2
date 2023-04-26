@@ -27,6 +27,8 @@ public class Classproduct {
 	private long price;
 	// 강사소개
 	private String instructor;
+	// 상호명
+	private String nickname;
 	// 소개글
 	private String intro;
 	// 강사소개

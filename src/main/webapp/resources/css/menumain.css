@@ -1,7 +1,18 @@
-.btn_1{
-	  text-decoration: none;
-  display: inline-block;
-  padding: 8px 16px;
+.main {
+	margin-right: auto;
+	margin-left: auto;
+	max-width: 1400px;
+}
+
+.left{
+	position: relative;
+	background-color: #EAF4F4;
+}
+
+.btn_1 {
+	text-decoration: none;
+	display: inline-block;
+	padding: 8px 16px;
 	margin: 20px;
 	/* float: right; */
 }
@@ -10,70 +21,119 @@
 	color: white;
 	font-size: 22px;
 	background: #9abf7f;
-	min-height:30px; 
-    min-width: 120px;
-    margin: 5px;
-    border-radius: 20px;
-}
-.btn_in:hover  {
-	color: white;
-    background-color: #419428;
-    transition: 0.4s;
+	min-height: 30px;
+	min-width: 120px;
+	margin: 5px;
+	border-radius: 20px;
 }
 
-.btn_before{
+.btn_in:hover {
+	color: white;
+	background-color: #419428;
+	transition: 0.4s;
+}
+
+.btn_before {
 	color: white;
 	font-size: 20px;
 	background: #FFB077;
-	min-height:30px; 
-    min-width: 120px;
-    margin: 5px;
-    border-radius: 20px;
+	min-height: 30px;
+	min-width: 120px;
+	margin: 5px;
+	border-radius: 20px;
 }
-.btn_before:hover  {
+
+.btn_before:hover {
 	color: white;
-    background-color: #F08650;
-    transition: 0.4s;
-  }  
-  
+	background-color: #F08650;
+	transition: 0.4s;
+}
+
 .btn_after {
 	color: white;
 	font-size: 20px;
 	background: #9abf7f;
-	min-height:30px; 
-    min-width: 120px;
-    margin: 5px;
-    border-radius: 20px;
+	min-height: 30px;
+	min-width: 120px;
+	margin: 5px;
+	border-radius: 20px;
 }
 
-.btn_after:hover  {
+.btn_after:hover {
 	color: white;
-    background-color: #419428;
-    transition: 0.4s;
+	background-color: #419428;
+	transition: 0.4s;
 }
 
-.btn_image{
-  border: 2px solid black;
-  background-color: white;
-  color: black;
-  padding: 5px 10px;
-  font-size: 16px;
-  cursor: pointer;
-  border-color: #2196F3;
-  color: dodgerblue;
-  border-radius: 5px;
+.btn_image {
+	border: 2px solid black;
+	background-color: white;
+	color: black;
+	padding: 5px 10px;
+	font-size: 16px;
+	cursor: pointer;
+	border-color: #2196F3;
+	color: dodgerblue;
+	border-radius: 5px;
 }
 
 .btn_image:hover {
-  background: #2196F3;
-  color: white;
+	background: #2196F3;
+	color: white;
 }
 
-#price{
+#price {
 	outline-color: green;
-    text-align: right;
-    margin-right: 5px;
-    padding: 8px;
-    font-size: 20px;
-    border-radius: 10px;
+	text-align: right;
+	margin-right: 5px;
+	padding: 8px;
+	font-size: 20px;
+	border-radius: 10px;
+}
+.sns {
+	margin-right: 20px;
+}
+.sns_2{
+	display: inline;
+	width:300px;
+	margin: 0px 50px 0px 10px;
+}
+.link {
+	margin: 10px;
+}
+
+.tool {
+	position: relative;
+	display: inline-block;
+	margin: auto;
+}
+
+.tool .tooltip-content {
+	visibility: hidden;
+	width:330px;
+	background-color: #008080;
+	padding-top: 0;
+	color: white;
+	text-align: center;
+	position: absolute;
+	z-index: 1;
+	bottom: 180%;
+	left: 50%;
+	margin-left: -150px;
+	border-radius: 20px;
+}
+
+.tool .tooltip-content::after {
+	content: " ";
+	position: absolute;
+	top: 100%;
+	left: 50%;
+	margin-left: -10px;
+	border-width: 10px;
+	border-style: solid;
+	border-color: #008080 transparent transparent transparent;
+}
+
+.tool:hover .tooltip-content {
+	visibility: visible;
 }
