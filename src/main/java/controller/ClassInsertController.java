@@ -52,11 +52,15 @@ public class ClassInsertController extends HttpServlet {
 		obj.setActcode(Long.parseLong(request.getParameter("actcode")));
 		obj.setMemberid("test2");
 		
+		System.out.println(obj.toString());
+		/*
+		
 		int ret =MyBatisContext.getSqlSession().getMapper(ClassMapper.class).insertClassOne(obj);
 		if(ret==1) {
 			
+			return;
 		}
-		
+		*/
 		/*Classimage img = new Classimage();
 		img.setFilename("filename");*/
 		

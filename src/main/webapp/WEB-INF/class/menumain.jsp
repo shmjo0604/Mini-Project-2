@@ -28,7 +28,7 @@
 	<!-- Header 영역 -->
 	<jsp:include page="../header.jsp"></jsp:include>
 	<!-- main 영역 -->
-	<form action="insert.do" method="post">
+	
 		<div class="main col-10">
 			<div class="left col-3 m-5">
 				<button class="btn btn-outline-success m-3" onclick="pagecate()">카테고리</button>
@@ -886,19 +886,25 @@
  	function insertClass() {
  		
  		const title = document.getElementById("title");
- 		const postcode = document.getElementById("postcode");
- 		const address1 = document.getElementById("address1");
- 		const address2 = document.getElementById("address2");
- 		const address3 = document.getElementById("address3");
+ 		const postcode = document.getElementById("sample6_postcode");
+ 		const address1 = document.getElementById("sample6_address");
+ 		const address2 = document.getElementById("sample6_detailAddress");
+ 		const address3 = document.getElementById("sample6_extraAddress");
  		const price = document.getElementById("price");
- 		const instructor = document.getElementById("instructor");
- 		const intro = document.getElementById("intro");
- 		const curriculum = document.getElementById("curriculum");
+ 		//const instructor = document.getElementById("instructor");
+ 		//const intro = document.getElementById("intro");
+ 		//const curriculum = document.getElementById("curriculum");
  		const localcode = document.getElementById("localcode");
  		const actcode = document.getElementById("actcode");
- 		const memberid = document.getElementById("memberid");
  		
- 		
+ 		console.log(title.value);
+ 		console.log(postcode.value);
+ 		console.log(address1.value);
+ 		console.log(address2.value);
+ 		console.log(address3.value);
+ 		console.log(price.value.replace(/[^\d]+/g, ''));
+ 		console.log(localcode.value);
+ 		console.log(actcode.value);
  		
  		if( price.value.length <= 0) {
 			alert("금액을 입력하세요.");
@@ -906,7 +912,7 @@
 			return false;
 		} 
  		
- 		console.log(price.value.replace(/[^\d]+/g, ''));
+ 		
  		
 
 	}
