@@ -23,8 +23,6 @@ import service.ClassInsertServiceImpl;
 public class ClassInsertController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	
-	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		ClassInsertService cService = new ClassInsertServiceImpl();
@@ -34,7 +32,7 @@ public class ClassInsertController extends HttpServlet {
   
 		request.setAttribute("list" , list); request.setAttribute("list1", list1); 
 		
-		request.getRequestDispatcher("/WEB-INF/class/menumain.jsp").forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/class/insert.jsp").forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)

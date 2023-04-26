@@ -7,21 +7,23 @@
 <meta charset="UTF-8">
 <title>클래스 등록 페이지</title>
 <meta name='viewport' content='width=device-width, initial-scale=1'>
-<!-- Include stylesheet -->
+<!-- Google Font -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=DynaPuff&family=Permanent+Marker&display=swap" rel="stylesheet">
+<!-- quill CSS -->
 <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css"
 	rel="stylesheet">
+<!-- bootstrap CSS -->
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css" />
-<!-- style css -->
+<!-- CSS -->
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/menumain.css">
+	href="${pageContext.request.contextPath}/resources/css/classinsert.css">
 
 </head>
 <style>
-.main {
-	height: 100%;
-	display: flex;
-}
+
 </style>
 
 <body>
@@ -29,7 +31,7 @@
 	<jsp:include page="../header.jsp"></jsp:include>
 	
 	<!-- main 영역 -->
-		<div class="main col-11">
+		<div id="wrapper" class="col-11 border-top" >
 			<div class="left col-3 m-4" id="btn_cate">
 			<div class="left2 m-4">
 				<button class="btn_c non-click btn-outline-success m-3" onclick="pagecate()">카테고리</button>

@@ -14,8 +14,8 @@
 
 <div>
 	<form action ="mypage.do?menu=6" method ="post">
-	<input type ="text" placeholder ="아이디" name ="id" value ="${obj.id}" />
-	<input type ="text" placeholder ="비밀번호" name ="password" value ="${obj.password}"/>
-	<input type ="submit" value ="회원탈퇴" onclick ="deleteMemberOne()"/>
+	
+		<input class="form-control w-25 mb-3" type ="text" placeholder ="비밀번호를 입력하세요" name ="password" value ="${obj.password}"/>
+		<input type ="button" class="btn btn-outline-success" value ="회원탈퇴" onclick ="deleteMemberOne()"/>
 	</form>
 </div>

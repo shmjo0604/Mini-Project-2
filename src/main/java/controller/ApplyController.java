@@ -8,32 +8,40 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import service.ApplyService;
 import service.ApplyServiceImpl;
 
-@WebServlet(urlPatterns = { "/apply.do" })
+@WebServlet(urlPatterns = { "/apply/insert.do" })
 public class ApplyController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		
+		request.setAttribute("sessionno", request.getParameter("sessionno"));
 
-		request.getRequestDispatcher("/WEB-INF/apply/apply.jsp").forward(request, response);
+		request.setAttribute("cnt", request.getParameter("cnt"));
+		request.setAttribute("maximum", request.getParameter("maximum"));
+		request.setAttribute("totalprice", request.getParameter("totalprice"));
+	
+		
+		request.getRequestDispatcher("/WEB-INF/apply/insert.jsp").forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
 		int per= Integer.parseInt(request.getParameter("person"));//유효성 검사때문에 넣은것 값 확인 할때 지워햐함
-		String id= request.getParameter("memberid");//유효성 검사때문에 넣은것 값 확인 할때 지워햐함
-		long session= Long.parseLong(request.getParameter("session"));//유효성 검사때문에 넣은것 값 확인 할때 지워햐함
-		// id값을 session으로 꺼내는것 request.getsession  id
+		long sessionno = Long.parseLong(request.getParameter("sessionno"));
+		
+		HttpSession httpsession = request.getSession();
+		String id = (String)httpsession.getAttribute("id");
 		
 		Apply obj = new Apply();
 		obj.setPerson(per);
 		obj.setMemberid(id);
-		obj.setSessionno(session);
-		
+		obj.setSessionno(sessionno);
 		
 		System.out.println(obj.toString());
 
@@ -58,12 +66,12 @@ public class ApplyController extends HttpServlet {
 //			System.out.println("apply.do => " + url);
 			
 		if(ret == 1) {
-			response.sendRedirect("applytatus.do");
+			response.sendRedirect(request.getContextPath() + "/member/mypage.do?menu=3");
 			// 절대경로 ->  src="<${pageContext.request.contextPath}member/mypage.do>"
 		}
 		else {
 //			response.sendRedirect(url);
-			response.sendRedirect(request.getContextPath() + "/apply.do");
+			response.sendRedirect(request.getContextPath() + "/apply/insert.do");
 		}		
 
 	}

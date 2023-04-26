@@ -16,12 +16,12 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=DynaPuff&family=Permanent+Marker&display=swap" rel="stylesheet">
     <!-- CSS -->
-    <link rel='stylesheet' href="${pageContext.request.contextPath}/resources/css/home.css">
+    <link rel='stylesheet' href="${pageContext.request.contextPath}/resources/css/main.css">
 </head>
 
 <body>
 	<!-- header -->
-    <jsp:include page="./main/header.jsp"></jsp:include>
+    <jsp:include page="header.jsp"></jsp:include>
     
     <div>
          <!-- 슬라이드쇼 -->
@@ -105,10 +105,9 @@
         </div>
         <!-- / 카테고리-->
     </div>
-    <hr>
     
     <!-- footer -->
-    <jsp:include page="./main/footer.jsp"></jsp:include>
+    <jsp:include page="footer.jsp"></jsp:include>
 </body>
 
 </html>

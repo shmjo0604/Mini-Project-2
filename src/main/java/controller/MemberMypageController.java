@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.List;
 
 import config.Hash;
+import dto.ApplyStatusView;
 import dto.Classproduct;
 import dto.Member;
 import jakarta.servlet.ServletException;
@@ -12,6 +13,8 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import service.ApplyService;
+import service.ApplyServiceImpl;
 import service.ClassInsertService;
 import service.ClassInsertServiceImpl;
 import service.MemberService;
@@ -26,6 +29,7 @@ public class MemberMypageController extends HttpServlet {
 		
 		MemberService mService = new MemberServiceImpl();
 		ClassInsertService cService = new ClassInsertServiceImpl();
+		ApplyService aService = new ApplyServiceImpl();
 		
 		String id =(String)request.getSession().getAttribute("id");
 		
@@ -56,9 +60,10 @@ public class MemberMypageController extends HttpServlet {
 			
 		}
 		
-		// 3. 클래스 등록관리
+		// 3. 클래스 신청 관리
 		
 		else if(Integer.parseInt(menu)==3) {
+			
 			
 		}
 		

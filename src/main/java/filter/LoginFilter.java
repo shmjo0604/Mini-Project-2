@@ -15,7 +15,7 @@ import jakarta.servlet.http.HttpSession;
 
 // 로그인이 필요한 페이지 => 로그인 여부 확인
 
-@WebFilter(urlPatterns = {"/member/mypage.do", "/class/insert.do", "/apply/insert.do"})
+@WebFilter(urlPatterns = {"/member/mypage.do", "/class/insert.do", "/apply/insert.do", "/session/*"})
 public class LoginFilter implements Filter {
 
 	@Override
@@ -36,7 +36,7 @@ public class LoginFilter implements Filter {
 		
 		if(id == null) {
 			
-			response.sendRedirect("login.do");
+			response.sendRedirect(request.getContextPath() + "/member/login.do");
 			return; // 메소드 종료
 		}
 		

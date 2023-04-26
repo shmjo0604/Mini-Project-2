@@ -4,6 +4,7 @@ import java.util.List;
 
 import config.MyBatisContext;
 import dto.Apply;
+import dto.Session;
 import mapper.ApplyMapper;
 
 public class ApplyServiceImpl implements ApplyService{

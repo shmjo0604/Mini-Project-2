@@ -12,11 +12,19 @@
 	href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css" />
 </head>
 
-<div>
-	<form action ="mypage.do?menu=4" method ="post">
-	<input type ="password" placeholder ="현재비밀번호" id = "password" name ="password" value ="${obj.password}" />
-	<input type ="password" placeholder ="새비밀번호" id = "newpassword" name ="newpassword" value ="${obj.newpassword}"/>
-	<input type ="password" placeholder ="새비밀번호 확인" id = "newpassword" name ="newpassword1" value ="${obj.newpassword}"/>
-	<input type ="submit" value ="정보변경" onclick ="updatepassword()"/>
-	</form>
+<div class="container">
+	<div class="row">
+		<form action ="mypage.do?menu=4" method ="post">
+			<label for="password" class="form-label">현재 비밀번호를 입력하세요.</label>
+			<input class="form-control w-25 mb-3" type ="password" placeholder ="현재 비밀번호" id = "password" name ="password" value ="${obj.password}" />
+			
+			<label for="newpassword" class="form-label">변경할 비밀번호를 입력하세요.</label>
+			<input class="form-control w-25 mb-3" type ="password" placeholder ="새 비밀번호" id = "newpassword" name ="newpassword" value ="${obj.newpassword}"/>
+			
+			<label for="newpassword" class="form-label">변경할 비밀번호를 한 번 더 입력하세요.</label>
+			<input class="form-control w-25 mb-3" type ="password" placeholder ="새 비밀번호 확인" id = "newpassword" name ="newpassword1" value ="${obj.newpassword}"/>
+			
+			<input type ="button" class="btn btn-outline-success" value ="정보변경" onclick ="updatepassword()"/>
+		</form>
+	</div>
 </div>

@@ -28,5 +28,7 @@ public interface ApplyMapper {
 		"Select FROM Apply WHERE memberid=#{id} "
 	})
 	public List<Apply> selectApplyList(@Param("id") String id);
+	
+	// classsessionview 정보 하나 불러오기
 
 }

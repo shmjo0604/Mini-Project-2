@@ -1,18 +1,17 @@
 package controller;
 
+import java.io.IOException;
+
+import config.Hash;
+import dto.Member;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-import mapper.MemberMapper;
-
-import java.io.IOException;
-
-import config.Hash;
-import config.MyBatisContext;
-import dto.Member;
+import service.MemberService;
+import service.MemberServiceImpl;
 
 @WebServlet(urlPatterns = {"/member/login.do"})
 
@@ -28,14 +27,13 @@ public class MemberLoginController extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		 String hashPw = Hash.hashPw(request.getParameter("id"),request.getParameter("pw"));
 		
-		 
 		 Member obj = new Member();
 		 obj.setId(request.getParameter("id"));
 		 obj.setPassword(hashPw);
-
-
 		 
-		 Member ret = MyBatisContext.getSqlSession().getMapper(MemberMapper.class).selectMemberLogin(obj);
+		 MemberService mService = new MemberServiceImpl();
+		 
+		 Member ret = mService.selectMemberLogin(obj);
 		 //System.out.println(ret.toString());
 		 
 		 if(ret != null) {
@@ -43,12 +41,11 @@ public class MemberLoginController extends HttpServlet {
 			 httpSession.setAttribute("id", ret.getId());
 			 httpSession.setAttribute("name", ret.getName());
 			
-			 
 			 String url = (String)httpSession.getAttribute("url");
 			 if(url == null) {
 				
 				 request.setAttribute("message","로그인에 성공하였습니다.");
-				 request.setAttribute("url", "home.do");
+				 request.setAttribute("url", request.getContextPath() + "/home.do");
 				 request.getRequestDispatcher("/WEB-INF/member/alert.jsp").forward(request, response);
 			 }
 			 else {
@@ -57,12 +54,9 @@ public class MemberLoginController extends HttpServlet {
 			 return;
 		 }
 		
-		request.setAttribute("message", "아이디 또는 비밀번호가 틀렸습니다.다시 확인해주세요.");
-		request.setAttribute("url", "login.do" );
+		request.setAttribute("message", "아이디 또는 비밀번호가 틀렸습니다. 다시 확인해주세요.");
+		request.setAttribute("url", request.getContextPath() + "/member/login.do" );
 		request.getRequestDispatcher("/WEB-INF/member/alert.jsp").forward(request, response);
-		//response.sendRedirect(request.getContextPath()+"/member/login.do");
-		 
-		 
 		 
 	}
 
