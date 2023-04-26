@@ -847,6 +847,8 @@
 		const nickname = document.getElementById("nickname");
 		const content = quill1.root.innerHTML;
 		const content_length = quill1.getLength();
+		const content_length2 = quill2.getLength();
+		const content_length3 = quill3.getLength();
  		const title = document.getElementById("title");
  		const postcode = document.getElementById("sample6_postcode");
  		const address1 = document.getElementById("sample6_address");
@@ -877,9 +879,6 @@
  		console.log(curriculum); */
  		
  		// 3. 유효성 검사
- 		
-		const content_length2 = quill2.getLength();
-		
  		if(cate1.val() <= 1){
 			alert('지역을 선택하세요');
 			pagecate();
