@@ -42,7 +42,7 @@
 		
 	</div>
 	<script>
-		function updateMember() {
+		function updateMemberOne() {
 			//유효성 검사
 			const name = document.getElementsByName("name")[0];
 			const email = document.getElementsByName("email")[0];
@@ -68,8 +68,8 @@
 			}
 			
 			
-			
-			const form = document.getElementsByTagName("form")[0].submit();
+			const form = document.getElementsByTagName("form");
+			form[0].submit();
 		}
 		
 		function updatepassword() {

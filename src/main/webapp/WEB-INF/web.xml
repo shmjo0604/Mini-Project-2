@@ -69,4 +69,14 @@
     <servlet-name>RestMemberPWCheckController</servlet-name>
     <url-pattern>/RestMemberPWCheckController</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>RestSelectIdController</display-name>
+    <servlet-name>RestSelectIdController</servlet-name>
+    <servlet-class>restcontroller.RestSelectIdController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>RestSelectIdController</servlet-name>
+    <url-pattern>/RestSelectIdController</url-pattern>
+  </servlet-mapping>
 </web-app>

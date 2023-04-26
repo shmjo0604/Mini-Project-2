@@ -23,7 +23,7 @@ public interface MemberMapper {
 	
 	//로그인
 	@Select({
-		" select * from member where id =#{obj.id} and password=#{obj.password} "		
+		" select * from member where id =#{obj.id} and password=#{obj.password} and chk = 1 "		
 	
 	})public Member selectMemberLogin(@Param("obj")Member obj); 
 	//회원조회
@@ -34,7 +34,7 @@ public interface MemberMapper {
 	
 	//아이디찾기
 	@Select({
-		"select m.id from member m where name =#{obj.name}, and phone =#{obj.phone} and email = #{obj.email}"
+		"select m.id from member m where name =#{obj.name}, and phone =#{obj.phone} and email = #{obj.email} and chk = 1 "
 		
 	})public Member selectMemberId(@Param("obj")Member obj);
 	//회원정보수정

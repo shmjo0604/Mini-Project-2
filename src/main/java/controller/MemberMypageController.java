@@ -24,6 +24,7 @@ public class MemberMypageController extends HttpServlet {
 			response.sendRedirect("mypage.do?menu=1");
 			return;
 		}
+		
 		String id =(String)request.getSession().getAttribute("id");
 		if(Integer.parseInt(menu) == 1) {
 			Member obj = MyBatisContext.getSqlSession().getMapper(MemberMapper.class).selectMemberOne(id);
@@ -51,25 +52,28 @@ public class MemberMypageController extends HttpServlet {
 		
 		if(menu == 1) {
 			String id = (String) request.getSession().getAttribute("id");
-			String name = (String) request.getSession().getAttribute("name");
-			String email =(String) request.getSession().getAttribute("email");
-			String phone =(String) request.getSession().getAttribute("phone");
 			Member obj = new Member();
 			obj.setId(id);
-			obj.setName(name);
-			obj.setEmail(email);
-			obj.setPhone(phone);
+			obj.setName(request.getParameter("name"));
+			obj.setEmail(request.getParameter("email"));
+			obj.setPhone(request.getParameter("phone"));
 			
 			
-			int ret =MyBatisContext.getSqlSession().getMapper(MemberMapper.class)
+			int ret = MyBatisContext.getSqlSession().getMapper(MemberMapper.class)
 					.updateMemberOne(obj);
 		
 			if(ret == 1 ) {
-			
-				response.sendRedirect("mypage.do?menu=" + menu);
-			}else {
+
+				request.setAttribute("message", "회원정보가 변경되었습니다.");
+				request.setAttribute("url", "./mypage.do?menu=" + menu );
+				request.getRequestDispatcher("/WEB-INF/member/alert.jsp").forward(request, response);
 				
-			}	return;
+			}else {
+				request.setAttribute("message","회원정보변경에 실패하였습니다");
+				request.setAttribute("url", "./mypage.do?menu=" + menu );
+				request.getRequestDispatcher("/WEB-INF/member/alert.jsp").forward(request, response);
+				return;
+			}	
 			
 				
 			
@@ -121,8 +125,12 @@ public class MemberMypageController extends HttpServlet {
 			int ret = MyBatisContext.getSqlSession().getMapper(MemberMapper.class).deleteMemberOne(obj);
 		
 			if (ret == 1 ) {
+				
 				httpsession.invalidate();
-				response.sendRedirect("home.do");
+				request.setAttribute("message","회원탈퇴가 완료되었습니다 이용해주셔서 감사합니다🙇‍♀️");
+				request.setAttribute("url", "home.do" );
+				request.getRequestDispatcher("/WEB-INF/member/alert.jsp").forward(request, response);
+				
 			}
 			
 			
