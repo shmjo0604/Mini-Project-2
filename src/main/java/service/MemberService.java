@@ -21,4 +21,5 @@ public interface MemberService {
 	public int updateMemberPassword(Member obj);
 	
 	public int deleteMemberOne(Member obj);
+
 }

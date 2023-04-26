@@ -42,6 +42,8 @@ public class ClassInsertController extends HttpServlet {
 		
 		Classproduct obj = new Classproduct();
 		
+		String id =(String)request.getSession().getAttribute("id");
+		
 		obj.setTitle(request.getParameter("title"));
 		obj.setPostcode(request.getParameter("postcode"));
 		obj.setAddress1(request.getParameter("address1"));
@@ -54,7 +56,7 @@ public class ClassInsertController extends HttpServlet {
 		obj.setLocalcode(Long.parseLong(request.getParameter("localcode")));
 		obj.setActcode(Long.parseLong(request.getParameter("actcode")));
 		obj.setPrice(Long.parseLong(request.getParameter("price")));
-		obj.setMemberid("test2");
+		obj.setMemberid(id);
 		obj.setLatitude("35.15883991156001");
 		obj.setLongitude("129.15806348324026");
 		

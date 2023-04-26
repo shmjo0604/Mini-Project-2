@@ -24,4 +24,7 @@ public interface ClassInsertService {
 	
 	// 6. 클래스 상위 카테고리 조회
 	public List<Activitycate> selectActivitycateList();
+	
+	// 7. 내 클래스 관리
+	public List<Classproduct> selectMyClassList(String id);
 }

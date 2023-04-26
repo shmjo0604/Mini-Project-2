@@ -49,4 +49,11 @@ public class ClassInsertServiceImpl implements ClassInsertService {
 		return cMapper.selectActivitycateList();
 	}
 
+	@Override
+	public List<Classproduct> selectMyClassList(String id) {
+		System.out.println(id);
+		System.out.println(cMapper.selectMyClassList(id).toString());
+		return cMapper.selectMyClassList(id);
+	}
+
 }

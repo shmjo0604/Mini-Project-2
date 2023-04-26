@@ -14,7 +14,7 @@ import jakarta.servlet.http.HttpSession;
 
 // 로그인 했을 때, 마지막 페이지로 이동 -> 그러나, 로그인 주소와 로그아웃 주소는 저장하면 안 됨
 
-@WebFilter(urlPatterns = {"/*"})
+@WebFilter(urlPatterns = {"/class/*", "/member/*", "/home.do", "/apply/*"})
 public class URLFilter implements Filter {
 
 	@Override
@@ -41,7 +41,7 @@ public class URLFilter implements Filter {
 			}
 			else {
 				httpSession.setAttribute("url", request.getRequestURI()+"?"+queryString);
-				//System.out.println("customer filter => " + request.getRequestURI()+"?"+queryString);
+				System.out.println("customer filter => " + request.getRequestURI()+"?"+queryString);
 			}
 		}
 		

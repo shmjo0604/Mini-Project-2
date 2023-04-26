@@ -36,7 +36,6 @@ var valueCheck1 = $('.radio-value:checked').val();
 		$('.rate-value-detail').val('0'); // 할인률 초기화
 		
 		$('.sale-value-detail').val(''); // 판매금액 초기화
-		//$('.radio-value-detail').attr('disabled', true); // disabled속성은 form으로 값이 안보내짐
 	}
 
 /* radio값(난이도)에 따라 추가금액입력 활성화여부결정 */

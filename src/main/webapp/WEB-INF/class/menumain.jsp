@@ -7,29 +7,24 @@
 <meta charset="UTF-8">
 <title>클래스 등록 페이지</title>
 <meta name='viewport' content='width=device-width, initial-scale=1'>
+<!-- Google Font -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=DynaPuff&family=Permanent+Marker&display=swap" rel="stylesheet">
 <!-- Include stylesheet -->
-<link href="https://cdn.quilljs.com/1.3.6/quill.snow.css"
-	rel="stylesheet">
+<link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css" />
 <!-- style css -->
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/css/menumain.css">
-
+	href="${pageContext.request.contextPath}/resources/css/main.css">
 </head>
-<style>
-.main {
-	height: 100%;
-	display: flex;
-}
-</style>
-
 <body>
 	<!-- Header 영역 -->
 	<jsp:include page="../header.jsp"></jsp:include>
 	
 	<!-- main 영역 -->
-		<div class="main col-10">
+		<div class="main1 col-10">
 			<div class="left col-2 m-4">
 				<button class="btn btn-outline-success m-3" onclick="pagecate()">카테고리</button>
 				<br />
@@ -291,7 +286,6 @@
 <!-- Include the Quill library -->
 <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
 
-
 <script>
 
 	var localcode = 0;
@@ -374,7 +368,7 @@
 
 	// 지역 카테고리 함수
 	async function getLocalcate(code){
-		console.log(code);
+		//console.log(code);
 
 		if( code==1 || code=="" ){
 			$('#localselect').children('option').remove();
@@ -392,7 +386,7 @@
 			
 			var options = "";
 			for(let obj of data.list){
-				console.log(obj.code);
+				//console.log(obj.code);
 				if(obj.code%100 != 1) {
 					options += "<option value=" + obj.code + ">" + obj.localcate + "</option>";
 				}
@@ -403,13 +397,13 @@
 	}
 	
 	function setLocalcate(code) {
-		console.log(code);
+		//console.log(code);
 		code = document.getElementById("localselect").value;
 	} 
 	
 	// 종류 카테고리 함수
 	async function getActivitycate(code){
-		console.log(code);
+		//console.log(code);
 		
 		if( code==1 || code==""){
 			$('#actdetailselect').children('option').remove();
@@ -427,7 +421,7 @@
 			
 			var options = "";
 			for(let obj of data.list1){
-				console.log(obj.code);
+				//console.log(obj.code);
 				if(obj.code%100 != 1){
 					options += "<option value=" + obj.code + ">" + obj.actcate + "</option>";
 				}
@@ -612,6 +606,7 @@
 	function clickItemImage() {
 		document.getElementById("file").click();
 	}
+	
 	function changeItemImage(e) {
 		const img = document.getElementById("insert-img");
 		console.log(e.files);
@@ -907,7 +902,7 @@
 			pagecate();
 			return false;
 		}
-		if ( detailAddress.value.length <= 0 ) {
+		if ( address2.value.length <= 0 ) {
 			alert('상세주소를 입력하세요.');
 			pagecate();
 			return false;
@@ -945,6 +940,7 @@
 			alert("커리큘럼 내용을 작성하세요.");
 			pagecorri();
 			return false;
+		}
  		
  		if( price.value.length <= 0) {
 			alert("금액을 입력하세요.");

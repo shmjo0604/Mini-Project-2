@@ -4,18 +4,18 @@ import java.io.IOException;
 import java.util.List;
 
 import config.Hash;
-import config.MyBatisContext;
 import dto.Classproduct;
 import dto.Member;
-import dto.Session;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-import mapper.ClassMapper;
-import mapper.MemberMapper;
+import service.ClassInsertService;
+import service.ClassInsertServiceImpl;
+import service.MemberService;
+import service.MemberServiceImpl;
 
 @WebServlet(urlPatterns = {"/member/mypage.do"})
 public class MemberMypageController extends HttpServlet {
@@ -23,32 +23,48 @@ public class MemberMypageController extends HttpServlet {
  
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String menu = request.getParameter("menu");
+		
+		MemberService mService = new MemberServiceImpl();
+		ClassInsertService cService = new ClassInsertServiceImpl();
+		
+		String id =(String)request.getSession().getAttribute("id");
+		
 		if(menu == null) {
-			response.sendRedirect("mypage.do?menu=2"); //=>menu=1로 추후에 변경
+			response.sendRedirect("mypage.do?menu=1"); //=>menu=1로 추후에 변경
 			return;
 		}
 		
-		String id =(String)request.getSession().getAttribute("id");
+		// 1. 회원 정보 변경
+		
 		if(Integer.parseInt(menu) == 1) {
-			Member obj = MyBatisContext.getSqlSession().getMapper(MemberMapper.class).selectMemberOne(id);
+		
+			Member obj = mService.selectMemberOne(id);
+			
 			request.setAttribute("obj",obj);
 			
 		}
-		//내 클래스 등록관리
-		else if(Integer.parseInt(menu)==2) {
-			String memberid =(String)request.getSession().getAttribute("id");
+		
+		// 2. 내 클래스 등록관리
+		
+		else if(Integer.parseInt(menu) == 2) {
 			
-			List<Classproduct> list = MyBatisContext.getSqlSession().getMapper(ClassMapper.class).selectMyClassList(memberid);
+			List<Classproduct> list = cService.selectMyClassList(id);
+			
+			System.out.println(list.toString());
+			
 			request.setAttribute("list", list);
-		}
-		
-		//클래스 등록관리
-		else if(Integer.parseInt(menu)==3) {
-		}
-		
-		//리뷰내역관리
-		else if(Integer.parseInt(menu)==5) {
 			
+		}
+		
+		// 3. 클래스 등록관리
+		
+		else if(Integer.parseInt(menu)==3) {
+			
+		}
+		
+		// 5. 리뷰 내역 관리
+		
+		else if(Integer.parseInt(menu)==5) {
 			
 		}
 		request.getRequestDispatcher("/WEB-INF/member/member_mypage.jsp").forward(request, response);
@@ -59,7 +75,6 @@ public class MemberMypageController extends HttpServlet {
 		//회원정보수정
 		int menu = Integer.parseInt(request.getParameter("menu"));
 		
-		
 		if(menu == 1) {
 			String id = (String) request.getSession().getAttribute("id");
 			Member obj = new Member();
@@ -68,57 +83,69 @@ public class MemberMypageController extends HttpServlet {
 			obj.setEmail(request.getParameter("email"));
 			obj.setPhone(request.getParameter("phone"));
 			
+			MemberService mService = new MemberServiceImpl();
 			
-			int ret = MyBatisContext.getSqlSession().getMapper(MemberMapper.class)
-					.updateMemberOne(obj);
+			int ret = mService.updateMemberOne(obj);
 		
 			if(ret == 1 ) {
 
 				request.setAttribute("message", "회원정보가 변경되었습니다.");
 				request.setAttribute("url", "./mypage.do?menu=" + menu );
-				request.getRequestDispatcher("/WEB-INF/member/alert.jsp").forward(request, response);
 				
 			}else {
 				request.setAttribute("message","회원정보변경에 실패하였습니다");
 				request.setAttribute("url", "./mypage.do?menu=" + menu );
-				request.getRequestDispatcher("/WEB-INF/member/alert.jsp").forward(request, response);
-				return;
-			}	
+			}
+			request.getRequestDispatcher("/WEB-INF/member/alert.jsp").forward(request, response);
 			
-				
+		}
+		else if (menu == 2) {
 			
-		}else if (menu == 2) {
-			
-			
-			
-		}else if (menu == 3) {
+		}
+		
+		else if (menu == 3) {
 			
 			
-		}else if (menu == 4) {
+		}
+		
+		// 비밀번호 재설정
+		
+		else if (menu == 4) {
+			
 			String hashPw =Hash.hashPw((String)request.getSession().getAttribute("id"), request.getParameter("password"));
 			String hashNPw =Hash.hashPw((String) request.getSession().getAttribute("id"),request.getParameter("newpassword"));
 			String hashNPw1 =Hash.hashPw((String) request.getSession().getAttribute("id"),request.getParameter("newpassword1"));
+			
 			Member obj = new Member();
+			
 			obj.setId((String) request.getSession().getAttribute("id"));
 			obj.setPassword(hashPw);
 			obj.setNewpassword(hashNPw);
 			obj.setNewpassword(hashNPw1);
-			int ret = MyBatisContext.getSqlSession().getMapper(MemberMapper.class).updateMemberPassword(obj);
+			
+			MemberService mService = new MemberServiceImpl();
+			
+			int ret = mService.updateMemberPassword(obj);
+			
 			System.out.println(ret);			
+			
 			if(ret == 1 ) {
 				
 				response.sendRedirect("mypage.do?menu=" + menu);
 			
-			}else {
+			}
+			else {
 				
-			}	return;
+			}
 			
-				
-		}else if (menu ==5 ) {
+		}
+		else if (menu ==5 ) {
 			
 			
 		}
+		
 		//회원탈퇴
+		
 		else if (menu == 6) {
 			
 			HttpSession httpsession = request.getSession();
@@ -126,23 +153,30 @@ public class MemberMypageController extends HttpServlet {
 			String pw =request.getParameter("password");
 			String pwHash =Hash.hashPw(id, pw);
 			
-			
 			Member obj = new Member();
 			obj.setId(id);
 			obj.setPassword(pwHash);
 
+			MemberService mService = new MemberServiceImpl();
 			
-			
-			int ret = MyBatisContext.getSqlSession().getMapper(MemberMapper.class).deleteMemberOne(obj);
+			int ret = mService.deleteMemberOne(obj);
 		
-			if (ret == 1 ) {
+			if ( ret == 1 ) {
 				
 				httpsession.invalidate();
 				request.setAttribute("message","회원탈퇴가 완료되었습니다 이용해주셔서 감사합니다🙇‍♀️");
 				request.setAttribute("url", "home.do" );
-				request.getRequestDispatcher("/WEB-INF/member/alert.jsp").forward(request, response);
+	
+			}
+			
+			else {
+				
+				request.setAttribute("message","회원탈퇴가 완료되었습니다 이용해주셔서 감사합니다🙇‍♀️");
+				request.setAttribute("url", "mypage.do?menu=" + menu);
 				
 			}
+			
+			request.getRequestDispatcher("/WEB-INF/member/alert.jsp").forward(request, response);
 			
 			
 		}

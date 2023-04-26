@@ -28,9 +28,9 @@ public interface ClassMapper {
 
 	// 2. 내 클래스 전체 조회
 	@Select({
-		" SELECT c.* FROM classproduct c WHERE memberid=#{obj.memberid} "
+		" SELECT c.* FROM classproduct c WHERE memberid = #{id} "
 	})
-	public List<Classproduct> selectMyClassList(@Param("obj")String id);
+	public List<Classproduct> selectMyClassList(@Param("id") String id);
 	
 	// 2. 클래스 1개 조회
 	@Select({ 

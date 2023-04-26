@@ -14,6 +14,7 @@ import mapper.ClassMapper;
 import mapper.ClassSelectMapper;
 import mapper.MemberMapper;
 import mapper.ReviewMapper;
+import mapper.SessionMapper;
 
 
 public class MyBatisContext {
@@ -48,6 +49,7 @@ public class MyBatisContext {
 			config.addMapper(ClassSelectMapper.class);
 			config.addMapper(ClassImageMapper.class);
 			config.addMapper(ReviewMapper.class);
+			config.addMapper(SessionMapper.class);
 			
 			SqlSessionFactory factory = new SqlSessionFactoryBuilder().build(config);
 			sqlSession = factory.openSession(true); //true이면 자동으로 commit을 수행함.

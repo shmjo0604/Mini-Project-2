@@ -35,7 +35,7 @@
 			</tbody>
 		</table>
 	</form>
-	<a href="write.do" class="btn btn-outline-success register-btn0">일정등록하기</a>
+	<a href="write.do?classcode=${param.classcode}" class="btn btn-outline-success register-btn0">일정등록하기</a>
 	<input type="button" class="btn btn-outline-danger register-btn0" value="일정삭제하기" onclick="deleteSessionAction()" />
 	
 	<div class="row justify-content-center">

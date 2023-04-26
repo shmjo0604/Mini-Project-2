@@ -81,6 +81,9 @@
 			      </div>
 			      <div class="form-floating mb-3 col-lg-3">
 			      	<input type="hidden" name="day" id="day">
+			      </div>
+			      <div>
+			      	<input type="hidden" name="classcode" value="${param.classcode}">
 			      </div> 
 			   </div>
 			    
@@ -108,7 +111,7 @@
 			   
 			   <div class="row">
 				   <div class="form-floating mb-3 col-lg-3">
-				     <input type="number" id="addprice" name="addprice" class="form-control radio-value-detail " readonly>
+				     <input type="number" id="addprice" name="addprice" class="form-control radio-value-detail ">
 				     <label for="addprice" class="form-label">추가금액</label>
 				   </div>		   
 				   <div class="form-floating mb-3 col-lg-3">

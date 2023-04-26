@@ -28,8 +28,8 @@ public class SessionController extends HttpServlet {
 		}
 		
 		if(Integer.parseInt(menu) == 1) {
-			//long classcode = Long.parseLong(request.getParameter("classcode"));
-			long classcode = 107;
+			long classcode = Long.parseLong(request.getParameter("classcode"));
+			//long classcode = 107;
 			try {
 				List<Session> list = sService.selectSessionList(classcode);
 				request.setAttribute("list", list);		

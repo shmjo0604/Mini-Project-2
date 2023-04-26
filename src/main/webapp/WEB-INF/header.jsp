@@ -7,7 +7,7 @@
         <div class="container">
 
             <!-- (1) 로고 -->
-            <a class="navbar-brand d-flex align-items-center lh-1 me-10 transition-opacity opacity-75-hover" href="./index.html">
+            <a class="navbar-brand d-flex align-items-center lh-1 me-10 transition-opacity opacity-75-hover" href="${pageContext.request.contextPath}/home.do">
                 <!-- 로고 아이콘 추가예정 -->
                 <div class="logo">Special Day</div>
             </a>
@@ -37,7 +37,7 @@
                         <a class="nav-link" href="">FAQ</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="$(pageContext.request.contextPath)/member/mypage.do">마이페이지</a>
+                        <a class="nav-link" href="${pageContext.request.contextPath}/member/mypage.do">마이페이지</a>
                     </li>
                 </ul>           
                  
@@ -46,11 +46,11 @@
 
             <!-- (3) 클래스등록&로그인 -->
             <div class="d-none d-lg-flex">
-                <a href="#" class="btn btn-outline-success" role="button">클래스 등록</a>
-                <a href="#" class="btn btn-outline-secondary" role="button">로그인</a>
+                <a href="${pageContext.request.contextPath}/class/insert.do" class="btn btn-outline-success" role="button">클래스 등록</a>
+                <a href="${pageContext.request.contextPath}/member/login.do" class="btn btn-outline-secondary" role="button">로그인</a>
             </div>
             <!-- / 클래스등록&로그인 -->
         </div>
     </nav>
-    <hr>
+    
 </header>

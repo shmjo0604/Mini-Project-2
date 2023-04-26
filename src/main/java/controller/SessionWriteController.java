@@ -19,8 +19,8 @@ public class SessionWriteController extends HttpServlet {
       
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// 클래스 가격 받아오기
-		//long classcode = Long.parseLong(request.getParameter("classcode"));
-		long classcode = 107;
+		long classcode = Long.parseLong(request.getParameter("classcode"));
+		//long classcode = 107;
 		
 		try {
 			long price = sService.selectPriceOne(classcode);
@@ -37,8 +37,8 @@ public class SessionWriteController extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//long classcode = Long.parseLong(request.getParameter("classcode"));
-		long classcode = 107;
+		long classcode = Long.parseLong(request.getParameter("classcode"));
+		//long classcode = 107;
 		
 		Session obj = new Session();
 		obj.setClasscode(classcode); // 테스트
@@ -72,16 +72,17 @@ public class SessionWriteController extends HttpServlet {
 		
 		try {
 			int ret = sService.insertSessionOne(obj);
+			System.out.println(ret);
 			if(ret == 1) {
-				response.sendRedirect("select.do");
+				response.sendRedirect("select.do?menu=1&classcode="+classcode);
 			}
 			else {
-				response.sendRedirect("write.do");
+				response.sendRedirect("write.do?classcode="+classcode);
 			}
 		} 
 		catch (Exception e) {
 			e.printStackTrace();
-			response.sendRedirect("select.do");
+			response.sendRedirect("select.do?menu=1&classcode="+classcode);
 		}
 		
 		

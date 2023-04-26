@@ -40,8 +40,8 @@
                             <td>${obj.address1}</td>
                             <td><fmt:formatNumber value="${obj.price}" pattern="#,###"/></td>
                             <td><fmt:formatDate value="${obj.regdate}" pattern="yyyy-MM-dd hh:mm:ss"/></td>
-						    <td><input type="button" class="btn btn-sm btn-outline-success" value="클래스 관리" onclick="location.href='${pageContext.request.contextPath}/class/updateone.do'" /></td>
-						    <td><input type="button" class="btn btn-sm btn-outline-success" value="일정 관리" onclick="location.href='${pageContext.request.contextPath}/session.do'" /></td>
+						    <td><input type="button" class="btn btn-sm btn-outline-success" value="클래스 관리" onclick="location.href='${pageContext.request.contextPath}/class/updateone.do '" /></td>
+						    <td><input type="button" class="btn btn-sm btn-outline-success" value="일정 관리" onclick="location.href='${pageContext.request.contextPath}/session/select.do?menu=1&classcode=${obj.classcode}'" /></td>
                          </tr>
                      </c:forEach>
                    

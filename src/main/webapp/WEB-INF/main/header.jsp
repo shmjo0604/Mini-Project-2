@@ -46,8 +46,8 @@
 
             <!-- (3) 클래스등록&로그인 -->
             <div class="d-none d-lg-flex">
-                <a href="#" class="btn btn-outline-success" role="button">클래스 등록</a>
-                <a href="login.do" class="btn btn-outline-secondary" role="button">로그인</a>
+                <a href="${pageContext.request.contextPath}/class/insert.do" class="btn btn-outline-success" role="button">클래스 등록</a>
+                <a href="${pageContext.request.contextPath}/member/login.do" class="btn btn-outline-secondary" role="button">로그인</a>
             </div>
             <!-- / 클래스등록&로그인 -->
         </div>
