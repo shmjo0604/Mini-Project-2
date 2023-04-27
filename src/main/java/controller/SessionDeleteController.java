@@ -29,7 +29,7 @@ public class SessionDeleteController extends HttpServlet {
 		
 		try {
 			sService.deleteSessionList(map);
-			response.sendRedirect("select.do?menu=1");
+			response.sendRedirect("select.do?menu=1&classcode="+classcode);
 		} catch (Exception e) {
 			e.printStackTrace();
 			return;

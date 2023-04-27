@@ -17,8 +17,8 @@ public class SessionUpdateController extends HttpServlet {
 	private SessionService sService = new SessionServiceImpl();
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//long classcode = Long.parseLong(request.getParameter("classcode"));
-		long classcode = 107;
+		long classcode = Long.parseLong(request.getParameter("classcode"));
+		//long classcode = 107;
 		long no = Long.parseLong(request.getParameter("no"));
 		
 		Session obj = new Session();
@@ -40,8 +40,8 @@ public class SessionUpdateController extends HttpServlet {
 	}
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//long classcode = Long.parseLong(request.getParameter("classcode"));
-		long classcode = 107;
+		long classcode = Long.parseLong(request.getParameter("classcode"));
+		//long classcode = 107;
 		long no = Long.parseLong(request.getParameter("no"));
 		
 		Session obj = new Session();
@@ -55,16 +55,20 @@ public class SessionUpdateController extends HttpServlet {
 		obj.setClassstart(request.getParameter("start"));
 		obj.setClassend(request.getParameter("end"));
 		float num = Float.parseFloat(request.getParameter("rate"))*0.01f;
-		obj.setDiscount(Math.round(num*100)/100.0f); // 소수점 둘째자리까지
+		obj.setDiscount(1f - Math.round(num*100)/100.0f); // 소수점 둘째자리까지
 		obj.setAddprice(Long.parseLong(request.getParameter("addprice")));
 		obj.setClasslevel(request.getParameter("level"));
-		System.out.println(obj.toString());
+		//System.out.println(obj.toString());
 		
 		
 		try {
 			int ret = sService.updateSessionOne(obj);
+			System.out.println(ret);
 			if(ret == 1) {
-				response.sendRedirect("select.do");
+				response.sendRedirect("select.do?menu=1&classcode="+classcode);
+			}
+			else {
+				response.sendRedirect("update.do?no="+no+"&classcode="+classcode);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

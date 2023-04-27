@@ -48,7 +48,7 @@
  		
  		<!-- right side -->
  		<div class="col-lg-9 right_side" >
-			<form action="update.do?no=${info.no}" method="post" id="form">
+			<form action="update.do?no=${info.no}&classcode=${info.classcode}" method="post" id="form">
 				<h7>일정관리하기 > 일정변경하기</h7>
 				<div class="session-hr">
 					<hr>
