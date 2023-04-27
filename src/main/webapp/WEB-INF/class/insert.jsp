@@ -1003,8 +1003,8 @@
 		const file = document.getElementById("file");
 		const nickname = document.getElementById("nickname");
 		const content = quill1.root.innerHTML;
-		/* const content_length = quill1.getLength();
-		const content_length2 = quill2.getLength();
+		const content_length = quill1.getLength();
+		/* const content_length2 = quill2.getLength();
 		const content_length3 = quill3.getLength(); */
  		const title = document.getElementById("title");
  		const postcode = document.getElementById("sample6_postcode");
@@ -1064,11 +1064,12 @@
 			pagecate();
 			return false;
 		}
-		if ( detailAddress.value.length <= 0 ) {
+		
+		if ( address2.value.length <= 0 ) {
 			alert('상세주소를 입력하세요.');
 			pagecate();
 			return false;
-		} 
+		}
 		
 		if(file.value === "") {
 			alert("이미지 파일을 첨부하세요.");
@@ -1092,7 +1093,7 @@
 			return false;
 		}
 		
-	/* 	if( content_length2 < 30) {
+		/* if( content_length2 < 30) {
 			alert("클래스 소개를 작성하세요.");
 			pageintro();
 			return false;
@@ -1101,8 +1102,9 @@
 		if( content_length3 < 30) {
 			alert("커리큘럼 내용을 작성하세요.");
 			pagecorri();
-			return false; */
- 		
+			return false;
+		} */
+			
  		if( price.value.length <= 0) {
 			alert("금액을 입력하세요.");
 			price.focus();
