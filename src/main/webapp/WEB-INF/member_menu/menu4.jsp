@@ -22,7 +22,7 @@
 			<input class="form-control w-25 mb-3" type ="password" placeholder ="새 비밀번호" id = "newpassword" name ="newpassword" value ="${obj.newpassword}"/>
 			
 			<label for="newpassword" class="form-label">변경할 비밀번호를 한 번 더 입력하세요.</label>
-			<input class="form-control w-25 mb-3" type ="password" placeholder ="새 비밀번호 확인" id = "newpassword" name ="newpassword1" value ="${obj.newpassword}"/>
+			<input class="form-control w-25 mb-3" type ="password" placeholder ="새 비밀번호 확인" id = "newpassword1" name ="newpassword1" value ="${obj.newpassword}"/>
 			
 			<input type ="button" class="btn btn-outline-success" value ="정보변경" onclick ="updatepassword()"/>
 		</form>

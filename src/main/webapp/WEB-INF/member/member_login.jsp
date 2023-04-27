@@ -30,7 +30,8 @@
 							<label for="pw" class="form-label">암호</label>
 						</div>
 						<div>
-							<input type="submit" value="로그인" class="btn btn-primary"
+							<a href="${pageContext.request.contextPath}/home.do"><button type="button" class="btn btn-primary">홈</button></a>
+							<input type="button" value="로그인" class="btn btn-primary"
 								onclick="loginAction()" /> 
 								<a href="join.do" class="btn btn-primary">회원가입</a> 
 								<!-- 아이디찾기 자리 -->
@@ -117,7 +118,8 @@
 	<script>
 		function loginAction() {
 			const id = document.getElementById("id");
-			const pw = document.getElemntById("password");
+			const pw = document.getElementById("pw");
+			const form = document.getElementById("form");
 
 			if (id.value.length <= 0) {
 				alert('아이디를 입력하세요');
@@ -127,10 +129,13 @@
 			}
 			if (pw.value.length <= 0) {
 				alert('비밀번호를 입력하세요');
-				password.focus();
+				pw.focus();
 				return false;
 
 			}
+			
+			form.submit();
+			
 		}
 		function searchId(){
 			const name = document.getElementById("name");

@@ -106,24 +106,25 @@
 		}
 		
 		function updatepassword() {
-			const password = document.getElementsByName("password")[0];
-			const newpassword = document.getElementsByName("newpassword")[0];
-
+			const password = document.getElementById("password");
+			const newpassword = document.getElementById("newpassword");
+			const newpassword1 = document.getElementById("newpassword1");
+			
 			if (password.value.length <= 0) {
 				alert('비밀번호를 입력해주세요');
-				name.focus();
+				password.focus();
 				return false;
 			}
 			
 			if (newpassword.value.length <= 0) {
 				alert('새비밀번호를 입력해주세요');
-				name.focus();
+				newpassword.focus();
 				return false;
 
 			}
 			if(newpassword.value !== newpassword1.value){
 				alert('비밀번호가 일치하지않습니다');
-				name.focus();
+				newpassword1.focus();
 				return false;
 				
 			}
