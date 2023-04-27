@@ -8,40 +8,38 @@
       <table class="table mt-2">
              <thead style="background-color: lightgray;">
                      <tr>
-                        <th>클래스번호</th>
-                        <th>클래스명</th>
+                        <th>클래스 제목</th>
                         <th>클래스 참여일자</th>
-                        <th>클래스 참여시간</th>
-                        <th>신청자 아이디</th>
-                        <th>신청자 성명</th>
-                        <th>참여 인원</th>
-                        <th>결제할 금액</th>
-                        <th>총 가격</th>
+                        <th>클래스 시작시간</th>
+                        <th>클래스 종료시간</th>
+                        <th>신청 날짜</th>
+                        <th>참여 신청 인원</th>
+                        <th>총 결제 금액</th>
+                        <th>신청 상태</th>
                      </tr>
                </thead>
                <tbody>
-                     <c:set var="total" value="${0}"/> <!-- 변수 만들기 (초기값은 0) -->
-                     <c:forEach var="obj" items="${list}">
+                     <c:forEach var="obj" items="${applylist}">
                            <tr>
-                             <th><input type="checkbox" name="chk[]" value="${obj.no}"> ${obj.no}</th>
-                            <td><fmt:formatNumber value="${obj.cnt}" pattern="#,###"/></td>
+                            <th><input type="checkbox" name="chk[]" value="${obj.no}"> ${obj.title}</th>
+                            <td>${obj.classdate}</td>
+                            <td>${obj.classstart}</td>
+                            <td>${obj.classend}</td>
                             <td><fmt:formatDate value="${obj.regdate}" pattern="yyyy-MM-dd hh:mm:ss"/></td>
-                            <td>${obj.customerid}</td>
-                            <td>${obj.customername}</td>
-                            <td>${obj.itemno}</td>
-                            <td>${obj.itemname}</td>
-                            <td><fmt:formatNumber value="${obj.itemprice}" pattern="#,###"/></td>
-                            <td><fmt:formatNumber value="${obj.cnt*obj.itemprice}" pattern="#,###"/></td>
-                           <c:set var="total" value="${total + (obj.cnt*obj.itemprice)}"/>
+                            <td>${obj.person}명</td>
+                            <td><fmt:formatNumber value="${obj.payment}" pattern="#,###"/></td>
+                            <c:if test="${obj.chk == 1}">
+					     		<td>결제완료</td>
+					     	</c:if>
+					     	<c:if test="${obj.chk == 2}">
+					     		<td>결제취소</td>
+					     	</c:if>
+					     	<c:if test="${obj.chk == 3}">
+					     		<td>참여완료</td>
+					     	</c:if>
                          </tr>
                      </c:forEach>
-                     <tr>
-                           <th colspan="8">합계</th>
-                           <td>
-                              <fmt:formatNumber value="${total}" pattern="#,###"/>
-                           </td>
-                     </tr>
-               </tbody>
+                </tbody>
       </table>
       <input type="button" class="btn btn-sm btn-primary" value="주문취소" onclick="deletePurchaseAction()" />
    </form>

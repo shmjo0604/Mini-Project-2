@@ -10,5 +10,7 @@ public interface ApplyService {
 	public int insertApply(Apply obj);
 	
 	public List<Apply> selectApplyList(String id);
+	
+	public ClassSessionView selectClassSessionViewOne(long no);
 
 }

@@ -4,6 +4,7 @@ import java.util.List;
 
 import config.MyBatisContext;
 import dto.Apply;
+import dto.ClassSessionView;
 import dto.Session;
 import mapper.ApplyMapper;
 
@@ -29,8 +30,20 @@ public class ApplyServiceImpl implements ApplyService{
 		}
 		catch (Exception e) {
 			e.printStackTrace();
-		return null;
+			return null;
 		}
+	}
+
+	@Override
+	public ClassSessionView selectClassSessionViewOne(long no) {
+		try {
+			System.out.println(no);
+			return MyBatisContext.getSqlSession().getMapper(ApplyMapper.class).selectClassSessionViewOne(no);
+		}
+		catch (Exception e) {
+			return null;
+		}
+		
 	}
 
 }

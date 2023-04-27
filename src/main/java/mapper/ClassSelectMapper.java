@@ -51,6 +51,7 @@ public interface ClassSelectMapper {
 			/* " OR talent LIKE '%' ||  #{map.keyword} || '%' ", */
 		" </if> ",
 		" </trim> ",
+		" AND chk = 1 ",
 		" ORDER BY s.classcode DESC ",
 		" </script> "
 	})
@@ -86,7 +87,7 @@ public interface ClassSelectMapper {
 
 	// 2. 뷰에서 클래스 코드가 중복인 것을 제거하고 하나만 조회 (가장 오래된 것)
 	@Select({ " <script> ",
-			" SELECT * FROM (SELECT *, ROW_NUMBER() OVER(PARTITION BY classcode ORDER BY no DESC) AS rown FROM CLASSSESSIONVIEW c) s WHERE rown = 1 ",
+			" SELECT * FROM (SELECT *, ROW_NUMBER() OVER(PARTITION BY classcode ORDER BY no DESC) AS rown FROM CLASSSESSIONVIEW c) s WHERE rown = 1 AND chk = 1",
 			" <if test = 'map.citycode != 0' > ", " AND citycode = #{map.citycode} ", " </if> ",
 			" <if test = 'map.localcode != 0'> ", " AND localcode = #{map.localcode} ", " </if> ",
 			" <if test = 'map.activitycode != 0'> ", " AND activitycode = #{map.activitycode} ", " </if> ",

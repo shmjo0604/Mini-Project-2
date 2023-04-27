@@ -40,8 +40,22 @@
     .info:after {content: '';position: absolute;margin-left: -12px;left: 50%;bottom: 0;width: 22px;height: 12px;background: url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/vertex_white.png')}
     .info .link {color: #5085BB;}
     
+    html,body {
+	height : 100%;
+	}
+	#wrapper {
+    min-height: 100%;
+    position: relative;
+    padding-bottom: 60px;
+	}
+	footer {
+    position: relative; (absolute -> relative)
+    transform: translatY(-100%);
+	}
     
 </style>
+
+
 </head>
 
 <body>
@@ -49,19 +63,20 @@
     <jsp:include page="../header.jsp"></jsp:include>
 
     <hr class="divider">
-
-    <!--Main 영역-->
-    <!--Search - List 영역-->
-    <c:if test="${param.search == 'list'}">
-    	<jsp:include page="./select_list.jsp"></jsp:include>
-	</c:if>
-
-    <!--Search - Map 영역-->
-    <c:if test="${param.search == 'map'}">
-    	<jsp:include page="./select_map.jsp"></jsp:include>
-	</c:if>
+    
+    <div id="wrapper">
+    	 <!--Main 영역-->
+	    <!--Search - List 영역-->
+	    <c:if test="${param.search == 'list'}">
+	    	<jsp:include page="./select_list.jsp"></jsp:include>
+		</c:if>
 	
-	 
+	    <!--Search - Map 영역-->
+	    <c:if test="${param.search == 'map'}">
+	    	<jsp:include page="./select_map.jsp"></jsp:include>
+		</c:if>
+    </div>
+
     <!--footer 영역-->
     <footer class="bg-dark">
         <div class="container">

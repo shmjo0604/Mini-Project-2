@@ -10,6 +10,7 @@ import org.apache.ibatis.transaction.TransactionFactory;
 import org.apache.ibatis.transaction.jdbc.JdbcTransactionFactory;
 
 import mapper.ApplyMapper;
+import mapper.ApplyStatusViewMapper;
 import mapper.ClassImageMapper;
 import mapper.ClassMapper;
 import mapper.ClassProductMapper;
@@ -54,6 +55,8 @@ public class MyBatisContext {
 			config.addMapper(SessionMapper.class);
 			config.addMapper(ClassProductMapper.class);
 			config.addMapper(ApplyMapper.class);
+			config.addMapper(ApplyStatusViewMapper.class);
+			
 			
 			SqlSessionFactory factory = new SqlSessionFactoryBuilder().build(config);
 			sqlSession = factory.openSession(true); //true이면 자동으로 commit을 수행함.

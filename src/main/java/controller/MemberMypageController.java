@@ -13,8 +13,8 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-import service.ApplyService;
-import service.ApplyServiceImpl;
+import service.ApplyStatusViewService;
+import service.ApplyStatusViewServiceImpl;
 import service.ClassInsertService;
 import service.ClassInsertServiceImpl;
 import service.MemberService;
@@ -29,7 +29,7 @@ public class MemberMypageController extends HttpServlet {
 		
 		MemberService mService = new MemberServiceImpl();
 		ClassInsertService cService = new ClassInsertServiceImpl();
-		ApplyService aService = new ApplyServiceImpl();
+		ApplyStatusViewService aService = new ApplyStatusViewServiceImpl();
 		
 		String id =(String)request.getSession().getAttribute("id");
 		
@@ -60,11 +60,18 @@ public class MemberMypageController extends HttpServlet {
 			
 		}
 		
-		// 3. 클래스 신청 관리
+		// 3. 클래스 신청 내역
 		
 		else if(Integer.parseInt(menu)==3) {
 			
-			
+			try {
+				List<ApplyStatusView> list = aService.selectApplyStatusViewListById(id);
+				System.out.println(list.toString());
+				request.setAttribute("applylist", list);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 		
 		// 5. 리뷰 내역 관리
@@ -170,7 +177,7 @@ public class MemberMypageController extends HttpServlet {
 				
 				httpsession.invalidate();
 				request.setAttribute("message","회원탈퇴가 완료되었습니다 이용해주셔서 감사합니다🙇‍♀️");
-				request.setAttribute("url", "home.do" );
+				request.setAttribute("url", request.getContextPath() + "/home.do" );
 	
 			}
 			

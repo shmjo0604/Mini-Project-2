@@ -20,7 +20,7 @@
 			<label for="email" class="form-label">이메일</label>
 			<input id="email" class="form-control w-25" type ="text" placeholder ="이메일" name ="email" value ="${obj.email}"/><br />
 			
-			<label for="phone" class="form-label">이메일</label>
+			<label for="phone" class="form-label">연락처</label>
 			<input id="phone" class="form-control w-25" type ="text" placeholder ="전화번호" name ="phone" value ="${obj.phone}"/><br />
 			<input type ="button" value ="정보변경" class ="btn btn-primary" onclick ="updateMemberOne()"/>
 		</form>

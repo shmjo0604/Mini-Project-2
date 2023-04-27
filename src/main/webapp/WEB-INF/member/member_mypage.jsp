@@ -132,21 +132,17 @@
 		}
 		
 		function deleteMemberOne() {
-			const id = document.getElementsByName("id")[0];
+			
 			const password = document.getElementsByName("password")[0];
 			
-			if (id.value.length <= 0) {
-				alert('아이디를 입력하세요');
+
+			if (password.value.length <= 0) {
+				alert('비밀번호를 입력해주세요');
 				name.focus();
 				return false();
 
-				if (password.value.length <= 0) {
-					alert('비밀번호를 입력해주세요');
-					name.focus();
-					return false();
-
-				}
 			}
+			
 			const form = document.getElementsByTagName("form");
 			form[0].submit();
 

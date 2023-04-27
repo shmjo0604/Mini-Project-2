@@ -207,8 +207,8 @@
 				</div>
 				<div class="modal-body">
 					
-					<h6 class="mt-3">최대인원 : <input id="modal_max" name="maximum" type="text"> </h6>
-					<h6>현재 신청 인원 : <input id="modal_cnt" name="cnt" type="text"> </h6>
+					<h6 class="mt-3">최대인원 : <input id="modal_max" type="text"> </h6>
+					<h6>현재 신청 인원 : <input id="modal_cnt" type="text"> </h6>
 					<h6>신청 가능 인원 : <input id="modal_pre" type="text"> </h6>
 					<hr/>
 					<h6 class="mt-3">날짜 : <input id="modal_date" type="text"></h6>
@@ -218,7 +218,7 @@
 					<h6 class="mt-3" >할인 : <input id="modal_dc" type="text"> </h6>
 					<h6>추가금액 : <input id="modal_ap" type="text"> </h6>
 			
-					<h4 class="float-end price">총 금액 : <input id="modal_total" name="totalprice" type="text"> </h4>
+					<h4 class="float-end price">총 금액 : <input id="modal_total" type="text"> </h4>
 					
 					<input type="text" name="sessionno" id="modal_no">
 					

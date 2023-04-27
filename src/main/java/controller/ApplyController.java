@@ -3,6 +3,7 @@ package controller;
 import java.io.IOException;
 
 import dto.Apply;
+import dto.ClassSessionView;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -19,13 +20,18 @@ public class ApplyController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
-		request.setAttribute("sessionno", request.getParameter("sessionno"));
+		System.out.println(request.getParameter("sessionno"));
 
-		request.setAttribute("cnt", request.getParameter("cnt"));
-		request.setAttribute("maximum", request.getParameter("maximum"));
-		request.setAttribute("totalprice", request.getParameter("totalprice"));
-	
+		ApplyService aService = new ApplyServiceImpl();
+		ClassSessionView obj = aService.selectClassSessionViewOne(Long.parseLong(request.getParameter("sessionno")));
+		System.out.println(obj.toString());
 		
+		request.setAttribute("sessionno", request.getParameter("sessionno"));
+		
+		request.setAttribute("cnt", obj.getCnt());
+		request.setAttribute("maximum", obj.getMaximum());
+		request.setAttribute("totalprice", obj.getTotalprice());
+	
 		request.getRequestDispatcher("/WEB-INF/apply/insert.jsp").forward(request, response);
 	}
 
@@ -71,7 +77,7 @@ public class ApplyController extends HttpServlet {
 		}
 		else {
 //			response.sendRedirect(url);
-			response.sendRedirect(request.getContextPath() + "/apply/insert.do");
+			response.sendRedirect(request.getContextPath() + "/apply/insert.do?sessionno="+sessionno);
 		}		
 
 	}

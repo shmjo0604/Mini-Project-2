@@ -8,6 +8,7 @@ import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 
 import dto.Apply;
+import dto.ClassSessionView;
 
 @Mapper
 public interface ApplyMapper {
@@ -30,5 +31,9 @@ public interface ApplyMapper {
 	public List<Apply> selectApplyList(@Param("id") String id);
 	
 	// classsessionview 정보 하나 불러오기
+	@Select({
+		" SELECT a.cnt, a.maximum, a.totalprice FROM classsessionview a WHERE no = #{no} "
+	})
+	public ClassSessionView selectClassSessionViewOne(@Param("no") long sessionno);
 
 }

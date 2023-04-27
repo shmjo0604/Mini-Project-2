@@ -29,7 +29,7 @@ public class URLFilter implements Filter {
 		String uri = request.getRequestURI();
 		//System.out.println(uri);
 		
-		if(!uri.contains("login.do") && !uri.contains("logout.do") && !uri.contains("findid.do")) {
+		if(!uri.contains("login.do") && !uri.contains("logout.do") && !uri.contains("findid.do") && !uri.contains("join.do")) {
 			
 			// session에 로그인 정보가 없을 때, url 주소를 url에 넣고, login.do 페이지로 보냄
 			
