@@ -20,7 +20,6 @@
 <!-- CSS -->
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/classinsert.css">
-
 </head>
 <style>
 
