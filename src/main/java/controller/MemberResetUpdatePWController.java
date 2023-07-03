@@ -9,7 +9,6 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import mapper.MemberMapper;
 import service.MemberService;
-import serviceImpl.MemberServiceImpl;
 
 import java.io.IOException;
 
@@ -24,7 +23,8 @@ import dto.Member;
 public class MemberResetUpdatePWController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-		private MemberService mService = new MemberServiceImpl();
+	
+
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
@@ -34,39 +34,32 @@ public class MemberResetUpdatePWController extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		String id =(String)request.getSession().getAttribute("id");
-		String hashNPw =Hash.hashPw((String) request.getSession().getAttribute("id"),request.getParameter("newpassword"));
-		String hashNPw1 =Hash.hashPw((String) request.getSession().getAttribute("id"),request.getParameter("newpassword1"));
 		
-		
+		String id = (String) request.getSession().getAttribute("id");
+		String hashNPw = Hash.hashPw((String) request.getSession().getAttribute("id"),
+				request.getParameter("newpassword"));
+		String hashNPw1 = Hash.hashPw((String) request.getSession().getAttribute("id"),
+				request.getParameter("newpassword1"));
+
 		Member obj = new Member();
-		
+
 		obj.setId(id);
 		obj.setNewpassword(hashNPw);
-		obj.setNewpassword(hashNPw1);
-		
-		int ret =MyBatisContext.getSqlSession().getMapper(MemberMapper.class).resetupdatePassword(obj);
-		
-		if(ret != 0 ) {
-			HttpSession httpsession = request.getSession();
-			httpsession.setAttribute("id" );
-		}
-		
-		
-		
-		
+
+		int ret = MyBatisContext.getSqlSession().getMapper(MemberMapper.class).updateMemberPassword(obj);
+
 		System.out.println(ret);
-		if (ret ==1 ) {
-			request.setAttribute("message","비밀번호 변경이 완료되었습니다");
-			request.setAttribute("url", "login.do" );
+		
+		if (ret == 1) {
+			request.setAttribute("message", "비밀번호 변경이 완료되었습니다");
+			request.setAttribute("url", "login.do");
 			request.getRequestDispatcher("/WEB-INF/member/alert.jsp").forward(request, response);
-			
+
 		}
-			request.setAttribute("message","비밀번호 변경이 실패하였습니다.");
-			request.setAttribute("url", "resetpw1.do" );
-			request.getRequestDispatcher("/WEB-INF/member/alert.jsp").forward(request, response);
-			
-		}
-		 
-			
+		request.setAttribute("message", "비밀번호 변경이 실패하였습니다.");
+		request.setAttribute("url", "resetpw1.do");
+		request.getRequestDispatcher("/WEB-INF/member/alert.jsp").forward(request, response);
+
 	}
+
+}

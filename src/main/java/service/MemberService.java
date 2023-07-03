@@ -1,7 +1,5 @@
 package service;
 
-import org.apache.ibatis.annotations.Param;
-
 import dto.Member;
 
 public interface MemberService {

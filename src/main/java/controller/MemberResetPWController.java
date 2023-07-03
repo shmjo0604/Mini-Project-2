@@ -15,7 +15,6 @@ import config.MyBatisContext;
 import dto.Member;
 
 @WebServlet(urlPatterns = { "/member/resetpw.do" })
-
 public class MemberResetPWController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -28,17 +27,16 @@ public class MemberResetPWController extends HttpServlet {
 		obj.setEmail(request.getParameter("email"));
 		obj.setPhone(request.getParameter("phone"));
 
-		Member ret =MyBatisContext.getSqlSession().getMapper(MemberMapper.class).resetMemberPassword(obj);
-		if(ret != null) {
-			request.setAttribute("message","인증에 성공했습니다.");
-			request.setAttribute("url", "resetpw1.do" );
-			request.getRequestDispatcher("/WEB-INF/member/alert.jsp").forward(request, response);
-						
-			}
-			else {
-				request.setAttribute("message","등록된 정보가 없습니다.");
-				request.setAttribute("url", "login.do" );
-				request.getRequestDispatcher("/WEB-INF/member/alert.jsp").forward(request, response);
-			}
+//		Member ret = MyBatisContext.getSqlSession().getMapper(MemberMapper.class).updateMemberPassword(obj);
+//		if (ret != null) {
+//			request.setAttribute("message", "인증에 성공했습니다.");
+//			request.setAttribute("url", "resetpw1.do");
+//			request.getRequestDispatcher("/WEB-INF/member/alert.jsp").forward(request, response);
+//
+//		} else {
+//			request.setAttribute("message", "등록된 정보가 없습니다.");
+//			request.setAttribute("url", "login.do");
+//			request.getRequestDispatcher("/WEB-INF/member/alert.jsp").forward(request, response);
+//		}
 	}
 }
