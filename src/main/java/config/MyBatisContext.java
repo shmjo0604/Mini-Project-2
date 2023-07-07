@@ -36,10 +36,7 @@ public class MyBatisContext {
 			BasicDataSource dataSource = new BasicDataSource();
 
 			// h2 테스트용 DB 접속
-			dataSource.setDriverClassName("org.h2.Driver");
-			dataSource.setUrl("jdbc:h2:tcp://1.234.5.158:51521/mini05;Mode=Oracle");
-			dataSource.setUsername("sa"); // 사용자 이름은 sa
-			dataSource.setPassword(""); // 비밀번호는 없음
+			
 			
 			//
 			TransactionFactory transactionFactory = new JdbcTransactionFactory();
